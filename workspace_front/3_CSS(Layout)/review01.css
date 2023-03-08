@@ -1,6 +1,6 @@
-@font-face{
-    font-family: 'BillieHarley';
-    src: url(BillieHarley.ttf) format(normal);
+@font-face {
+    font-family: "BillieHarley";
+    src: url(BillieHarley.ttf) format("truetype");
     font-weight: normal;
 }
 
@@ -8,10 +8,11 @@
     box-sizing: border-box;
 }
 
-div {
+.container {
     width: 800px;
     height: 600px;
     margin: auto;
+    text-align: center;
     background-color: blue;
 }
 
@@ -24,11 +25,17 @@ div {
 
 .header>* {
     height: 100%;
+    text-align: center;
 }
 
 .header.logo {
     width: 20%;
+    line-height: 120px;
     font-family: 'BillieHarley', serif;
+    font-size: 21pt;
+    font-weight: bold;
+    color: goldenrod;
+    background-image: url('logo-background2.png');
     background-color: cornsilk;
 }
 
@@ -39,7 +46,7 @@ div {
 
 .header.reserved {
     width: 20%;
-    background-color: blanchedalmond;
+    background-color: rgb(255, 235, 205);
 }
 
 .body {
@@ -54,6 +61,7 @@ div {
 }
 
 .body.info {
+    height: 90%;
     width: 25%;
 }
 

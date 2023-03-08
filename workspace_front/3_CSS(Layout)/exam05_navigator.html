@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            *{box-sizing: border-box;}
+        ul{
+            overflow: hidden;
+            padding: 0px;
+        }
+        li{
+            list-style: none;
+            width: 25%;
+            height: 100%;
+            float: left;
+            text-align: center;
+            font-weight: bold;
+            transition-duration: 300ms;
+        }
+        li:hover{
+            background-color: cornsilk;
+            color: rgb(150, 4, 4);
+            cursor: pointer;
+            font-size: 15pt;
+        }
+        li:active{
+            transition-duration: 50ms;
+            font-size: 10pt;
+            background-color: rgb(251, 232, 155);
+        }
+    </style>
+    </head>
+    <body>
+        <ul>
+            <li>Home</li>
+            <li>AboutMe</li>
+            <li>Portfolio</li>
+            <li>Contact</li>
+        </ul>
+    </body>
+</html>
