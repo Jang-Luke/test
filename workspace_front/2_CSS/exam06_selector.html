@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /*구조 선택자*/
+            /*odd : 홀수 / even : 짝수*/
+            /*n : n 비율로 증가하는 수 (ex: n = 1 2 3 4 ... | 2n = 2 4 6 8 ... | 3n = 3 6 9 12 ...)
+            연산자를 활용할 수도 있음 (ex: 3n-1 = 2 5 8 11 ...)*/
+            div:nth-child(3){
+                background-color: brown;
+            }
+            div p:nth-of-type(odd){
+                background-color: mediumturquoise;
+            }
+            p:nth-of-type(even){
+                background-color: rgb(199, 245, 245);
+            }
+            div p:nth-of-type(3){
+                background-color: aqua;
+            }
+            p:first-of-type{
+                background-color: aquamarine;
+            }
+            p:last-of-type{
+                background-color: deepskyblue;
+            }
+            
+            #img1{
+                display: block;
+                margin-bottom: 100px;
+                float: left;
+            }
+            #img2{
+                display: inline;
+                vertical-align: top;
+            }
+            #img3{
+                display: inline;
+                vertical-align: bottom;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>div 외 텍스트 문자열 1</p>
+        <p>div 외 텍스트 문자열 2</p>
+        <p>div 외 텍스트 문자열 3</p>
+        <p>div 외 텍스트 문자열 4</p>
+        <div>
+            <div>방해꾼 문자열</div>
+            <p>텍스트 문자열 1 입니다.</p>
+            <div>방해꾼 문자열</div>
+            <p>텍스트 문자열 2 입니다.</p>
+            <p>텍스트 문자열 3 입니다.</p>
+            <div>방해꾼 문자열</div>
+            <p>텍스트 문자열 4 입니다.</p>
+            <div>방해꾼 문자열</div>
+            <p>텍스트 문자열 5 입니다.</p>
+            <div>방해꾼 문자열</div>
+            <p>텍스트 문자열 6 입니다.</p>
+            <br><br><br>
+            텍스트1
+            <div class="image">
+                <img src="image01.jpg" id="img1">
+                <img src="image02.jpg" id="img2"><br>
+                <img src="image03.jpg" id="img3">
+            </div>
+            텍스트2
+        </div>
+    </body>
+</html>

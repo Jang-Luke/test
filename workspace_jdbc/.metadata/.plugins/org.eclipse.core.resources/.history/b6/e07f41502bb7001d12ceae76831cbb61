@@ -1,0 +1,31 @@
+package students;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class test {
+	
+	public static String getSHA512(String input){
+
+		String toReturn = null;
+
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-512");
+			digest.reset();
+			digest.update(input.getBytes("utf8"));
+			toReturn = String.format("%0128x", new BigInteger(1, digest.digest()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return toReturn;
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		// 단반향 암호화 SHA 연습
+		
+	}
+}

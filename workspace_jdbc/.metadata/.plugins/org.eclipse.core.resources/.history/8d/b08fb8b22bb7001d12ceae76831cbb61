@@ -1,0 +1,40 @@
+package students;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+public class test {
+
+	public static String getSHA512(String input) {
+		String toReturn = null;
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-512");
+			digest.reset();
+			digest.update(input.getBytes("utf8"));
+			toReturn = String.format("%0128x", new BigInteger(1, digest.digest()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return toReturn;
+	}
+	
+	public static String sha256(String msg) throws Exception {
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(msg.getBytes());
+		StringBuilder builder = new StringBuilder();
+		for (byte b : md.digest()) {
+			builder.append(String.format("%02x", b));
+		}
+		return builder.toString();
+	}
+	
+	public static void main(String[] args) {
+
+		// 단반향 암호화 SHA 연습
+
+		String result = getSHA512("Test");
+		System.out.println(result);
+		System.out.println(result.length());
+
+	}
+}

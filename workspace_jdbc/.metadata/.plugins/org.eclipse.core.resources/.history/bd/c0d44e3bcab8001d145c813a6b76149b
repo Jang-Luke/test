@@ -1,0 +1,233 @@
+package students;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import commons.EncryptionUtils;
+import students_DAO.MembersDAO;
+import students_DAO.StudentsDAO;
+import students_DTO.MembersDTO;
+import students_DTO.StudentsDTO;
+
+// 로그인 및 회원가입
+// 1. Members 테이블 생성
+// - id 문자열 20 byte 주키 설정
+// - pw 문자열 20 byte 비워둘 수 없음
+// - name 문자열 20 byte 비워둘 수 없음
+// - contact 문자열 20byte
+// - reg_date timestamp default sysdate 비워둘 수 없음
+
+public class Main {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	public static void main(String[] args) {
+		MembersDAO memDAO = new MembersDAO();
+		StudentsDAO stdDAO = new StudentsDAO();
+		int menu;
+		boolean flag = true;
+		try {
+			loading();
+			System.out.println();
+			memDAO.loadFirst();
+			login: while (flag) {
+				System.out.println("<<Index>>");
+				System.out.println("1. 로그인");
+				System.out.println("2. 회원가입");
+				System.out.println("3. 회원목록 출력");
+				System.out.println("0. 종료");
+				System.out.print(">>> ");
+				menu = inputInt();
+				if (menu < 0 || menu > 3) {
+					continue login;
+				}
+				// 단방향 암호화
+				// SHA
+				if (menu == 1) {
+					System.out.println("<< 로그인 >>");
+					System.out.print("ID를 입력해주세요 : ");
+					String id = inputString();
+					if (!memDAO.isIDExist(id)) {
+						System.out.println("ID가 존재하지 않습니다.");
+						continue login;
+					}
+					System.out.print("PW를 입력해주세요 : ");
+					String pw = EncryptionUtils.getSHA512(EncryptionUtils.getSHA512(inputString()));
+					if (memDAO.login(id, pw)) {
+						flag = false;
+						loading();
+						Thread.sleep(500);
+						System.out.println("로그인 성공!");
+						Thread.sleep(500);
+					} else {
+						System.out.println("PW를 확인해주세요.");
+					}
+				} else if (menu == 2) {
+					System.out.println("<< 회원가입 >>");
+					System.out.print("ID를 입력해주세요 : ");
+					String id = inputString();
+					if (memDAO.isIDExist(id)) {
+						System.out.println("중복된 아이디입니다.");
+						continue login;
+					}
+					System.out.print("PW를 입력해주세요 : ");
+					String pw = EncryptionUtils.getSHA512(EncryptionUtils.getSHA512(inputString()));
+					System.out.print("이름을 입력해주세요 : ");
+					String name = inputString();
+					System.out.print("연락처를 입력해주세요 : ");
+					String contact = inputString();
+					MembersDTO memDTO = new MembersDTO(id, pw, name, contact, null);
+					System.out.println(memDAO.sign(memDTO) > 0 ? "가입 완료" : "가입 실패");
+				} else if (menu == 3) {
+					List<MembersDTO> list = memDAO.showAll();
+					for (MembersDTO members : list) {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd(e)");
+						System.out.print(members.getId()+"\t"+sdf.format(members.getReg_date())+"\n");
+					}
+				} else if (menu == 0) {
+					System.out.println("시스템을 종료합니다.");
+					System.exit(0);
+				}
+				while (!flag) {
+					System.out.printf(
+							"<< 학생정보 관리 프로그램 >>\n1. 학생정보 입력\n2. 학생목록 출력\n3. 학생정보 수정\n4. 학생정보 삭제\n5. 학생정보 검색\n6. 로그아웃\n0. 시스템 종료\n>>>");
+					menu = inputInt();
+					if (menu < 0 || menu > 6) {
+						System.out.println("메뉴를 다시 확인해주세요.");
+						continue;
+					}
+					if (menu == 1) {
+						System.out.print("입력하실 학생 이름을 입력해주세요 : ");
+						String name = inputString();
+						System.out.print(name + "의 국어 점수를 입력해주세요 : ");
+						int kor = inputInt();
+						System.out.print(name + "의 영어 점수를 입력해주세요 : ");
+						int eng = inputInt();
+						System.out.print(name + "의 수학 점수를 입력해주세요 : ");
+						int math = inputInt();
+						StudentsDTO dto = new StudentsDTO(0, name, kor, eng, math);
+
+						System.out.println(stdDAO.insert(dto) > 0 ? "입력 성공" : "입력 실패");
+					} else if (menu == 2) {
+						if (!printStudent()) {
+							continue;
+						}
+					} else if (menu == 3) {
+						System.out.print("수정하실 학생 ID를 입력해주세요 : ");
+						int id = inputInt();
+						if (!stdDAO.isIDExist(id)) {
+							System.out.println("ID 가 존재하지 않습니다.");
+							continue;
+						}
+						System.out.print("수정하실 학생 이름을 입력해주세요 : ");
+						String name = inputString();
+						System.out.print(name + "의 국어 점수를 입력해주세요 : ");
+						int kor = inputInt();
+						System.out.print(name + "의 영어 점수를 입력해주세요 : ");
+						int eng = inputInt();
+						System.out.print(name + "의 수학 점수를 입력해주세요 : ");
+						int math = inputInt();
+						StudentsDTO dto = new StudentsDTO(id, name, kor, eng, math);
+						StudentsDAO dao2 = new StudentsDAO();
+						System.out.println(dao2.updateStudentByID(dto) > 0 ? "수정 완료" : "수정 실패");
+					} else if (menu == 4) {
+						System.out.print("삭제하실 학생 ID를 입력해주세요 : ");
+						int id = inputInt();
+						if (!stdDAO.isIDExist(id)) {
+							System.out.println("ID 가 존재하지 않습니다.");
+							continue;
+						}
+						System.out.println(stdDAO.deleteStudentByID(id) > 0 ? "삭제 완료" : "삭제 실패");
+					} else if (menu == 5) {
+						System.out.print("찾으실 학생의 이름을 입력해주세요 : ");
+						String name = inputString();
+						if (!printStudent(name)) {
+							continue;
+						}
+					} else if (menu == 6) {
+						System.out.println("로그아웃 완료 했습니다.");
+						flag = true;
+						continue login;
+					} else if (menu == 0) {
+						System.out.println("시스템을 종료합니다.");
+						System.exit(0);
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("오류가 발생하였습니다.");
+			e.printStackTrace();
+		}
+	}
+
+	public static int inputInt() {
+		while (true) {
+			try {
+				return Integer.parseInt(br.readLine());
+			} catch (Exception e) {
+				System.out.println("숫자만 입력해주세요.");
+				continue;
+			}
+		}
+	}
+
+	public static String inputString() throws Exception {
+		return br.readLine();
+	}
+
+	public static boolean printStudent() {
+		try {
+			StudentsDAO dao = new StudentsDAO();
+			List<StudentsDTO> std = dao.showAllStudents();
+			loading();
+			System.out.printf("\n|%-5s\t|%-10s\t|%-3s\t|%-3s\t|%-3s\t|%-3s\t|%-5s\t|\n", "학번", "이름", "국어", "영어", "수학",
+					"합계", "평균");
+			System.out.println("=================================================================");
+			for (StudentsDTO show : std) {
+				System.out.printf("|%-5d\t|%-10s\t|%-3d\t|%-3d\t|%-3d\t|%-3d\t|%-3.2f\t|\n", show.getId(), show.getName(),
+						show.getKor(), show.getEng(), show.getMath(), show.getSum(), show.getAvg());
+			}
+			System.out.println("=================================================================");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static boolean printStudent(String name) {
+		try {
+			StudentsDAO dao = new StudentsDAO();
+			List<StudentsDTO> std = dao.searchStudentByName(name);
+			loading();
+			System.out.printf("\n|%-5s\t|%-12s|%-3s\t|%-3s\t|%-3s\t|%-3s\t|%-5s\t|\n", "학번", "이름", "국어", "영어", "수학",
+					"합계", "평균");
+			System.out.println("=================================================================");
+			for (StudentsDTO show : std) {
+				System.out.printf("|%-5d\t|%-12s|%-3d\t|%-3d\t|%-3d\t|%-3d\t|%-3.2f\t|\n", show.getId(), show.getName(),
+						show.getKor(), show.getEng(), show.getMath(), show.getSum(), show.getAvg());
+			}
+			System.out.println("=================================================================");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static void loading() throws Exception {
+		System.out.print("불러오는 중.");
+		Thread.sleep(100);
+		System.out.print(".");
+		Thread.sleep(100);
+		System.out.print(".");
+		Thread.sleep(100);
+		System.out.print(".");
+		Thread.sleep(100);
+		System.out.print(".");
+		Thread.sleep(100);
+		System.out.print(".");
+		Thread.sleep(100);
+	}
+}

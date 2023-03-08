@@ -1,0 +1,15 @@
+package commons;
+
+import java.text.SimpleDateFormat;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		// to_char(sysdate, 'YYYYMMDD HH:MI:SS');
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ hh:mm:ss");
+		System.out.println(sdf.format(System.currentTimeMillis()));
+	}
+
+}

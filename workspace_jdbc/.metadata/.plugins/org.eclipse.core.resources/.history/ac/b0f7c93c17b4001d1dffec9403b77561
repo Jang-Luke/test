@@ -1,0 +1,15 @@
+package main;
+
+public class Programus {
+
+	public static void main(String[] args) {
+		Solution a = new Solution();
+	}
+}
+class Solution {
+    public int[] solution(String[] keyinput, int[] board) {
+    	String[] arrows = {"left","right","up","down"};
+        int[] answer = {};
+        return answer;
+    }
+}

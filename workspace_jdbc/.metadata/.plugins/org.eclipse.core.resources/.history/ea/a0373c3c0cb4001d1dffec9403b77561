@@ -1,0 +1,17 @@
+package main;
+
+public class Programus {
+
+	public static void main(String[] args) {
+		Solution a = new Solution();
+		String[] arr1 = {"z", "d", "x"};
+		String[] arr2 = {"def", "dww", "dzx", "loveaw"};
+		System.out.println(a.solution(arr1, arr2));
+	}
+}
+class Solution {
+    public int[] solution(String[] keyinput, int[] board) {
+        int[] answer = {};
+        return answer;
+    }
+}

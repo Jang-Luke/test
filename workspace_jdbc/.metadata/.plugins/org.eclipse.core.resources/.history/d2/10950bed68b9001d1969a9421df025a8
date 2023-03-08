@@ -1,0 +1,7 @@
+package dataAccessObject;
+
+public class MembersDAO {
+	public boolean isIDExcist() {
+		
+	}
+}

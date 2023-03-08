@@ -1,0 +1,26 @@
+package students_DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import students_DTO.StudentsDTO;
+
+public class StudentsDAO {
+	private Connection con;
+	private PreparedStatement pstat;
+
+	public StudentsDAO() {
+		try {
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kh", "kh");
+		} catch (Exception e) {
+			System.out.println("접속 실패");
+			e.printStackTrace();
+		}
+	}
+	
+	public int insert(StudentsDTO dto) {
+		pstat = con.prepareStatement("INSERT INTO VALUES (STUDENTS_SEQ.NEXTVAL, ?, ?, ?, ?)");
+	}
+	
+}

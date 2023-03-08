@@ -1,0 +1,75 @@
+package main;
+
+// 데이터와 관련된 모든 작업을 총괄하는 클래스
+// DAO : Data Access Object
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class MoviesDAO {
+	private PreparedStatement pstat;
+	private Connection con;
+
+	public MoviesDAO() {
+		try {
+			this.con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kh", "kh");
+		} catch (Exception e) {
+			System.out.println("접속 실패");
+			e.printStackTrace();
+		}
+	}
+
+	public int insertMovies(String title, String genre) throws Exception {
+		pstat = con.prepareStatement("INSERT INTO MOVIES VALUES (MOVIES_SEQ.NEXTVAL, ?, ?)");
+		pstat.setString(1, title);
+		pstat.setString(2, genre);
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public int updateMovie(int id, String title, String genre) throws Exception {
+		pstat = con.prepareStatement("UPDATE MOVIES SET TITLE = ?, GENRE = ? WHERE ID = ?");
+		pstat.setString(1, title);
+		pstat.setString(2, genre);
+		pstat.setInt(3, id);
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public int deleteMovie(int id) throws Exception {
+		pstat = con.prepareStatement("DELETE FROM MOVIES WHERE ID = ?");
+		pstat.setInt(1, id);
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public ResultSet showAllMovies() throws Exception {
+		pstat = con.prepareStatement("SELECT * FROM MOVIES");
+		return pstat.executeQuery();
+	}
+
+	public ResultSet searchByTitle(String title) throws Exception {
+		pstat = con.prepareStatement("SELECT * FROM MOVIES WHERE TITLE = ?");
+		pstat.setString(1, title);
+		return pstat.executeQuery();
+	}
+
+	public boolean commitAndClose() throws Exception {
+		con.commit();
+		con.close();
+		return true;
+	}
+
+	public PreparedStatement getPstat() {
+		return pstat;
+	}
+
+	public Connection getCon() {
+		return con;
+	}
+}

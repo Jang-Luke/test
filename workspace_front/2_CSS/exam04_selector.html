@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /*반응 선택자*/
+            p{
+                display: inline;
+                background-color: lightsalmon;
+                color: blue;
+            }
+            .c.b{
+                background-color: darkkhaki;
+            }
+            .b{
+                background-color: cornflowerblue;
+            }
+            div.c, #abc{
+                color: chocolate;
+            }
+            div.c[id^=a]{
+                background-color: aquamarine;
+            }
+            p:hover{
+                background-color: crimson;
+                color: lightsalmon;
+                cursor: pointer;
+            }
+            p:active{
+                color: aquamarine;
+            }
+            div:active{
+                color: rgb(255, 120, 255);
+            }
+            :not(body):not(head):not(html):not(p):not(.c){
+                border: 1px solid fuchsia;
+            }
+            p:not(:last-of-type){
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="c">Hover Test1</p><br>
+        <p class="c">Hover Test2</p><br>
+        <p class="c">Hover Test3</p><br>
+        <p class="c b">Hover Test4</p><br>
+        <p class="b">Hover Test5</p>
+
+        <div class="c">Hover div1</div>
+        <div class="c b">Hover div2</div>
+        <div class="b" id="a1">Hover div3</div>
+        <div id="a2">Hover div4</div>
+        <div class="c" id="a3">Hover div5</div>
+    </body>
+</html>

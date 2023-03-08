@@ -1,0 +1,100 @@
+package dataAccessObject;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import dataTransferObject.MembersDTO;
+import dataTransferObject.MessagesDTO;
+
+public class MessagesDAO {
+
+	BasicDataSource bds = new BasicDataSource();
+
+	public MessagesDAO() {
+		bds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		bds.setUsername("BOARD");
+		bds.setPassword("BOARD");
+		bds.setInitialSize(8);
+	}
+
+	public Connection getConnection() throws Exception {
+		return bds.getConnection();
+	}
+
+	public int insertMsg(MembersDTO mdto, String msg) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(
+						"INSERT INTO MESSAGES (MSG_NO, WRITER, MESSAGE) VALUES (MSG_SEQ.NEXTVAL, ?, ?)");) {
+			ps.setString(1, mdto.getId());
+			ps.setString(2, msg);
+			int result = ps.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int deleteMsg(int msgNo) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("DELETE FROM MESSAGES WHERE MSG_NO = ?");) {
+			ps.setInt(1, msgNo);
+			int result = ps.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int updateMsg(int msgNo, String inputMsg) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("UPDATE MESSAGES SET MESSAGE = ? WHERE MSG_NO = ?");) {
+			ps.setString(1, inputMsg);
+			ps.setInt(2, msgNo);
+			int result = ps.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public List<MessagesDTO> showAll() throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(
+						"SELECT MSG_NO, WRITER, MESSAGE, WRITE_DATE, (SYSDATE-WRITE_DATE) ÇÑ±Û FROM MESSAGES");
+				ResultSet rs = ps.executeQuery()) {
+			List<MessagesDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new MessagesDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getTimestamp(5)));
+			}
+			return list;
+		}
+	}
+
+	public List<MessagesDTO> searchByKeyWord(String keyWord) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(
+						"SELECT MSG_NO, WRITER, MESSAGE, WRITE_DATE FROM MESSAGES WHERE WRITER LIKE ? OR MESSAGE LIKE ?");) {
+			ps.setString(1, "%" + keyWord + "%");
+			ps.setString(2, "%" + keyWord + "%");
+			try (ResultSet rs = ps.executeQuery()) {
+				List<MessagesDTO> list = new ArrayList<>();
+				while (rs.next()) {
+					list.add(new MessagesDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getTimestamp(5)));
+				}
+				return list;
+			}
+		}
+	}
+
+	public boolean isMsgExist(int msgNo) throws Exception {
+		try (Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement("SELECT * FROM MESSAGES WHERE MSG_NO = ?");) {
+			ps.setInt(1, msgNo);
+			try (ResultSet rs = ps.executeQuery()) {
+				return rs.next();
+			}
+		}
+	}
+}

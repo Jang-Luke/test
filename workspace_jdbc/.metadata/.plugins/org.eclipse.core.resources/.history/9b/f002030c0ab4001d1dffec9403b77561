@@ -1,0 +1,23 @@
+package main;
+
+public class Programus {
+
+	public static void main(String[] args) {
+		Solution a = new Solution();
+	}
+}
+class Solution {
+    public int solution(String[] spell, String[] dic) {
+        for (String s : spell) {
+			for (String d : dic) {
+				d = d.replaceFirst(s, "");
+			}
+		}
+        for (String f : dic) {
+			if (f.length() == 0) {
+				return 1;
+			}
+		}
+        return 2;
+    }
+}

@@ -1,0 +1,14 @@
+package dataAccessObject;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
+public class MembersDAO {
+	
+	public MembersDAO() {
+		BasicDataSource bds = new BasicDataSource();
+	}
+	
+	public boolean isIDExcist() {
+		
+	}
+}

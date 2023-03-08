@@ -1,0 +1,106 @@
+package manager;
+
+// 데이터와 관련된 모든 작업을 총괄하는 클래스
+// DAO : Data Access Object
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import dto.MoviesDTO;
+
+public class MoviesDAO {
+	private PreparedStatement pstat;
+	private Connection con;
+
+	public MoviesDAO() {
+		try {
+			this.con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "kh", "kh");
+		} catch (Exception e) {
+			System.out.println("접속 실패");
+			e.printStackTrace();
+		}
+	}
+
+	public int insertMovies(MoviesDTO dto) throws Exception {
+		pstat = con.prepareStatement("INSERT INTO MOVIES VALUES (MOVIES_SEQ.NEXTVAL, ?, ?)");
+		pstat.setString(1, dto.getTitle());
+		pstat.setString(2, dto.getGenre());
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public int updateMovie(MoviesDTO dto) throws Exception {
+		pstat = con.prepareStatement("UPDATE MOVIES SET TITLE = ?, GENRE = ? WHERE ID = ?");
+		pstat.setString(1, dto.getTitle());
+		pstat.setString(2, dto.getGenre());
+		pstat.setInt(3, dto.getId());
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public int deleteMovie(int id) throws Exception {
+		pstat = con.prepareStatement("DELETE FROM MOVIES WHERE ID = ?");
+		pstat.setInt(1, id);
+		int result = pstat.executeUpdate();
+		commitAndClose();
+		return result;
+	}
+
+	public List<MoviesDTO> showAllMovies() throws Exception {
+		pstat = con.prepareStatement("SELECT * FROM MOVIES");
+		ResultSet rs = pstat.executeQuery();
+		List<MoviesDTO> result = new ArrayList<>();
+		while (rs.next()) {
+			MoviesDTO dto = new MoviesDTO(rs.getInt(1), rs.getString(2), rs.getString(3));
+			result.add(dto);
+		}
+		con.close();
+		return result;
+	}
+
+	public List<MoviesDTO> searchByTitle(String title) throws Exception {
+		try (
+		PreparedStatement pstat = con.prepareStatement("SELECT * FROM MOVIES WHERE TITLE LIKE ?");
+		
+		ResultSet rs = pstat.executeQuery();) {
+			pstat.setString(1, "%"+title+"%");
+		List<MoviesDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			MoviesDTO dto = new MoviesDTO(rs.getInt(1), rs.getString(2), rs.getString(3));
+			result.add(dto);
+		}
+		con.close();
+		return result;
+		}
+	}
+
+	}
+
+	public boolean isIDExist(int id) throws Exception {
+		pstat = con.prepareStatement("SELECT * FROM MOVIES WHERE ID = ?");
+		pstat.setInt(1, id);
+		boolean result = pstat.executeQuery().next();
+		con.close();
+		return result;
+	}
+
+	public boolean commitAndClose() throws Exception {
+		con.commit();
+		con.close();
+		return true;
+	}
+
+	public PreparedStatement getPstat() {
+		return pstat;
+	}
+
+	public Connection getCon() {
+		return con;
+	}
+}

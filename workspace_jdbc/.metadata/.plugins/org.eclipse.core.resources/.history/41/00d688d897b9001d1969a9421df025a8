@@ -1,0 +1,16 @@
+package students;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		String inputTime = "23-03-0316-05";
+		System.out.println(Stream.of(inputTime.split("-")).collect(Collectors.joining()).matches("^\\d*$"));
+		
+		System.out.println(Stream.of(inputTime.split("-")).map(e -> e.trim()).collect(Collectors.joining()));
+		Stream.of(inputTime.split("-")).map(e -> e.trim()).collect(Collectors.joining());
+	}
+
+}

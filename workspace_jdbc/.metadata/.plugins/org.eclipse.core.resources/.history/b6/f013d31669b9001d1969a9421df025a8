@@ -1,0 +1,18 @@
+package dataAccessObject;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
+public class MembersDAO {
+	
+	public MembersDAO() {
+		BasicDataSource bds = new BasicDataSource();
+		bds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		bds.setUsername("BOARD");
+		bds.setPassword("BOARD");
+		bds.setInitialSize(8);
+	}
+	
+	public boolean isIDExcist() {
+		
+	}
+}

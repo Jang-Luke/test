@@ -1,0 +1,11 @@
+package dataTransferObject;
+
+import java.sql.Timestamp;
+
+public class MembersDTO {
+	String id;
+	String pw;
+	String name;
+	String contact;
+	Timestamp reg_date;
+}

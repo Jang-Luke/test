@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /* 태그선택자 : 태그 이름*/
+            /* ID 선택자 : #id 이름*/
+            /* Class 선택자 : .class 이름*/
+            /*속성 선택자 : 요소가 가진 속성을 이용해 선택*/
+            /*태그 선택자 -> Class 선택자 -> ID 선택자 -> Inline Style -> !important*/
+            /* ^ : StartsWith 와 유사, ^=a : a로 시작하는 것*/
+            /* $ : EndsWith 와 유사, $=b : b로 끝나는 것*/
+            /* * : Contains 와 유사, *=c : c를 포함하는 것*/
+        p[id="id2"]{
+            background-color: mediumpurple;
+        }
+        p[test]{
+            background-color: aquamarine;
+        }
+        p[test="1234"]{
+            background-color: chartreuse;
+        }
+        p{
+            font-weight: bold; color: rgb(220, 59, 139); /* 글씨 색깔 */
+            border: 3px solid black;
+            background-color: rgba(251, 195, 203, 0.717);
+        }
+        div{
+            font-weight: bold;
+            color: rgba(251, 195, 203, 0.717);
+            border: 3px dotted rgb(210, 212, 167);
+            background-color: rgb(220, 59, 139);
+        }
+        .target{
+            font-weight: 100;
+            color: black;
+            border: 0;
+            background-color: white;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #second{
+            font-weight: 500;
+            font-size: 130%;
+            color: coral;
+        }
+        div[class="mt"]{
+            border: 2px solid forestgreen;
+            color: cornsilk;
+        }
+        p[id^=id]{
+            font-size: large;
+            text-align: center;
+        }
+        div[class$=t]{
+            color: mediumpurple;
+        }
+        p[id*=d]{
+            border: 2px dotted darkcyan;
+        }
+    </style>
+    </head>
+    <body>
+        <!--Selector : 선택자-->
+        <!--나열 된 HTML 요소들 중 어떤 대상을 스타일링 할 지 지정하는 문법-->
+        그냥 텍스트<br>그냥 텍스트<br>
+        그냥 텍스트2<br>
+        그냥 텍스트3<br>
+        <P>Paragraph 태그 1</P>
+        <P class="target">Paragraph 태그 2</P>
+        <P id="second">Paragraph 태그 3</P>
+        <P class="target" id="second">Paragraph 태그 4</P>
+        <P>Paragraph 태그 5</P>
+        그냥 텍스트<br>
+        <div>Paragraph DIV</div>
+        <div>Testing1</div>
+        <div class="target">Testing2</div>
+        <p id="id1" test="1234">1</p>
+        <p id="id2">2</p>
+        <p id="id3" test="123">3</p>
+        <p id="id4">4</p>
+        <p id="id5">5</p>
+        <div class="mt">추가 텍스트</div>
+        <div class="mt">추가 텍스트</div>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+package students;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	public static void main(String[] args) {
+
+		while (true) {
+			try {
+				System.out.printf(
+						"<< 학생정보 관리 프로그램 >>\n1. 학생정보 입력\n2. 학생목록 출력\n3. 학생정보 수정\n4. 학생정보 삭제\n5. 학생정보 검색\n0. 시스템 종료\n>>>");
+				int menu = inputInt();
+				if (menu < 0 || menu > 5) {
+					System.out.println("메뉴를 다시 확인해주세요.");
+					continue;
+				}
+				if (menu == 1) {
+					System.out.println("입력하실 학생 이름을 입력해주세요.");
+					String name = inputString();
+					System.out.println(name + "의 국어 점수를 입력해주세요.");
+					int kor = inputInt();
+					System.out.println(name + "의 영어 점수를 입력해주세요.");
+					int eng = inputInt();
+					System.out.println(name + "의 수학 점수를 입력해주세요.");
+					int math = inputInt();
+				} else if (menu == 2) {
+
+				} else if (menu == 3) {
+
+				} else if (menu == 4) {
+
+				} else if (menu == 5) {
+
+				} else if (menu == 0) {
+
+				}
+			} catch (Exception e) {
+				System.out.println("오류가 발생하였습니다.");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static int inputInt() {
+		while (true) {
+			try {
+				return Integer.parseInt(br.readLine());
+			} catch (Exception e) {
+				System.out.println("숫자만 입력해주세요.");
+				continue;
+			}
+		}
+	}
+
+	public static String inputString() throws Exception {
+		return br.readLine();
+	}
+}

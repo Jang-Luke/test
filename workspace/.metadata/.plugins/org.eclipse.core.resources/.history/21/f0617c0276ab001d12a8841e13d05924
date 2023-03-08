@@ -1,0 +1,15 @@
+package exam03;
+
+public class FileThread extends Thread{
+
+	
+	
+	
+	while(true) {
+		Socket sock = null;
+		try {
+			sock = server.accept();
+			new FileThread
+		}
+	}
+}

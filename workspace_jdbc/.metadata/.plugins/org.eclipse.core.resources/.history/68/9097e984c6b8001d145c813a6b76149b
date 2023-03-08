@@ -1,0 +1,14 @@
+package commons;
+
+import java.text.SimpleDateFormat;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		// to_char(sysdate, 'YYYYMMDD HH:MI:SS');
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh:mm:ss");
+	}
+
+}

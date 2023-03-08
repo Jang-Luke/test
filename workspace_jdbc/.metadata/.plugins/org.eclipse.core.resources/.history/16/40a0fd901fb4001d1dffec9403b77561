@@ -1,0 +1,63 @@
+package main;
+
+public class Programus {
+
+	public static void main(String[] args) {
+		Solution a = new Solution();
+		String[] sarr = {"left", "left", "left", "right"};
+		int[] iarr = {3,3};
+		System.out.println(a.solution(sarr, iarr));
+	}
+}
+
+class Solution {
+	public int[] solution(String[] keyinput, int[] board) {
+		int[] answer = { 0, 0 };
+		int sizeW = board[0] / 2;
+		int sizeH = board[1] / 2;
+		for (String s : keyinput) {
+			if (s.equals("left")) {
+				if (wallButt(Math.abs(answer[0]), sizeW)) {
+					continue;
+				} else {
+					answer[0] -= 1;
+				}
+			} else if (s.equals("right")) {
+				if (wallButt(Math.abs(answer[0]), sizeW)) {
+					continue;
+				} else {
+					answer[0] += 1;
+				}
+			} else if (s.equals("up")) {
+				if (wallButt(Math.abs(answer[1]), sizeH)) {
+					continue;
+				} else {
+					answer[1] += 1;
+				}
+			} else if (s.equals("down")) {
+				if (wallButt(Math.abs(answer[1]), sizeH)) {
+					continue;
+				} else {
+					answer[1] -= 1;
+				}
+			}
+		}
+
+		return answer;
+	}
+
+	static boolean wallButt(int a, int b) {
+		if (a == b) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+//for (int i = 0; i < answer.length; i++) {
+//if (answer[i] > board[i] / 2) {
+//	answer[i] = board[i] / 2;
+//} else if (answer[i] < board[i] * -1 / 2) {
+//	answer[i] = board[i] * -1 / 2;
+//}
+//}

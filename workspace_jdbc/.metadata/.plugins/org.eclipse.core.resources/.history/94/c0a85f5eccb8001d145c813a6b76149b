@@ -1,0 +1,95 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class Programus {
+
+	public static void main(String[] args) {
+//		Solution a = new Solution();
+//		String[] sarr = {"meosseugi", "1234"};
+//		String[][] db = {{"rardss", "123"}, {"yyoom", "1234"}, {"meosseugi", "1234"}};
+//		System.out.println(a.solution(sarr,db));
+//		List<String> test = new ArrayList<>(Arrays.asList("a","b","c","d","e"));
+//		Stream<String> stream = test.stream();
+//		stream = Stream.<String>builder().add("f").add("g").build();
+//		stream = Stream.generate(() -> "a"+"b").limit(1);
+//		Stream<String> tstream = Pattern.compile(", ").splitAsStream("a, rm, we, dooz, splw, f");
+//		String test2 = tstream.sorted(Comparator.comparingInt(String::length)).toString();
+//		System.out.println(test2);
+//		System.out.println(IntStream.of(1, 2, 3, 4, 5, 6, 8, 10, 15).sum());
+//		System.out.println(IntStream.of(10,2,1,4).reduce((n, i) -> n*i)); // 40
+//		String numstring = Stream.of(1, 2, 3, 4).map(String::valueOf).collect(Collectors.joining());
+//		String testing = Stream.of("a", "b", "b", "a").collect(Collectors.joining());
+//		String testing2 = Stream.of("a", "b", "b", "a").sorted(Comparator.reverseOrder()).collect(Collectors.joining());
+//		Optional Consumer Function Predicate
+//		Consumer<String> upper = s -> System.out.print(s.toUpperCase());
+//		upper.accept(testing2);
+		Solution a = new Solution();
+		System.out.println(a.solution(1999, 0));
+	}
+}
+
+class Solution {
+	public int solution(int chicken, int remain) {
+//		ArrayList<Integer> additionalChicken = new ArrayList<>();
+//		ArrayList<Integer> remainT = new ArrayList<>();
+//		int remain = 0;
+//		int total = 0;
+//		int check = chicken;
+//		boolean isFirst = true;
+//		while (true) {
+//			if (isFirst) {
+//				while (chicken > 1) {
+//					if (chicken/10 < 10) {
+//						additionalChicken.add(chicken / 10);
+//						remainT.add(chicken/10 + chicken%10);
+//					} else {
+//						additionalChicken.add(chicken / 10);
+//						remainT.add(chicken % 10);
+//					}
+//					chicken /= 10;
+//				}
+//				check = additionalChicken.stream().mapToInt(i -> i).sum();
+//				additionalChicken.clear();
+//				total += check;
+//				remain = remainT.stream().reduce(0, Integer::sum);
+//				remainT.clear();
+//				isFirst = false;
+//			} else {
+//				while (remain > 9) {
+//					if (remain/10 < 10) {
+//						additionalChicken.add(remain / 10);
+//						remainT.add(remain/10 + remain%10);
+//					} else {
+//						additionalChicken.add(remain / 10);
+//						remainT.add(remain % 10);
+//					}
+//					remain /= 10;
+//				}
+//				if (remainT.stream().reduce(0, Integer::sum) > 9) {
+//					total += (remainT.stream().reduce(0, Integer::sum)) / 10;
+//				}
+//				check = additionalChicken.stream().mapToInt(i -> i).sum();
+//				additionalChicken.clear();
+//				total += check;
+//				break;
+//			}
+//		}
+//		return total;
+		int result = 0;
+        int tmpRemain = 0;
+        if (chicken < 10) {
+            remain += chicken;
+        }
+        if (remain > 9) {
+            result += remain / 10;
+            tmpRemain = remain % 10;
+        }
+        return (chicken/10) + solution((chicken / 10), tmpRemain);
+	}
+}
