@@ -1,0 +1,34 @@
+package exam01;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+
+	public static DataOutputStream dos;
+
+	public static void main(String[] args) throws Exception {
+
+		Scanner sc = new Scanner(System.in);
+
+		while(true) {
+			String ip = "192.168.50.19";
+			int port = 11111;
+
+			Socket client = new Socket(ip, port);
+
+			InputStream is = client.getInputStream();
+			DataInputStream dis = new DataInputStream(is);
+
+			OutputStream os = client.getOutputStream();
+			Client.dos = new DataOutputStream(os);
+
+			dos.writeUTF(sc.nextLine());
+
+		}
+	}
+}
