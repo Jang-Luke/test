@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            @font-face {
+            font-family: "Sansation_Regular";
+            src: url(Sansation_Regular.ttf) format("truetype");
+            font-weight: normal;
+            }
+            *{
+                box-sizing: border-box;
+            }
+            body>.loginbox{
+                border: 1px solid black;
+            }
+            .loginbox{
+                float: left;
+                width: 200px;
+                height: 112px;
+                text-align: center;
+                background-color: black;
+            }
+            .loginbox.header{
+                width: 100%;
+                height: 34%;
+                line-height: 38px;
+                font-family: 'Sansation_Regular';
+                font-weight: bold;
+                border-bottom: 1px solid black;
+                color: aliceblue;
+                background-color: lightsteelblue;
+            }
+            .loginbox.idbox{
+                width: 65%;
+                height: 33%;
+                background-color: lightsteelblue;
+            }
+            .loginbox.pwbox{
+                width: 65%;
+                height: 33%;
+                background-color: lightsteelblue;
+            }
+            .loginbox.loginbutton{
+                float: right;
+                width: 35%;
+                height: 66%;
+                background-color: lightsteelblue;
+            }
+            #loginbox_id{
+                width: 100%;
+                height: 100%;
+                border: none;
+                font-size: 9pt;
+            }
+
+            #loginbox_id:focus{
+                outline: none;
+                background: linear-gradient(to right, white 10%, rgb(224, 239, 251) 100%);
+            }
+
+            #loginbox_id::placeholder{
+                color: lightgray;
+            }
+
+            #loginbox_pw{
+                width: 100%;
+                height: 100%;
+                border: none;
+                font-size: 9pt;
+            }
+
+            #loginbox_pw:focus{
+                outline: none;
+                background: linear-gradient(to right, white 10%, rgb(224, 239, 251) 100%);
+            }
+
+            #loginbox_pw::placeholder{
+                color: lightgray;
+            }
+
+            #loginbox_button{
+                outline: none;
+                border: 2px dotted rgb(174, 224, 254);
+                margin-top: 10px;
+                padding: 0px;
+                background-color: lightsteelblue;
+                border-radius: 30px;
+                font-family: 'Sansation_Regular', serif;
+                font-weight: bold;
+                color: aliceblue;
+                width: 70%;
+                height: 70%;
+            }
+
+            #loginbox_button{
+                transition-duration: 300ms;
+            }
+
+            #loginbox_button:hover{
+                transition-duration: 500ms;
+                color: darkblue;
+                background-color: aliceblue;
+            }
+
+            #loginbox_button:active{
+                transition-duration: 50ms;
+                color: aliceblue;
+                background-color: rgba(147, 178, 218, 0.564);
+            }
+    </style>
+    </head>
+    <body>
+        <div class="loginbox">
+            <div class="loginbox header">
+                LoginBox
+            </div>
+            <div class="loginbox idbox">
+                <input type="text" id="loginbox_id" placeholder="ID를 입력하세요.">
+            </div>
+            <div class="loginbox loginbutton">
+                <!-- <button id="loginbox_button">Login</button> -->
+                <input type="button" id="loginbox_button" value="Login">
+            </div>
+            <div class="loginbox pwbox">
+                <input type="password" id="loginbox_pw" placeholder="PW를 입력하세요.">
+            </div>
+        </div>
+    </body>
+</html>

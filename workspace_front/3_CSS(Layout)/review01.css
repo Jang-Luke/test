@@ -4,6 +4,12 @@
     font-weight: normal;
 }
 
+@font-face{
+    font-family: "Sansation_Regular";
+    src: url(Sansation_Regular.ttf) format("truetype");
+    font-weight: normal;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -39,6 +45,21 @@
     background-color: cornsilk;
 }
 
+.header.logo>a{
+    color: goldenrod;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.header.logo{
+    transition-duration: 3s;
+}
+
+.header.logo:hover{
+    transition-duration: 3s;
+    background-position: -320px;
+}
+
 .header.title {
     width: 60%;
     background-color: rgb(254, 253, 225);
@@ -67,7 +88,37 @@
 
 .body.nevigator {
     height: 10%;
-    background-color: mistyrose;
+    background-color: rgb(254, 253, 225);
+}
+
+.body.nevigator.ulist{
+    margin: 0px;
+    height: 100%;
+    overflow: hidden;
+    list-style: none;
+    padding: 0%;
+}
+
+.body.nevigator.ulist>li{
+    float: left;
+    line-height: 48px;
+    width: 25%;
+    height: 100%;
+    font-family: 'Sansation_Regular', serif;
+    font-size: 12pt;
+    font-weight: bold;
+    transition-duration: 300ms;
+}
+
+.body.nevigator.ulist>li:hover{
+    background:linear-gradient(to bottom, rgb(254, 253, 225) 20%, rgba(230, 230, 250, 0.468) 100%);
+    color: brown;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+.body.nevigator.ulist>li:active{
+    background:linear-gradient(to bottom, rgb(254, 253, 225) 20%, rgba(230, 230, 250, 0.969) 100%);
+    transition-duration: 50ms;
 }
 
 .body.contents {
@@ -79,8 +130,100 @@
 .body.info.login {
     height: 30%;
     width: 100%;
+    border: 3px dotted rgba(62, 145, 254, 0.402);
     background-color: lavender;
 }
+
+.login.header{
+    width: 100%;
+    height: 34%;
+    line-height: 38px;
+    font-family: 'Sansation_Regular';
+    font-weight: bold;
+    border-bottom: 3px dotted rgba(62, 145, 254, 0.402);
+    color: aliceblue;
+    background-color: lightsteelblue;
+}
+.login.idbox{
+    float: left;
+    width: 65%;
+    height: 33%;
+    background-color: lightsteelblue;
+}
+.login.pwbox{
+    float: left;
+    width: 65%;
+    height: 33%;
+    background-color: lightsteelblue;
+}
+.login.loginbutton{
+    float: right;
+    width: 35%;
+    height: 66%;
+    background-color: lightsteelblue;
+}
+#login_id{
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 9pt;
+}
+
+#login_id:focus{
+    outline: none;
+    background: linear-gradient(to right, white 10%, rgb(224, 239, 251) 100%);
+}
+
+#login_id::placeholder{
+    color: lightgray;
+}
+
+#login_pw{
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 9pt;
+}
+
+#login_pw:focus{
+    outline: none;
+    background: linear-gradient(to right, white 10%, rgb(224, 239, 251) 100%);
+}
+
+#login_pw::placeholder{
+    color: lightgray;
+}
+
+#login_button{
+    outline: none;
+    border: 2px dotted rgb(174, 224, 254);
+    margin-top: 10px;
+    padding: 0px;
+    background-color: lightsteelblue;
+    border-radius: 30px;
+    font-family: 'Sansation_Regular', serif;
+    font-weight: bold;
+    color: aliceblue;
+    width: 70%;
+    height: 70%;
+}
+
+#login_button{
+    transition-duration: 300ms;
+}
+
+#login_button:hover{
+    transition-duration: 500ms;
+    color: darkblue;
+    background-color: aliceblue;
+}
+
+#login_button:active{
+    transition-duration: 50ms;
+    color: aliceblue;
+    background-color: rgba(147, 178, 218, 0.564);
+}
+
 
 .body.info.email {
     height: 70%;
