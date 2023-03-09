@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+
+div{
+    border: 3px solid gold;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+}
+.container{
+    width: 700px;
+    height: 850px;
+}
+div img{
+    width: 100%;
+    height: 100%;
+}
+
+.frame{
+    transition-duration: 700ms;
+}
+
+.frame:hover{
+    z-index: 1;
+    transform: rotate(20deg) scale(1.15);
+}
+
+#f1{
+    top: 120px;
+    left: 200px;
+    background-color: white;
+}
+#f2{
+    top: 250px;
+    left: 70px;
+    background-color: white;
+}
+#f3{
+    top: 280px;
+    left: 320px;
+    background-color: white;
+}
+#f4{
+    top: 500px;
+    left: 200px;
+    background-color: white;
+    opacity: 0;
+}
+#f4:hover{
+    opacity: 100;
+}
+#f4>img:hover{
+    transform: rotateX(1800deg);
+    transition-duration: 1.5s;
+}
