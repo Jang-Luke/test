@@ -1,0 +1,300 @@
+@font-face {
+    font-family: "Sansation_Regular";
+    src: url(Sansation_Regular.ttf) format("truetype");
+    font-weight: normal;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-image: url(quiz03_background2.jpg);
+    background-size: 100% 100%;
+}
+
+div{
+    float: left;
+}
+
+.background{
+    border: none;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.797);
+}
+
+.clearheader{
+    float: none;
+    width: 100%;
+    height: 5%;
+}
+
+.container{
+    margin: auto;
+    float: none;
+    border-radius: 30px;
+    width: 1000px;
+    height: 800px;
+    background-image: url(quiz03_background2.jpg);
+    background-size: 100% 100%;
+}
+
+.left_body{
+    width: 74.5%;
+    height: 100%;
+}
+
+
+.left_body>.header{
+    width: 100%;
+    overflow-y: hidden;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.825) 5%, rgba(0, 0, 0, 0.277) 65%, rgba(255, 255, 255, 0) 100%);
+}
+
+.left_body .header.menus{
+    width: 100%;
+    height: 100%;
+    background-image: none;
+}
+
+.menus>.menubox{
+    margin: 0%;
+    width: 30%;
+    text-align: center;
+    background: none;
+    border: none;
+    height: 100%;
+    line-height: 80px;
+    font-size: 16pt;
+    font-weight: bold;
+    font-family: 'Sansation_Regular' serif;
+    color: burlywood;
+}
+
+.menus>.menubox:hover{
+    cursor: pointer;
+}
+
+.header.reserved{
+    width: 30%;
+    height: 100%;
+    line-height: 80px;
+    font-size: 9pt;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Sansation_Regular' serif;
+    color: antiquewhite;
+    background-image: none;
+}
+
+
+
+.reserved>a:visited{
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.searchflex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.searchflex>.search{
+    width: 90%;
+}
+
+.search>.searchbox{
+    margin-left: 5px;
+    width: 90%;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    color: rgb(41, 40, 40);
+    font-family: 'Sansation_Regular' serif;
+    font-size: 12pt;
+    font-weight: bold;
+    text-indent: 10px;
+    background-color: rgba(255, 255, 255, 0.535);
+}
+
+.search>.searchbox::placeholder{
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    color: rgba(60, 59, 59, 0.653);
+}
+
+.search>.searchbox:focus{
+    background-color: rgba(240, 248, 255, 0.637);
+    outline: none;
+}
+
+.search>.button{
+    width: 50px;
+    height: 50px;
+    border: 5px solid orange;
+    border-radius: 17px;
+}
+
+.search>.button>img:hover{
+    cursor: pointer;
+}
+
+.search>.button:active{
+    background-color: rgba(255, 255, 255, 0.579);
+}
+
+.body{
+    width: 100%;
+    height: 90%;
+}
+
+.body>.contents{
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+}
+
+.contents>img{
+    padding: 0;
+    width: 620px;
+    height: 620px;
+}
+
+.container>.info{
+    width: 25.5%;
+    height: 100%;
+}
+
+.info>.sub_menu{
+    width: 100%;
+    height: 4%;
+    font-size: 9pt;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Sansation_Regular' serif;
+    color: rgb(222, 75, 7);
+    background-image: none;
+}
+
+.sub_menu>a{
+    color: rgb(221, 151, 118);
+    text-decoration: none;
+}
+
+.info>.login{
+    margin-top: 4%;
+    width: 100%;
+    height: 15%;
+}
+
+.login.id{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputbox{
+    margin-right: 10%;
+    width: 80%;
+    height: 75%;
+    border: none;
+    border-radius: 20px;
+    color: rgb(41, 40, 40);
+    font-family: 'Sansation_Regular' serif;
+    font-size: 10pt;
+    font-weight: bold;
+    text-indent: 20px;
+    background-color: rgba(255, 255, 255, 0.535);
+}
+
+.inputbox:focus{
+    outline: none;
+}
+
+.inputbox::placeholder{
+    font-size: 10pt;
+    text-indent: 20px;
+}
+
+.login.pw{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login.button{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginbutton{
+    margin-right: 10%;
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    color: rgba(104, 66, 17, 0.881);
+    font-family: 'Sansation_Regular' serif;
+    font-size: 12pt;
+    font-weight: bold;
+    text-indent: 5px;
+    background-color: rgba(252, 232, 161, 0.535);
+}
+
+#loginbutton:hover{
+    cursor: pointer;
+}
+
+#loginbutton:active{
+    background-color: rgba(253, 226, 130, 0.762);
+}
+
+.info>.chart{
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    font-family: 'Sansation_Regular', serif;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.info>.email{
+    width: 100%;
+    height: 30%;
+    overflow-y: auto;
+}
+
+#mail_box{
+    margin: 0%;
+    margin-left: 4px;
+    float: left;
+    width: 88%;
+}
+
+#mail_box li{
+    height: 21px;
+    overflow: hidden;
+    color: rgb(93, 54, 2);
+    background-color: rgba(255, 235, 205, 0.584);
+    text-indent: 10px;
+    text-align: left;
+}

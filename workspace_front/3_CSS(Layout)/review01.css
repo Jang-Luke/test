@@ -258,6 +258,10 @@
     background-color: rgb(213, 235, 255);
 }
 
+.email i{
+    text-indent: 30px;
+}
+
 .email.list::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 2px rgba(52, 130, 255, 0.3);
     border-radius: 10px;
@@ -306,5 +310,10 @@
     float: left;
     width: 100%;
     height: 10%;
+    line-height: 60px;
+    font-size: 8pt;
+    text-align: left;
+    text-indent: 10px;
+    font-family: 'BillieHarley', serif;
     background-color: aliceblue;
 }
