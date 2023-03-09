@@ -202,8 +202,8 @@
 #login_button {
     outline: none;
     border: 2px dotted rgb(174, 224, 254);
-    margin-top: 10px;
-    padding: 0px;
+    position: relative;
+    top: 15%;
     background-color: lightsteelblue;
     border-radius: 30px;
     font-family: 'Sansation_Regular', serif;
@@ -258,10 +258,6 @@
     background-color: rgb(213, 235, 255);
 }
 
-.email i{
-    text-indent: 30px;
-}
-
 .email.list::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 2px rgba(52, 130, 255, 0.3);
     border-radius: 10px;
@@ -288,6 +284,7 @@
 }
 
 .email.list li {
+    text-indent: 30px;
     text-align: left;
     color: darkblue;
     width: 100%;
@@ -304,6 +301,14 @@
 .email.list li:active {
     background: linear-gradient(to right, rgb(186, 217, 246) 12%, rgba(16, 134, 244, 0.724) 100%);
     transition-duration: 500ms;
+}
+
+.email.list li>a{
+    text-decoration: none;
+}
+
+.email.list li>a:visited{
+    color: darkblue;
 }
 
 .footer {

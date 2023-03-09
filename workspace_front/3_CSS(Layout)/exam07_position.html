@@ -21,27 +21,40 @@
             #box1{
                 position: absolute;
                 right: 100px;
+                z-index: 1;
+                background-color: rgba(172, 255, 47, 0.468);
             }
             #box2{
                 position: fixed;
-                top: 150px;
+                top: 30px;
+                left: 150px;
+                z-index: 2;
+                background-color: #0349fc99;
             }
             #box3{
                 height: 800px;
                 position: absolute;
-                top: 300px;
-                right: 200px;
+                top: 10px;
+                right: 10px;
+                z-index: 1;
+                background-color: rgba(255, 0, 0, 0.674);
             }
             #box4{
                 width: 50px;
-                height: 50px;
+                height: 300px;
                 position: sticky;
-                top: 100px;
+                top: 0px;
+                z-index: 5;
+                background-color: #fcba03;
             }
             /*      <<<position>>>
                     relative : HTML 상에서 자신이 원래 있어야 하는 위치와 상대적
                     absolute : absolute 속성을 가지고 있는 개체는 무조건 static 속성보다 위쪽에 위치한다.
                     static : 정적. top, bottom, left, right 에 영향을 받지 않고 모든 position 속성 중 가장 아래에 위치한다.
+            */
+            /*
+                    이미지 투명도 조절 기능
+                    <img> 태그 선택하여 opacity 속성(%) 부여
             */
         </style>
     </head>
