@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .backgroundImg{
+            border: 1px solid black;
+            width: 640px;
+            height: 427px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+        .backgroundImg>img{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .coverText{
+            position: absolute;
+            text-align: center;
+            line-height: 427px;
+            font-size: 40pt;
+            font-weight: bold;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            width: 100%;
+            height: 100%;
+            color: rgba(255, 223, 229, 0);
+            transition-duration: 1.5s;
+        }
+
+        .backgroundImg:hover .coverText{
+            background-color: rgba(0, 0, 0, 0.700);
+        }
+
+        .backgroundImg:hover text{
+            color: rgb(231, 123, 143);
+            opacity: 1;
+        }
+
+        text{
+            opacity: 0;
+            transition-duration: 1.5s;
+        }
+
+        text:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="backgroundImg">
+        <img src="quiz05_christmas.jpg">
+        <div class="coverText">
+            <text>Marry Christmas!</text>
+        </div>
+    </div>
+</body>
+</html>

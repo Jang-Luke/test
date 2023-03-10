@@ -1,96 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @font-face{
-            font-family:"BillieHarley";
-            src: url(/3_CSS\(Layout\)/BillieHarley.ttf);
-            font-size: normal;
-        }
-        *{
-            box-sizing: border-box;
-        }
-        .container{
-            width: 95vw;
-            height: 95vw;
-            position: relative;
-        }
-        .sidebar{
-            width: 152px;
-            height: 300px;
-            position: fixed;
-            top: 25%;
-            left: -130px;
-            line-height: 300px;
-            border: 1px solid black;
-            color: ghostwhite;
-            border-radius: 10px;
-            box-sizing: border-box;
-            background-color: rgba(128, 128, 128, 0.567);
-        }
-        .sidebar:hover{
-            transform: translate(115px);
-            color: rgba(128, 128, 128, 0.567);
-
-            transition-duration: 1s;
-        }
-
-        .sidebar:hover #icon{
-            visibility: hidden;
-        }
-        .menu{
-            float: left;
-            width: 130px;
-            height: 100%;
-        }
-        
-        .pull{
-            float: left;
-            width: 20px;
-            height: 100%;
-            line-height: 300px;
-            color: ghostwhite;
-            box-sizing: border-box;
-            border-left: 3px dashed rgba(56, 55, 55, 0.461);
-            transition-duration: 1s;
-        }
-        .menu>div{
-            width: 100%;
-            height: 25%;
-            text-indent: 20px;
-            font-weight: bold;
-            line-height: 74px;
-            color: rgb(62, 60, 60);
-            box-sizing: border-box;
-        }
-
-        .menu>div:hover{
-            color: white;
-            background-color: rgb(66, 66, 66);
-            cursor: pointer;
-            font-family: "BillieHarley", serif;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <div class="menu">
-                <div>Home</div>
-                <div>About Me</div>
-                <div>Portfolio</div>
-                <div id="m4">Contact</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="quiz03.css" rel="stylesheet"
+            type="text/css">
+    </head>
+    <body>
+        <!--마음에 드는 사진 3장 다운 받아서 겹친 후, 마우스 호버 시 앞으로 튀어나오며 각도 회전 시키기-->
+        <div class="container">
+            <div class="frame" id="f1">
+                <img src="quiz03_01.png">
             </div>
-            <div class="pull">
-                <i class="fa-solid fa-circle-chevron-right" id="icon"></i>
+            <div class="frame" id="f2">
+                <img src="quiz03_02.png">
+            </div>
+            <div class="frame" id="f3">
+                <img src="quiz03_03.png">
+            </div>
+            <div class="frame" id="f4">
+                <img src="quiz03_04.png">
             </div>
         </div>
-    </div>
-    
-</body>
+    </body>
 </html>
