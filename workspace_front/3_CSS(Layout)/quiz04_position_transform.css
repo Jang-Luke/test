@@ -3,7 +3,7 @@
 }
 
 div{
-    border: 3px solid gold;
+    border: 3px solid rgba(255, 217, 0, 0.445);
     width: 300px;
     height: 300px;
     position: absolute;
@@ -19,11 +19,17 @@ div img{
 
 .frame{
     transition-duration: 700ms;
+    opacity: 65%;
 }
 
 .frame:hover{
     z-index: 1;
     transform: rotate(20deg) scale(1.15);
+    opacity: 80%;
+}
+.frame:active{
+    transform: rotate(0deg) scale(1.4);
+    opacity: 1;
 }
 
 #f1{
@@ -31,6 +37,7 @@ div img{
     left: 200px;
     background-color: white;
 }
+
 #f2{
     top: 250px;
     left: 70px;
@@ -48,7 +55,7 @@ div img{
     opacity: 0;
 }
 #f4:hover{
-    opacity: 100;
+    opacity: 1;
 }
 #f4>img:hover{
     transform: rotateX(1800deg);
