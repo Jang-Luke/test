@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            rel="stylesheet">
+        <style>
+            @font-face {
+                font-family: "Mosk Light";
+                src: url(Mosk\ Light\ 300.ttf) format("truetype");
+                font-weight: normal;
+            }
+            *{
+                margin: auto;
+            }
+            body{
+                position: relative;
+            }
+            .box {
+                background-color: #ccc;
+                border-radius: 50px;
+                width: 10px;
+                height: 10px;
+                float: left;
+                transition-duration: 500ms;
+            }
+            #id1 {
+                background-color: black;
+                width: 20px;
+            }
+
+            .img_box {
+                position: fixed;
+                top: 360px;
+                left: -250px;
+                width: 280px;
+                height: 360px;
+                transition-duration: 1s;
+            }
+
+            .img_on_here {
+                width: 280px;
+                height: 350px;
+                float: left;
+            }
+
+            .chat_contents {
+                width: 250px;
+                height: 350px;
+                background-color: rgb(0, 0, 0, 0.73);
+                float: left;
+            }
+
+            .pull{
+                width: 30px;
+                height: 350px;
+                line-height: 350px;
+                font-size: 15pt;
+                font-weight: bold;
+                background-color: rgba(191, 190, 190, 0.615);
+                float: right
+            }
+
+            .pull:hover{
+                cursor: pointer;
+            }
+
+            .chat_log {
+                height: 320px;
+                overflow-y: scroll;
+            }
+
+            .line {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 10px;
+                display: flex;
+            }
+
+            .chat_box {
+                margin-left: 3px;
+                margin-right: 0px;
+                background-color: #eeeeee80;
+                padding: 5px;
+                border-radius: 10px;
+                max-width: 180px;
+                color: black;
+            }
+
+            .mine {
+                margin-left: auto;
+            }
+
+            .input_textbox {
+                height: 30px;
+            }
+
+            #input {
+                height: 16px;
+            }
+
+            #input:focus {
+                outline: none;
+            }
+
+            .circle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0);
+                transform: translate(-50%, -50%);
+                box-shadow: rgba(0, 0, 0, 1) 0 0 0 9999px;
+            }
+
+            .grow {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: red;
+                z-index: 1;
+            }
+
+            .grow:hover {
+                background-color: blue;
+                cursor: pointer;
+            }
+
+            #g1 {
+                top: 35px;
+                left: 588px;
+            }
+
+            #g2 {
+                top: 503px;
+                left: 329px;
+            }
+
+            #g3 {
+                top: 829px;
+                left: 632px;
+            }
+
+            #g4 {
+                top: 403px;
+                left: 1021px;
+            }
+
+            #g5 {
+                top: 803px;
+                left: 1122px;
+            }
+
+            .container{
+                position: relative;
+                width: 100vw;
+                overflow-y: scroll;
+                z-index: 0;
+            }
+
+            .header{
+                position: absolute;
+                top: 0px;
+                width: 1200px;
+                height: 80pt;
+                transition: 1.5s;
+                z-index: 15;
+            }
+
+            .head_background{
+                width: 100vw;
+                height: 500pt;
+                transition: 1.5s;
+                background-image: url(head_background.jpg);
+                background-size: cover;
+            }
+
+            .menu{
+                width: 70%;
+                height: 90px;
+                float: left;
+            }
+
+            .partition{
+                width: 5%;
+                height: 90px;
+                float: left;
+            }
+
+            .quickMenu{
+                width: 25%;
+                height: 90px;
+                float: left;
+            }
+
+            .list{
+                width: 100%;
+                height: 100%;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .list>li{
+                text-align: center;
+                line-height: 90px;
+                width: 25%;
+                height: 100%;
+                font-family: "Mosk Light", serif;
+                font-size: 16pt;
+                color: white;
+                text-shadow: 2px 2px 0 black;
+                font-weight: bold;
+                float: right;
+            }
+
+            .list>li:hover{
+                cursor: pointer;
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.202) 100%);
+            }
+
+            hr{
+                background-image: linear-gradient(to right, cornflowerblue 50%, rgba(100, 148, 237, 0.453) 70%, rgba(100, 148, 237, 0) 100%);
+                height: 2px;
+                border: none;
+            }
+
+            .innerMenu{
+                position: absolute;
+                top: 92px;
+                left: 5vw;
+                width: 70vw;
+                height: 0px;
+                background-color: rgba(0, 0, 0, 0.05);
+                visibility: hidden;
+                transition-duration: 1s;
+                z-index: 5;
+            }
+            .innerMenu>img{
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+            .close_button{
+                position: absolute;
+                border-radius: 15px;
+                border: none;
+                background-color: #cccccc70;
+            }
+
+            #inner_close{
+                top: 10px;
+                left: 97%;
+                transition-duration: 1s;
+                opacity: 0;
+            }
+
+            .body{
+                position: absolute;
+                top: 130px;
+                width: 100%;
+                height: 800px;
+            }
+
+            p{
+                position: absolute;
+                left: 200px;
+                top: 50px;
+                font-size: 35pt;
+                font-family: "Mosk Light", serif;
+                font-weight: bold;
+                color: white;
+                text-shadow: 4px 4px 0 black;
+            }
+            #body_text2{
+                top: 100px;
+                color: rgb(64, 112, 210);
+            }
+
+            .login_box{
+                position: absolute;
+                top: 100px;
+                left: 985px;
+                width: 200px;
+                height: 0px;
+                visibility: hidden;
+                background-image: url(login_box2.png);
+                background-size: cover;
+            }
+
+            
+
+            .login_input{
+                width: 170px;
+                text-indent: 5px;
+                color: #bebebe;
+                position: absolute;
+                border: none;
+                border-radius: 20px;
+                font-size: 12pt;
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            .login_input::placeholder{
+                color: rgba(255, 255, 255, 0.8);
+                text-indent: 5px;
+            }
+
+            .login_input:focus{
+                outline: none;
+            }
+
+            #id_input{
+                top: 45px;
+                left: 10px;
+            }
+            #pw_input{
+                top: 75px;
+                left: 10px;
+            }
+            
+            .login_button{
+                position: absolute;
+                border: none;
+                border-radius: 15px;
+                background-color: #ccc;
+            }
+
+            .login_button:hover{
+                color: floralwhite;
+                background-color: #767676;
+                cursor: pointer;
+            }
+            .login_button:active{
+                background-color: rgba(0, 0, 0, 0.714);
+                color: rgba(255, 255, 255, 0.605);
+            }
+
+            #login_button{
+                top: 110px;
+                left: 45px;
+            }
+
+            #signin_button{
+                top: 110px;
+                left: 110px;
+            }
+
+            #login_close{
+                top: 130px;
+                left: 170px;
+            }
+            .searchbox{
+                position: fixed;
+                top: 90px;
+                left: 900px;
+                border-radius: 30px;
+                width: 300px;
+                height: 50px;
+                text-align: left;
+                line-height: 50px;
+                visibility: hidden;
+            }
+
+            #search_input{
+                width: 90%;
+                height: 100%;
+                border: none;
+                border-radius: 30px;
+                text-indent: 15px;
+                color: rgb(85, 83, 83);
+                background-color: rgba(255, 255, 255, 0.45);
+            }
+            #search_input:focus{
+                outline: none;
+            }
+            #search_input::placeholder{
+                color: rgba(93, 93, 93, 0.646);
+            }
+            #search_close{
+                top: 3px;
+                right: 4px;
+            }
+            .map{
+                position: fixed;
+                top: 90px;
+                left: 800px;
+                visibility: hidden;
+            }
+
+            .body_contents{
+                position: absolute;
+                background-size: cover;
+            }
+
+            #body_contents1{
+                top: 530px;
+                width: 70vw;
+                height: 400px;
+                background-image: url(body_contents.jpg);
+            }
+
+            #body_contents2{
+                top: 935px;
+                width: 70vw;
+                right: 0px;
+                height: 400px;
+                background-image: url(body_contents2.jpg);
+            }
+
+            #body_contents3{
+                top: 530px;
+                width: 30vw;
+                right: 0px;
+                height: 400px;
+                background-image: url(body_contents3.jpg);
+                z-index: 1;
+            }
+
+            #body_contents4{
+                top: 935px;
+                width: 30vw;
+                left: 0px;
+                height: 400px;
+            }
+
+            #body_contents4>div{
+                width: 95%;
+                height: 25%;
+                line-height: 100px;
+                text-align: center;
+                font-size: 18pt;
+                font-weight: bold;
+                background-color: rgba(30, 143, 255, 0.405);
+            }
+
+            .logo{
+                position: absolute;
+                top: 25px;
+                left: 840px;
+                width: 67px;
+                height: 50px;
+            }
+            .logo>img{
+                width: 100%;
+                height: 100%;
+            }
+            .viewModel{
+                position: absolute;
+                top: 155px;
+                left: 45px;
+                width: 280px;
+                height: 50px;
+            }
+            .viewModel:hover{
+                cursor: pointer;
+            }
+            #body_contents4>div{
+                transition-duration: 500ms;
+            }
+            #body_contents4>div:hover{
+                background-color: rgba(26, 94, 163, 0.405);
+                cursor: pointer;
+            }
+
+            .footer{
+                position: absolute;
+                width: 100%;
+                height: 60px;
+                top: 1460px;
+            }
+            .footer>img{
+                width: 100%;
+            }
+            /* .circle2 {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                background-color: rgba(255, 255, 255, 0);
+                transform: translate(-50%, -50%);
+            }
+
+            body {
+                cursor: none;
+            } */
+        </style>
+    </head>
+
+    <body>
+        <div class="circle"></div>
+            <div class="grow" id="g1"></div>
+            <div class="grow" id="g2"></div>
+            <div class="grow" id="g3"></div>
+            <div class="grow" id="g4"></div>
+            <div class="grow" id="g5"></div>
+        <!-- <div class="circle2">
+
+        </div> -->
+        <div class="container">
+            
+                <div class="header">
+                    <div class="menu">
+                        <ul class="list">
+                            <li class="mainList" id="menu1">Service</li>
+                            <li class="mainList" id="menu2">Electromobollity</li>
+                            <li class="mainList" id="menu3">Find & Buy</li>
+                            <li class="mainList" id="menu4">Models</li>
+                        </ul>
+                        <hr>
+                    </div>
+                    <div class="partition"></div>
+                    <div class="quickMenu">
+                        <ul class="list">
+                            <li id="search_trigger"><i class="fa-solid fa-magnifying-glass"></i></li>
+                            <li id="login_trigger"><i class="fa-solid fa-user"></i></li>
+                            <li id="map_trigger"><i class="fa-solid fa-location-dot"></i></li>
+                            <li><i class="fa-solid fa-cart-shopping"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            <div class="head_background"></div>
+            </div>
+            <div class="body">
+                <p id="body_text1">The New 7</p>
+                <p id="body_text2">BMW</p>
+                <div class="body_menu"></div>
+                <div class="body_contents" id="body_contents1">
+                    <div class="viewModel" onclick="location.href='Model.html'";>
+                    </div>
+                </div>
+                <div class="body_contents" id="body_contents2"></div>
+                <div class="body_contents" id="body_contents3"></div>
+                <div class="body_contents" id="body_contents4">
+                    <div>내 차량 만들기</div>
+                    <div>가격표</div>
+                    <div>금융 프로모션</div>
+                    <div>즐겨찾기</div>
+                </div>
+            </div>
+            <div class="footer">
+                <img src="footer.jpg">
+            </div>
+            <div class="img_box">
+                <div class="img_on_here">
+                    <div class="chat_contents">
+                        <div class="chat_log">
+                            <div class="line">
+                                <span class="chat_box">무엇을 도와드릴까요?</span>
+                            </div>
+                        </div>
+                        <div class="input_textbox">
+                            <input type="text" class="chat_box" id="input">
+                            <button type="reset" id="send">전송</button>
+                        </div>
+                    </div>
+                    <div class="pull closed">>></div>
+                </div>
+                <div class="box" id="id1"></div>
+                <div class="box" id="id2"></div>
+                <div class="box" id="id3"></div>
+                <div class="box" id="id4"></div>
+                <div class="box" id="id5"></div>
+                <div class="box" id="id6"></div>
+            </div>
+            <div class="login_box">
+                <input type="text" placeholder="ID" class ="login_input" id="id_input">
+                <input type="password" placeholder="PW" class ="login_input" id="pw_input">
+                <button class="login_button" id="login_button">Log in</button>
+                <button class="login_button" id="signin_button">Sign in</button>
+                <button class="close_button" id="login_close">X</button>
+            </div>
+            <div class="searchbox">
+                <input type="text" placeholder="Search Here" id="search_input">
+                <button class="close_button" id="search_close">X</button>
+            </div>
+            <div class="innerMenu">
+                <button class="close_button" id="inner_close">X</button>
+                <img id="menu_img" src="menu4_img.jpg">
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25302.25542617426!2d126.94997371562496!3d37.56020129999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca38ca1b93125%3A0xdb0e71fff5a22de2!2zQk1XIEtPUkVBIOuzuOyCrA!5e0!3m2!1sko!2skr!4v1678691515319!5m2!1sko!2skr" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="logo">
+                <img src="Logo.png">
+            </div>
+        </div>
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous"></script>
+
+        <script type="module">
+            
+            
+            $("*").not("html").not("body").not("head").css("opacity", 0);
+            $(".circle").css("opacity", 1);
+            $(".grow").css("opacity", 1);
+            const circle = $(".circle");
+            const circleSize = {
+                circleWidth: 250,
+                circleHeight: 250
+            }
+            let cnt = 0;
+            function 다먹음(){
+                cnt++;
+                if(cnt == 5){
+                circle.css("visibility", "hidden");
+                $("*").css("opacity", 1);
+                }
+            }
+
+            document.addEventListener("mousemove", (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                circle.css("left", mouseX);
+                circle.css("top", mouseY);
+            })
+
+
+            $(window).on('load', function(){
+                alert("붉은색 점을 모두 클릭하세요.");
+                $(selector).mousemove(function (e) { 
+                    // values: e.clientX, e.clientY, e.pageX, e.pageY
+                    
+                });
+            })
+
+            $("#g1").on("click", function(){
+                circleSize.circleWidth = circleSize.circleWidth+200;
+                circleSize.circleHeight = circleSize.circleHeight+200;
+                circle.css("width", circleSize.circleWidth+"px");
+                circle.css("height", circleSize.circleHeight+"px");
+                $(this).css("visibility", "hidden");
+                다먹음();
+            })
+            $("#g2").on("click", function(){
+                circleSize.circleWidth = circleSize.circleWidth+200;
+                circleSize.circleHeight = circleSize.circleHeight+200;
+                circle.css("width", circleSize.circleWidth+"px");
+                circle.css("height", circleSize.circleHeight+"px");
+                $(this).css("visibility", "hidden");
+                다먹음();
+            })
+            $("#g3").on("click", function(){
+                circleSize.circleWidth = circleSize.circleWidth+200;
+                circleSize.circleHeight = circleSize.circleHeight+200;
+                circle.css("width", circleSize.circleWidth+"px");
+                circle.css("height", circleSize.circleHeight+"px");
+                $(this).css("visibility", "hidden");
+                다먹음();
+            })
+            $("#g4").on("click", function(){
+                circleSize.circleWidth = circleSize.circleWidth+200;
+                circleSize.circleHeight = circleSize.circleHeight+200;
+                circle.css("width", circleSize.circleWidth+"px");
+                circle.css("height", circleSize.circleHeight+"px");
+                $(this).css("visibility", "hidden");
+                다먹음();
+            })
+            $("#g5").on("click", function(){
+                circleSize.circleWidth = circleSize.circleWidth+200;
+                circleSize.circleHeight = circleSize.circleHeight+200;
+                circle.css("width", circleSize.circleWidth+"px");
+                circle.css("height", circleSize.circleHeight+"px");
+                $(this).css("visibility", "hidden");
+                다먹음();
+            })
+
+            if(cnt == 5){
+                circle.css("visibility", "hidden");
+            }
+
+
+        //     const circle = $(".circle2");
+
+        // document.addEventListener("mousemove", (e) => {
+        //     const mouseX = e.clientX;
+        //     const mouseY = e.clientY;
+        //     circle.css("left", mouseX);
+        //     circle.css("top", mouseY);
+        // })
+            // function 마우스온(){
+            //     $(".circle2").css("width", "20px");
+            //     $(".circle2").css("height", "20px");
+            //     $(".circle2").css("border", "3px solid rgba(0, 0, 0, 0.4)");
+            // }
+            // function 마우스아웃(){
+            //     $(".circle2").css("width", "15px");
+            //     $(".circle2").css("height", "15px");
+            //     $(".circle2").css("border", "1px solid rgba(0, 0, 0, 0.4)");
+            // }
+            let events = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+
+            $('.box').click(function () {
+                $(this).css("width", "20px");
+                $(".box").not(this).css("width", "10px");
+                $(".box").not(this).css("background-color", "#ccc");
+                if ($(this).attr('id') == "id1") {
+                    $(".chat_contents").css("background-color", "rgb(0, 0, 0, 0.73)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "black");
+                } else if ($(this).attr('id') == "id2") {
+                    $(".chat_contents").css("background-color", "rgb(208, 138, 138, 0.73)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "rgb(208, 138, 138)");
+                    
+                } else if ($(this).attr('id') == "id3") {
+                    $(".chat_contents").css("background-color", "rgb(138, 161, 208, 0.73)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "rgb(138, 161, 208)");
+                } else if ($(this).attr('id') == "id4") {
+                    $(".chat_contents").css("background-color", "rgb(138, 208, 173, 0.73)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "rgb(35, 120, 77)");
+                } else if ($(this).attr('id') == "id5") {
+                    $(".chat_contents").css("background-color", "rgba(198, 165, 214, 0.739)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "rgba(198, 165, 214)");
+                } else if ($(this).attr('id') == "id6") {
+                    $(".chat_contents").css("background-color", "rgba(128, 128, 128, 0.73)");
+                    $(this).css("background-color", $(".chat_contents").css("background-color"));
+                    $(".chat_box").css("color", "rgba(128, 128, 128)");
+                }
+            })
+
+            // $(".mainList").hover(() => 마우스온(), () => 마우스아웃());
+            // $(".pull").hover(() => 마우스온(), () => 마우스아웃());
+
+
+            $(".mainList").click(function(){
+                $(".innerMenu").css("height", "300px");
+                $(".innerMenu").css("visibility", "visible");
+                $(".header").css("background-color", "#ccc");
+                if($(this).attr('id') == "menu4"){
+                    $("#menu_img").attr("src", "menu4_img.jpg");
+                    $("#menu_img").css("display", "block");
+                    $(".innerMenu").on(events, function(e){
+                $("#inner_close").css("opacity", 1);
+            })
+                } else if($(this).attr('id') == "menu3"){
+                    $("#menu_img").attr("src", "menu3_img.jpg");
+                    $("#menu_img").css("display", "block");
+                    $(".innerMenu").on(events, function(e){
+                $("#inner_close").css("opacity", 1);
+            })
+                } else if($(this).attr('id') == "menu2"){
+                    $("#menu_img").attr("src", "menu2_img.jpg");
+                    $("#menu_img").css("display", "block");
+                    $(".innerMenu").on(events, function(e){
+                $("#inner_close").css("opacity", 1);
+            })
+                } else if($(this).attr('id') == "menu1"){
+                    $("#menu_img").attr("src", "menu1_img.jpg");
+                    $("#menu_img").css("display", "block");
+                    $(".innerMenu").on(events, function(e){
+                $("#inner_close").css("opacity", 1);
+            })
+                }
+            })
+
+            $("#inner_close").click(function(){
+                $(".innerMenu").css("height", "0px");
+                $(".innerMenu").css("visibility", "hidden");
+                $(this).css("opacity", 0);
+                $(".header").css("background", "none");
+            })
+            
+
+            $("#login_trigger").click(function(){
+                $(".login_box").css("height", "155px");
+                $(".login_box").css("visibility", "visible");
+            })
+
+            $("button").click(function(){
+                $(".login_box").css("height", "0px");
+                $(".login_box").css("visibility", "hidden");
+            })
+
+            $("#search_trigger").click(function(){
+                $(".searchbox").css("visibility", "visible");
+            })
+
+            $("#search_close").click(function(){
+                $(".searchbox").css("visibility", "hidden");
+            })
+
+            $("#map_trigger").hover(function(){
+                $(".map").css("visibility", "visible");
+            },function(){
+                $(".map").css("visibility", "hidden");
+            })
+
+
+            $(".pull").click(function(){
+                if($(this).attr('class') == "pull closed"){
+                    $(".img_box").css("left", 0+"pt");
+                    $(this).addClass("open");
+                    $(this).removeClass("closed");
+                    $(".img_box").on(events, function(e){
+                    $(".pull").html("<<");
+            })
+                } else if($(this).attr('class') == "pull open"){
+                    $(".img_box").css("left", -189+"pt");
+                    $(this).addClass("closed");
+                    $(this).removeClass("open");
+                    $(".img_box").on(events, function(e){
+                    $(".pull").html(">>");
+            })
+                }
+            })
+
+            import { Configuration, OpenAIApi } from 'https://cdn.skypack.dev/openai';
+            $("#send").on("click", function () {
+                var template = `<div class="line">
+                    <span class="chat_box mine">${document.querySelector("#input").value}</span>
+                </div>`
+                document.querySelector(".chat_log").insertAdjacentHTML("beforeend", template);
+
+                const configuration = new Configuration({
+                    apiKey: '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',
+
+                });
+                const openai = new OpenAIApi(configuration);
+
+                openai.createCompletion({
+                    model: "text-davinci-003",
+                    prompt: document.querySelector("#input").value,
+                    temperature: 0.7,
+                    max_tokens: 256,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                }).then((result) => {
+                    console.log(result.data.choices[0].text)
+                    var template = `<div class="line">
+                    <span class="chat_box">${result.data.choices[0].text}</span>
+                </div>`
+                    document.querySelector(".chat_log").insertAdjacentHTML("beforeend", template);
+                });
+                document.querySelector("#input").value = "";
+            })
+
+        </script>
+    </body>
+
+</html>

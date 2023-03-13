@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="main.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+            rel="stylesheet">
+        <style>
+            @font-face {
+    font-family: "Mosk Light";
+    src: url(Mosk\ Light\ 300.ttf) format("truetype");
+    font-weight: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* .circle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0);
+    transform: translate(-50%, -50%);
+} */
+
+body {
+    /* cursor: none; */
+}
+
+.container {
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 90vw;
+    height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0px;
+    padding-left: 20px;
+    width: 100vw;
+    height: 80px;
+    /* background-color: black; */
+}
+
+.topBar div{
+    margin: 0%;
+    float: left;
+    /* background-color: brown; */
+}
+
+.menuBar{
+    width: 90vw;
+    height: 100%;
+}
+
+.menuArea{
+    width: 70%;
+    height: 80px;
+}
+
+.quickMenu{
+    width: 30%;
+    height: 100%;
+}
+
+.list{
+    width: 100%;
+    height: 70px;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+.list>li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    font-size: 18pt;
+    font-family: "Mosk Light";
+    font-weight: bold;
+    float: left;
+}
+
+.topBar{
+    width: 100%;
+    height: 80px;
+}
+.underBar{
+    position: absolute;
+    margin: 0;
+    /* display: none; */
+    width: 30px;
+    height: 10px;
+    background-color: rgba(0, 0, 255, 0.6);
+}
+
+.highlight{
+    width: 100%;
+    height: 10px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    width: 15%;
+    height: 10px;
+    float: left;
+    transition-duration: 500ms;
+}
+
+.box1{
+    background-color: black;
+    border-radius: 50px;
+    width: 30%;
+    height: 10px;
+    float: left;
+}
+
+.box1:active{
+    width: 100%;
+}
+        </style>
+    </head>
+    <body>
+        <!-- <div class="circle">
+
+        </div> -->
+        <div class="header">
+            <div class="topBar">
+                <div class="menuBar">
+                    <div class="menuArea">
+                        <ul class="list">
+                            <li>Text</li>
+                            <li>Text</li>
+                            <li>Text</li>
+                            <li>Text</li>
+                        </ul>
+                        <div class="highlight">
+                            <div class="box"><div class="box1"></div></div>
+                            <div class="box"><div class="box1"></div></div>
+                            <div class="box"><div class="box1"></div></div>
+                            <div class="box"><div class="box1"></div></div>
+                        </div>
+                    </div>
+                    <div class="quickMenu">
+
+                    </div>
+                </div>
+                <div class="logo">
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="body">
+
+            </div>
+            <div class="footer">
+
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous"></script>
+        <script>
+        const circle = $(".circle");
+
+        document.addEventListener("mousemove", (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            circle.css("left", mouseX);
+            circle.css("top", mouseY);
+        })
+
+        // $(".box1").on("click", function(){
+        //     $(this).css("width", 100+"%");
+        // })
+
+    </script>
+    </body>
+</html>
