@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <table id="tab">
+
+        </table>
+    </div>
+    
+    <script>
+        //prompt 1 행입력
+        //prompt 2 열입력
+        //결과 = 테이블 1*2 출력
+        let rows = Number(prompt("행입력"));
+        let cols = Number(prompt("열입력"));
+        let cnt = 1;
+        function 테이블만들기(rows,cols){
+            for(i = 1; i <= rows; i++){
+                document.querySelector("#tab").innerHTML += "<tr id='"+ "r" + i +"''>";
+                for(j=1; j <= cols; j++){
+                    document.querySelector("#r"+i).innerHTML += "<td id='"+ "d" + j + "'>"+ (cnt++) + "</td>";
+                }
+                document.querySelector("#tab").innerHTML += "</tr>";
+            }
+        }
+        테이블만들기(rows,cols);
+    </script>
+</body>
+</html>
