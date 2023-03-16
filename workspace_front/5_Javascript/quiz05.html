@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txtInput" autofocus>
+    <button id="btn">버튼</button>
+
+    <script>
+        let btnId = document.querySelector("#btn");
+        
+        btnId.addEventListener("click", function(e){
+            alert(document.querySelector("#txtInput").value);
+            template = `<div style='max-width: 200px; padding: 5px; border-radius: 7px; background-color: #cccccc70;'>${document.querySelector('#txtInput').value}</div>`;
+            txtInput.insertAdjacentHTML("beforebegin", template);
+            document.querySelector("#txtInput").value = "";
+        })  
+    </script>
+</body>
+</html>
