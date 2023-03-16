@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test copy</title>
+        <style>
+        .vertical-menu{
+            width: 200px;
+        }
+
+        .vertical-menu a{
+            background-color: #eee;
+            color: black;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+        }
+
+        .vertical-menu a.active{
+            background-color: #ccc;
+            color: white;
+        }
+    </style>
+    </head>
+    <body>
+        <h1 class="vertical-menu">
+            <a href="#" class="a">과목</a>
+            <a href="#" class="a">HTML</a>
+            <a href="#" class="a">CSS</a>
+            <a href="#" class="a">JAVASCRIPT</a>
+            <a href="#" class="a">JQUERY</a>
+        </h1>
+        <script>
+            function hover(e){
+                e.addEventListener("mouseover", function(){
+                e.className += " active";
+                });
+                e.addEventListener("mouseout", function(){
+                e.className = "a";
+                });
+            }
+
+            const aTag1 = document.querySelectorAll(".a")[0];
+            const aTag2 = document.querySelectorAll(".a")[1];
+            const aTag3 = document.querySelectorAll(".a")[2];
+            const aTag4 = document.querySelectorAll(".a")[3];
+            const aTag5 = document.querySelectorAll(".a")[4];
+            
+            hover(aTag1);
+            hover(aTag2);
+            hover(aTag3);
+            hover(aTag4);
+            hover(aTag5);
+        </script>
+    </body>
+</html>

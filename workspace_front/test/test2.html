@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+</head>
+<body>
+    <fieldset>
+        <form type="get" url="result.html">
+            <p>회원여부:
+                
+                <input type="radio" name="member" value="yes" checked>회원 <!--checked-->
+                <input type="radio" name="member" value="no" >비회원<br>
+            </p> <!--p태그 닫기-->
+            <p>취미(중복선택) :
+                <input type="checkbox">독서 <!--<input type="checkbox">-->
+                <input type="checkbox">영화
+                <input type="checkbox">음악
+                <input type="checkbox">스포츠
+            </p>
+
+            <p>
+                    직업 :
+                <select name="job" size="4"> <!--size=4/selected-->
+                    <option value="student" selected>학생</option>
+                    <option value="company">회사원</option>
+                    <option value="teacher">교사</option>
+                    <option value="sales">자영업</option>
+                    <option value="others">기타</option>
+                </select>
+            </p>
+            <p>남기고 싶은 말 : <br>
+                <textarea name="massage" placeholder="150자 내외로 글을 남겨주세요." rows="5" cols="70"></textarea>
+            </p> <!--rows="5" cols="70"-->
+                <button>초기화</button>
+                <button>전송</button> <!--<button></button>-->
+        </form>
+    </fieldset>
+</body>
+</html>
+
+<!--
+    1. 회원여부는 회원과 비회원 중 하나만 선택되도록 하고 기본은 회원으로 함
+
+    2. 취미는 중복 선택이 가능해야 함
+
+    3. 직업도 5개의 항목 중 4개의 항목이 보여지고 첫 번째 항목이 기본 선택되도록 함.(5번째는 "기타")
+
+    4. 남기고 싶은 말은 5행 70열 크기로 설정
+
+    5. 초기화와 전송 버튼 작성
+-->
