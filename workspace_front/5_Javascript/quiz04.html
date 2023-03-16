@@ -13,27 +13,30 @@
     </style>
 </head>
 <body>
-    <div>
-        <table id="tab">
-
-        </table>
-    </div>
     
     <script>
         //prompt 1 행입력
         //prompt 2 열입력
         //결과 = 테이블 1*2 출력
-        
         function 테이블만들기(){
+            let tabId = prompt("테이블 이름을 입력해주세요.");
             let rows = Number(prompt("행입력"));
             let cols = Number(prompt("열입력"));
             let cnt = 1;
-            for(i = 1; i <= rows; i++){
-                document.querySelector("#tab").innerHTML += "<tr id='"+ "r" + i +"''>";
-                for(j=1; j <= cols; j++){
-                    document.querySelector("#r"+i).innerHTML += "<td id='"+ "d" + j + "'>"+ (cnt++) + "</td>";
+            if(Number.isNaN(rows) || Number.isNaN(cols)){
+                alert("숫자를 입력해주세요.");
+                테이블만들기();
+            } else {
+                document.write("<table id='" + tabId + "'>");
+                for(i = 1; i <= rows; i++){
+                    document.querySelector("#"+tabId).innerHTML += "<tr id='"+ "r" + i +"'>";
+                    for(j=1; j <= cols; j++){
+                        document.querySelector("#r"+i).innerHTML += "<td id='"+ "d" + j + "'>"+ (cnt++) + "</td>";
+                    }
+                    document.querySelector("#"+tabId).innerHTML += "</tr>";
                 }
-                document.querySelector("#tab").innerHTML += "</tr>";
+                document.write("</table><br>");
+                document.write(tabId+"<br>");
             }
         }
         테이블만들기();
