@@ -9,6 +9,7 @@
         div{
             border: 1px solid black;
         }
+
     </style>
 </head>
 <body>
@@ -17,12 +18,20 @@
 
     <script>
         let btnId = document.querySelector("#btn");
-        
-        btnId.addEventListener("click", function(e){
-            alert(document.querySelector("#txtInput").value);
-            template = `<div style='max-width: 200px; padding: 5px; border-radius: 7px; background-color: #cccccc70;'>${document.querySelector('#txtInput').value}</div>`;
+        let txtId = document.querySelector("#txtInput");
+        function 전송(e){
+            if(e.keyCode == 13){
+                // alert(txtId.value);
+                template = `<div class ='tran-1s' style='max-width: 200px; padding: 5px; border-radius: 7px; background-color: #cccccc70;'>${document.querySelector('#txtInput').value}</div>`;
+                txtInput.insertAdjacentHTML("beforebegin", template);
+                txtId.value = "";
+            }
+        }
+        txtId.addEventListener("keypress", 전송)
+        btnId.addEventListener("click", function(){
+            template = `<div class ='tran-1s' style='max-width: 200px; padding: 5px; border-radius: 7px; background-color: #cccccc70;'>${document.querySelector('#txtInput').value}</div>`;
             txtInput.insertAdjacentHTML("beforebegin", template);
-            document.querySelector("#txtInput").value = "";
+            txtId.value = "";
         })  
     </script>
 </body>
