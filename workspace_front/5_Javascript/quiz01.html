@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #changeIt{
+            display: flex;
+            border: 1px solid black;
+            width: 250px;
+            height: 250px;
+            justify-content: center;
+            align-items: center;
+        }
+        .changed{
+            background-color: rgba(0, 0, 0, 0.331);
+            color: whitesmoke;
+            transition-duration: 700ms;
+        }
+    </style>
+</head>
+<body>
+    <div id="changeIt">
+        <button id="btn">입력</button>
+    </div>
+    <button id="cencel" style="display: none;">취소</button>
+    <script>
+        let btnSel = document.querySelector("#btn");
+        btnSel.addEventListener("click", function(){
+            let msg = prompt("아무 값이나 입력해주세요.");
+            document.querySelector("#changeIt").innerHTML = msg;
+            document.querySelector("#changeIt").className = "changed";
+            btnSel.style.display = "none";
+            document.querySelector("#cencel").style.display = "block";
+        })
+
+        document.querySelector("#cencel").addEventListener("click", function(){
+            document.querySelector("#changeIt").innerHTML = "<button id='btn'>입력</button>";
+            document.querySelector("#changeIt").className = "";
+            btnSel.style.display = "block";
+            document.querySelector("#cencel").style.display = "none";
+        })
+        
+
+        
+    </script>
+</body>
+</html>

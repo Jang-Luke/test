@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="msgHere"></p>
+    <script>
+        let msg = prompt("1.사과 / 2.포도 / 3.수박");
+        let txt = document.querySelector("#msgHere");
+        if(msg == 1){
+            txt.innerHTML = "사과는 영어로 Apple 입니다."
+        } else if(msg == 2){
+            txt.innerHTML = "포도는 영어로 Grape 입니다."
+        } else if(msg == 3){
+            txt.innerHTML = "수박는 영어로 Watermellon 입니다."
+        } else{
+            txt.innerHTML = "다시 입력해주세요."
+        }
+    </script>
+</body>
+</html>

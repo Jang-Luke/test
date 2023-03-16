@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+        crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <p>{ <txt id="inner"></txt> }</p>
+    <input type="text" id="msg" value="ABC">
+    <div id="box">Hello Script</div>
+    <script>
+        let myDogName = prompt("강아지의 이름을 입력해주세요.");
+        let myDogAge = prompt("강아지의 나이를 입력해주세요.");
+        let myDogAttr = prompt("강아지의 특징을 입력해주세요.");
+        document.write('<button id="btn">Hello JS!!</button>');
+        let dog = {
+            name: myDogName,
+            age: myDogAge,
+            attribute: myDogAttr
+        };
+        let inputMsg = document.getElementById("msg");
+        console.log(inputMsg.value);
+        var divBox = document.getElementById("box");
+        divBox.innerHTML = "이곳이 innerHTML";
+        document.querySelector("#inner").innerHTML =
+            "강아지의 이름은 " + dog.name + "이고, 나이는 " + dog.age + "살 입니다. " + dog.attribute;
+        document.querySelector("#btn").addEventListener("click", function(){
+            document.querySelector("#box").innerText += "d";
+        })
+    </script>
+</body>
+</html>

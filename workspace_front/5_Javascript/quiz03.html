@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="gugu"></p>
+
+    <script>
+        let gugu = document.querySelector("#gugu");
+        function 구구단() {
+            let str = prompt("구구단을 외자 (1~9단)");
+            let n = Number(str);
+            if(n>0 && n<10){
+                for(i=1; i<10; i++){
+                    gugu.innerHTML += n + " * " + i + " = " + (n*i) + "<br>";
+                }
+            } else{
+                alert("다시 입력해주세요");
+                구구단();
+            }
+        }
+    구구단();
+    </script>
+</body>
+</html>
