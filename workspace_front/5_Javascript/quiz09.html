@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .validate{
+            font-size: 14pt;
+            color: dodgerblue;
+        }
+        .invalidate{
+            font-size: 12pt;
+            color: rosybrown;
+        }
+        .txtBox{
+            width: 180px;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <input class="txtBox" type="password" id="pwInput" placeholder="비밀번호를 입력해주세요."><br>
+    <input class="txtBox" type="password" id="pwConfirm" placeholder="비밀번호를 다시 입력해주세요.">
+    <p></p>
+
+    <script>
+        let pw1 = document.querySelector("#pwInput");
+        let pw2 = document.querySelector("#pwConfirm");
+        let pTxt =  document.querySelector("p");
+
+        let validator = function(){
+            if((this.value) === ""){
+                pTxt.textContent = "";
+            } else if((pw1.value) === (pw2.value)){
+                pTxt.textContent = "비밀번호가 일치합니다.";
+                pTxt.className = "validate";
+            } else{
+                pTxt.textContent = "비밀번호가 일치하지 않습니다.";
+                pTxt.className = "invalidate";
+            }
+        }
+
+        pw1.addEventListener("keyup", validator);
+        pw2.addEventListener("keyup", validator);
+    </script>
+</body>
+</html>
