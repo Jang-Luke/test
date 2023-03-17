@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputBox{
+            padding: 3px;
+            width: 120px;
+        }
+        .btnFrom{
+            width: 100px;
+        }
+        #fieldSet{
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset id="fieldSet1">
+        <legend>fuite</legend>
+            <div id="box">
+                
+            </div>
+    </fieldset>
+    <input class="inputBox" id="before" type="text" placeholder="앞에 추가할 값">
+    <button class="btnFrom" id="unshift">앞쪽에 추가</button>
+    <button class="btnFrom" id="shift">앞에서 삭제</button>
+    <br>
+    <input class="inputBox" id="after" type="text" placeholder="뒤에 추가할 값">
+    <button class="btnFrom" id="push">뒷쪽에 추가</button>
+    <button class="btnFrom" id="pop">뒤에서 삭제</button>
+    <script>
+        let arr = [];
+        let unshift = document.querySelector("#unshift");
+        let shift = document.querySelector("#shift");
+        let push = document.querySelector("#push");
+        let pop = document.querySelector("#pop");
+        let before = document.querySelector("#before");
+        let after = document.querySelector("#after");
+        let box = document.querySelector("#box");
+
+        
+        let unshiftIt = function(){
+            if(before.value != ""){
+                arr.unshift(before.value);
+            } else {
+                alert("값을 채워주세요.");
+            }
+            before.value = "";
+            box.textContent = arr;
+        }
+        let pushIt = function(){
+            if(after.value != ""){
+                arr.push(after.value);
+            } else{
+                alert("값을 채워주세요.");
+            }
+            after.value = "";
+            box.textContent = arr;
+        }
+        let shiftIt = function(){
+                arr.shift();
+                box.textContent = arr;
+        }
+        let popIt = function(){
+            arr.pop();
+            box.textContent = arr;
+        }
+        let quickShift = function(e){
+            if(e.key == "Backspace" && e.ctrlKey == true){
+                shiftIt();
+            }
+        }
+        let quickPop = function(e){
+            if(e.key == "Backspace" && e.altKey == true){
+                popIt();
+            }
+        }
+
+        before.addEventListener("keyup", function(e){
+            if(e.key == "Enter"){
+                unshiftIt(this.value);
+            }
+        });
+        after.addEventListener("keyup", function(e){
+            if(e.key == "Enter"){
+                pushIt(this.value);
+            }
+        });
+        
+        before.addEventListener("keyup", quickShift);
+        before.addEventListener("keyup", quickPop);
+        after.addEventListener("keyup", quickShift);
+        after.addEventListener("keyup", quickPop);
+
+
+        unshift.addEventListener("click", unshiftIt);
+        shift.addEventListener("click", shiftIt);
+        push.addEventListener("click", pushIt);
+        pop.addEventListener("click", popIt);
+
+    </script>
+</body>
+</html>
