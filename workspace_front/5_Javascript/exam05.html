@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            border: 1px solid black; width: 200px; height: 200px;
+        }
+        .abc{
+            background-color: rgba(127, 255, 212, 0.424);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- javascript 로 속성 부여하기 -->
+
+    <div id="box" test="1234">
+
+    </div>
+
+    <script>
+        let divBox = document.querySelector("#box");
+
+        divBox.setAttribute("class", "abc");
+    </script>
+</body>
+
+</html>
