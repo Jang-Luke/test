@@ -30,15 +30,17 @@
         let pw2 = document.querySelector("#pwConfirm");
         let pTxt =  document.querySelector("p");
 
-        let validator = function(){
-            if((this.value) === ""){
-                pTxt.textContent = "";
-            } else if((pw1.value) === (pw2.value)){
-                pTxt.textContent = "비밀번호가 일치합니다.";
-                pTxt.className = "validate";
-            } else{
-                pTxt.textContent = "비밀번호가 일치하지 않습니다.";
-                pTxt.className = "invalidate";
+        let validator = function(e){
+            if(e.key == "Enter"){
+                if((this.value) === ""){
+                    pTxt.textContent = "";
+                } else if((pw1.value) === (pw2.value)){
+                    pTxt.textContent = "비밀번호가 일치합니다.";
+                    pTxt.className = "validate";
+                } else{
+                    pTxt.textContent = "비밀번호가 일치하지 않습니다.";
+                    pTxt.className = "invalidate";
+                }
             }
         }
 
