@@ -18,34 +18,36 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-6">
+            <div class="row">
+            <div class="col-6 p-2">
                 <label for="number1" class="form-label">숫자를 입력해주세요.</label><br>
-                <input id="n1" class="form-control-sm" type="text" placeholder="첫번째 숫자를 입력해주세요." aria-label="number1">
+                <input id="n1" class="form-control-sm numinput" type="text" placeholder="첫번째 숫자를 입력해주세요." aria-label="number1">
             </div>
-            <div class="col-6">
+            <div class="col-6 p-2">
                 <label for="number2" class="form-label">숫자를 입력해주세요.</label><br>
-                <input id="n2" class="form-control-sm" type="text" placeholder="두번째 숫자를 입력해주세요." aria-label="number2">
+                <input id="n2" class="form-control-sm numinput" type="text" placeholder="두번째 숫자를 입력해주세요." aria-label="number2">
             </div>
-            <div class="col-2 d-flex justify-content-center align-items-center">
+            <div class="col-12 p-2">
+                <label for="result" class="form-label">연산 결과 : </label><br>
+                <input id="rs1" class="form-control-sm readonly w-100" type="text" aria-label="result readonly">
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center p-2">
                 <button id="btn1" type="button" class="btn btn-outline-secondary">+</button>
-            </div>
-            <div class="col-10">
-                <label for="result" class="form-label">연산 결과</label><br>
-                <input id="rs1" class="form-control-sm" type="text" aria-label="result">
             </div>
         </div>
     </div>
     <script>
         let result = document.querySelector("#rs1");
         let btnId = document.querySelector("#btn1");
-        
+        let numinput = document.querySelectorAll(".numinput");
+
         btnId.addEventListener("click", function(){
             let num1 = document.querySelector('#n1');
             let num2 = document.querySelector('#n2');
             result.value = parseInt(num1.value) + parseInt(num2.value);
             num1.value = "";
             num2.value = "";
+            num1.focus();
         })
 
     </script>
