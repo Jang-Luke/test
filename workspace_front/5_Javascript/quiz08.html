@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            border: 1px solid black; width: 200px; height: 200px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        #following{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p id="txt">I'm a Box!</p>
+    </div>
+    <button id="following">버튼</button>
+
+    <script>
+        let boxId = document.querySelector("#box");
+        let p = document.querySelector("#txt");
+
+        boxId.addEventListener("mouseover", function(){
+            p.innerHTML = "무거워, 저리가!"
+        })
+        boxId.addEventListener("click", function(){
+            p.innerHTML = "찌르지마!"
+        })
+        boxId.addEventListener("dblclick", function(){
+            p.innerHTML = "찌르지말라니까!"
+        })
+        boxId.addEventListener("mouseout", function(){
+            p.innerHTML = "너무 멀리가진 말고..."
+        })
+
+        let followBtn = document.querySelector("#following");
+        // document.onmousemove = function(e){
+        //     followBtn.style.top = e.y + "px";
+        //     followBtn.style.left = e.x + "px";
+        // }
+    </script>
+</body>
+</html>
