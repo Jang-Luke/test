@@ -18,6 +18,9 @@
             display: flex;
             justify-content: center;
         }
+        .btn{
+            width: 20%;
+        }
     </style>
 </head>
 <body>
@@ -26,30 +29,26 @@
             
         </div>
         <div id="button">
-            <button id="r">RED</button>
-            <button id="g">GREEN</button>
-            <button id="b">BLUE</button>
+            <button id="red" class="btn">red</button>
+            <button id="green" class="btn">green</button>
+            <button id="blue" class="btn">blue</button>
+            <button id="white" class="btn">white</button>
+            <button id="black" class="btn">black</button>
         </div>
+        <button id="reset" class="btn">reset</button>
     </div>
-    <br><br><br>
-    <button id="w">white</button><button id="bk">black</button>
+    
     <script>
         let box = document.querySelector("#box");
+        let btnArr = document.querySelectorAll(".btn");
 
-        document.querySelector("#r").addEventListener("click", function(){
-            box.style.backgroundColor = "red";
-        })
-        document.querySelector("#g").addEventListener("click", function(){
-            box.style.backgroundColor = "green";
-        })
-        document.querySelector("#b").addEventListener("click", function(){
-            box.style.backgroundColor = "blue";
-        })
-        document.querySelector("#w").addEventListener("click", function(){
-            box.style.backgroundColor = "white";
-        })
-        document.querySelector("#bk").addEventListener("click", function(){
-            box.style.backgroundColor = "black";
+        for(let i = 0; i < btnArr.length; i++){
+            btnArr[i].addEventListener("click", function(){
+                box.style.backgroundColor = btnArr[i].getAttribute("id");
+            })
+        }
+        document.querySelector("#reset").addEventListener("click", function(){
+            box.style.backgroundColor = "";
         })
     </script>
 </body>
