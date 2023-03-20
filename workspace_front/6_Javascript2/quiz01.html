@@ -32,7 +32,12 @@
     <input class="inputBox" id="after" type="text" placeholder="뒤에 추가할 값">
     <button class="btnFrom" id="push">뒷쪽에 추가</button>
     <button class="btnFrom" id="pop">뒤에서 삭제</button>
+    <button class="btnFrom" id="clear">전부 삭제</button>
     <script>
+
+        // trim() : 문자열의 양쪽에서 공백문자를 제거하는 함수
+        // ex)            '  abc  '  -> 'abc'
+        // ex)            '       '  -> ''
         let arr = [];
         let unshift = document.querySelector("#unshift");
         let shift = document.querySelector("#shift");
@@ -41,10 +46,10 @@
         let before = document.querySelector("#before");
         let after = document.querySelector("#after");
         let box = document.querySelector("#box");
+        let clearAll = document.querySelector("#clear");
 
-        
         let unshiftIt = function(){
-            if(before.value != ""){
+            if(before.value.trim() != ""){
                 arr.unshift(before.value);
             } else {
                 alert("값을 채워주세요.");
@@ -53,7 +58,7 @@
             box.textContent = arr;
         }
         let pushIt = function(){
-            if(after.value != ""){
+            if(after.value.trim() != ""){
                 arr.push(after.value);
             } else{
                 alert("값을 채워주세요.");
@@ -89,6 +94,11 @@
                 pushIt(this.value);
             }
         });
+        clearAll.addEventListener("click", function(){
+            arr.splice(0, arr.length);
+            box.textContent = arr;
+        })
+
         
         before.addEventListener("keyup", quickShift);
         before.addEventListener("keyup", quickPop);
