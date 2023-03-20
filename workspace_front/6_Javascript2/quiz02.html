@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputBox{
+            padding: 3px;
+            width: 160px;
+        }
+        .btnFrom{
+            width: 80px;
+        }
+        #fieldSet1{
+            margin-bottom: 5px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <fieldset id="fieldSet1">
+        <legend>fuite</legend>
+            <div id="box">
+                
+            </div>
+    </fieldset>
+    <input class="inputBox" id="addTxt" type="text" placeholder="추가할 단어를 입력하세요.">
+    <input class="inputBox hidden" id="splNum" type="text" placeholder="몇 번째로 끼워넣을까요?">
+    <button class="btnFrom" id="addBtn">추가하기</button>
+    <br>
+    <input class="inputBox" id="delTxt" type="text" placeholder="삭제할 단어를 입력하세요.">
+    <input class="inputBox hidden" id="splTxt" type="text" placeholder="무슨 이름을 넣을까요?">
+    <button class="btnFrom" id="delBtn">삭제하기</button>
+    <br>
+    <button class="btnFrom" id="spliceBtn">끼워들기</button>
+    <button class="btnFrom hidden" id="activate">>>></button>
+
+    <script>
+        let arr = [];
+        let addTxt = document.querySelector("#addTxt");
+        let addBtn = document.querySelector("#addBtn");
+        let delTxt = document.querySelector("#delTxt");
+        let delBtn = document.querySelector("#delBtn");
+        let box = document.querySelector("#box");
+        let splice = document.querySelector("#spliceBtn");
+        let spliceIndex = -1;
+        let splNum = document.querySelector("#splNum");
+        let splTxt = document.querySelector("#splTxt");
+
+        let addIt = function(){
+            if(addTxt.value.trim() != "" && arr.indexOf(addTxt.value) < 0){
+                arr.push(addTxt.value);
+                addTxt.value = "";
+                box.textContent = arr;
+                addTxt.focus();
+            } else if(arr.indexOf(addTxt.value) >= 0){
+                alert("중복된 이름입니다.")
+                addTxt.value = "";
+                addTxt.focus();
+            }else{
+                alert("값을 입력해주세요.");
+                addTxt.value = "";
+                addTxt.focus();
+            }
+        }
+        let enterToAdd = function(event){
+            if(event.key == "Enter"){
+                addIt();
+            }
+        }
+        let delIt = function(){
+            if(arr.indexOf(delTxt.value) >= 0){
+                arr.splice(arr.indexOf(delTxt.value),1);
+                delTxt.value = "";
+                box.textContent = arr;
+                delTxt.focus();
+            } else{
+                alert("일치하는 값이 없습니다.");
+                delTxt.value = "";
+                delTxt.focus();
+            }
+        }
+        let enterToDel = function(event){
+            if(event.key == "Enter"){
+                delIt();
+            }
+        }
+
+        let showSpl = function(){
+            splice.className = "hidden";
+            activate.className = "btnForm";
+            addTxt.className = "hidden";
+            delTxt.className = "hidden";
+            splNum.className = "inputBox";
+            splTxt.className = "inputBox";
+            document.querySelector("#activate").addEventListener("click", spliceIt);
+        }
+
+        let spliceIt = function(){
+            if(!Number.isNaN(splNum.value) && splTxt.value.trim() != ""){
+                spliceIndex = Number(splNum.value);
+                arr.splice(spliceIndex, 0, splTxt.value);
+                box.textContent = arr;
+                splNum.value = "";
+                splTxt.value = "";
+            }
+            splice.className = "btnForm";
+            activate.className = "hidden";
+            addTxt.className = "inputBox";
+            delTxt.className = "inputBox";
+            splNum.className = "hidden";
+            splTxt.className = "hidden";
+            splice.addEventListener("click", showSpl);
+        }
+
+        
+        splice.addEventListener("click", showSpl);
+
+
+
+
+        // splice.addEventListener("click", function(){
+        //     delTxt.setAttribute("id", "putIndex");
+        //     spliceIndex = Number(document.querySelector("#putIndex").value);
+        //     console.log(spliceIndex);
+        //     splice.textContent = "무슨 이름?";
+        //     splice.setAttribute("id", "splice2");
+        //     document.querySelector("#splice2").addEventListener("click", function(){
+        //         arr.splice(spliceIndex, 0, addTxt.value);
+        //         console.log(spliceIndex);
+        //         box.textContent = arr;
+        //         document.querySelector("#putIndex").setAttribute("id", "delTxt");
+        //         document.querySelector("#splice2").textContent = "끼워들기";
+        //         document.querySelector("#splice2").setAttribute("id", "splice");
+        //         delTxt.value = "";
+        //         addTxt.value = "";
+        //     })
+        // })
+        
+
+
+        addBtn.addEventListener("click", addIt);
+        addTxt.addEventListener("keyup", enterToAdd);
+        delBtn.addEventListener("click", delIt);
+        delTxt.addEventListener("keyup", enterToDel);
+    </script>
+</body>
+</html>
