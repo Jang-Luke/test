@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <p>P1</p>
+    <p>P2</p>
+    <p>P3</p>
+    <p>P4</p>
+    <input type="text" id="indexNo">
+    <input type="text" id="changeBG">
+    <button id="btn">적용</button>
+    <script>
+        let pArr = $("p");
+        let btn = $("#btn");
+        btn.on("click", function(){
+            let index = parseInt($("#indexNo").val())-1;
+            let bgColor = $("#changeBG").val();
+            if(pArr.length > index){
+                $(`p:eq(${index})`).css({"background-color": bgColor});
+            } else{
+                alert("1~4 까지의 값만 입력해주세요.")
+            }
+        })
+    </script>
+</body>
+</html>

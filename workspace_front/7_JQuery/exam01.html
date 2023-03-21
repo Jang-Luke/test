@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 10px;
+        }
+
+        .content {
+            border: 2px solid yellow;
+        }
+
+        .wrapper {
+            border: 2px solid green;
+        }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+    <!-- 요구사항 정의 / 명세서 -->
+    <!-- Sktech -> Wirefrane -> (Mockup ->) ProtoType -->
+    <!-- ERD (데이터베이스 설계도) -->
+    <!-- 회의록 -->
+
+    <!-- 기획안 PPT (or PDF) -->
+    <!-- 최종안 PPT (or PDF) -->
+
+    <!-- JQuery -->
+    <!-- 1. 더 편리한 Javascript -->
+    <!-- 2. 크로스 브라우저 호환성을 위한 라이브러리 -->
+
+    <p id="p">글씨를 빨간색으로 만들어볼까요?</p>
+    <input type="text" id="target" value="JQuery">
+    <div id="box">여기에 메세지</div>
+    <ul id="items">
+        <li>1번 아이템</li>
+        <li>2번 아이템</li>
+    </ul>
+    <button id="appendBtn">아이템 추가</button>
+    <button id="prependBtn">방해꾼</button>
+
+    <script>
+        $(function () {
+            $("#p").on("click", function () {
+                $("#p").css("color", "red");
+                $("#p").html("성공~");
+                alert($("#p").html());
+            })
+        })
+
+        // document.getElementById("target");
+        let value = $("#target").val();
+        // alert(value);
+        $("#target").val("값 변경");
+        let innerHTML = $("#box").html();
+        console.log(innerHTML);
+        $("#box").text("이것도 값 변경");
+        $("#box").css({
+            "background-color": "pink",
+            "color": "dodgerblue"
+        })
+        let count = $("li").length;
+        let preCount = 1;
+        $("#appendBtn").on("click", function () {
+            $("ul").append(`<li>${++count} 번째 아이템이에요!</li>`);
+        })
+        $("#prependBtn").on("click", function () {
+            $("ul").prepend(`<li>${preCount++} 번 방해꾼!</li>`);
+        })
+    </script>
+</body>
+
+</html>
