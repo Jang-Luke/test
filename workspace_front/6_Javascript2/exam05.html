@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let person = {
+            name: "Jack",
+            contact: "01012344321",
+            hello: function(){
+                return "Hello everyone, my name is " + this.name;
+            },
+            hoby: ["Java", "Game", "Movie", "Music", "Book"],
+            score: {
+                kor: 80,
+                eng: 90,
+                math: 70
+            },
+            favoriteFuits: function(){
+                return ["Apple", "Orange", "Mango"];
+            },
+            ability: function(){
+                return {
+                    java: function(){return 100;},
+                    css: function(){return 80;},
+                    js: function(){return 70;}
+                };
+            },
+            helloTo: function(friend){
+                console.log("Hello " + friend.name);
+            }
+        };
+        console.log(person.name);
+        console.log(person["contact"]);
+        console.log(person.hello());
+        console.log(person.hoby[2]);
+        console.log(person.score.math);
+        console.log(person.favoriteFuits()[2]);
+        console.log(person.ability().css());
+
+        person.helloTo({
+            name: "Tom",
+            contact: "01015264859"
+        });
+    </script>
+</body>
+</html>
