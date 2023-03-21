@@ -4,12 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>Document</title>
+    <style>
+        div{
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <!-- WEB API -->
     <!-- API (Aplication Programming Interfave) -->
     <!-- Library -->
     <!-- Franework -->
+    <input type="text" id="postcode" placeholder="우편번호" readonly>
+    <input type="button" id="search" value="우편번호 찾기"><br>
+    <input type="text" id="roadAddress" placeholder="주소1"><br>
+    <input type="text" id="detailAddress" placeholder="주소2">
+    
+    <script>
+        let getAddress = function(data) {
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("roadAddress").value = roadAddr;
+        };
+        function Ft(func1) {
+                this.oncomplete = func1;
+        }
+        let Ff = {oncomplete: getAddress};
+        new Ft(getAddress);
+        function execDaumPostcode() {
+            new daum.Postcode(Ff).open();
+        }
+        new daum.Postcode(Ff).open();
+        document.querySelector("#search").addEventListener("click", execDaumPostcode);
+    </script>
+
 </body>
 </html>
