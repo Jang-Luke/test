@@ -21,7 +21,7 @@
         btn.on("click", function(){
             let index = parseInt($("#indexNo").val())-1;
             let bgColor = $("#changeBG").val();
-            if(pArr.length > index){
+            if(pArr.length > index && index >= 0){
                 $(`p:eq(${index})`).css({"background-color": bgColor});
             } else{
                 alert("1~4 까지의 값만 입력해주세요.")
