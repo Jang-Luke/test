@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>지도 생성하기</title>
+        <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b14b6609e456d9e15f8a9c6fae5eff5"></script>
+    </head>
+
+    <body>
+        <div id="map" style="width:100%;height:350px;"></div>
+        현재 마커의 개수는 <span id="count">0</span> 개 입니다.
+        <button id="clearMarker">지우기</button>
+        <script>
+            var markersList = [];
+            var spanCount = document.querySelector("#count");
+            var clearBtn = document.querySelector("#clearMarker");
+            var mapContainer = document.getElementById('map'),
+                mapOption = {
+                    center: new kakao.maps.LatLng(33.450701, 126.570667),
+                    level: 7
+                };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption);
+
+            function mapClick(mouseEvent) {
+
+                var latlng = mouseEvent.latLng;
+
+                var markerPosition = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
+
+                var marker = new kakao.maps.Marker({
+                    position: markerPosition
+                });
+                kakao.maps.event.addListener(marker, 'rightclick', function (e) {
+                    marker.setMap(null);
+                    markersList.splice(markersList.indexOf(marker), 1);
+                    spanCount.textContent = markersList.length;
+                });
+                marker.setMap(map);
+                markersList.push(marker);
+                spanCount.textContent = markersList.length;
+            }
+
+            function delMarkers() {
+                while (markersList.length) {
+                    markersList.pop().setMap(null);
+                }
+                spanCount.textContent = markersList.length;
+            }
+
+            kakao.maps.event.addListener(map, 'click', mapClick);
+            clearBtn.addEventListener("click", delMarkers);
+        </script>
+    </body>
+
+    </html>
+</body>
+
+</html>
