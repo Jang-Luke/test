@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        table, th, td{
+            border: 1px solid black;
+        }
+        [type='text']{
+            margin-top: 2px;
+            margin-bottom: 2px;
+            padding: 3px;
+            text-indent: 2px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Input Controls</legend>
+        <input type="text" id="title" placeholder="제목 입력"><br>
+        <input type="text" id="content" placeholder="내용 입력"><br>
+        <input type="text" id="author" placeholder="작성자 입력">
+        <button id="add">추가하기</button>
+    </fieldset>
+    <hr>
+    <table id="books">
+        <tr>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+        </tr>
+    </table>
+    <script>
+        let table = $("#books");
+        let tableRow = $("<tr>");
+        let tableData = $("<td>");
+
+        $("#add").on("click", () => {
+            let title = $("#title").val().trim();
+            let content = $("#content").val().trim();
+            let author = $("#author").val().trim();
+            if(title != "" && content != "" && author != ""){
+                let data1 = tableData.clone().append(title);
+                let data2 = tableData.clone().append(content);
+                let data3 = tableData.clone().append(author);
+                let tr = tableRow.clone().append(data1).append(data2).append(data3);
+                table.append(tr);
+                $("#title").val("");
+                $("#content").val("");
+                $("#author").val("");
+            } else{
+                alert("Beep!!")
+            }
+            
+        })
+    </script>
+</body>
+</html>
