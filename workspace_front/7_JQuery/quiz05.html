@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        .container{
+            height: 500px;
+            overflow-y: auto;
+            border: 1px solid black;
+        }
+        .prepend{
+            background-color: #e0ffff;
+        }
+        .append{
+            background-color: rgb(255, 217, 217);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <button id="prependBtn">위로 추가하기</button>
+    <button id="appendBtn">아래로 추가하기</button>
+    <script>
+        let replaceBtn = $("<button>").attr("id", "replaceBtn");
+            replaceBtn.text("바뀐 버튼");
+        let replaced;
+        let divnod = $("<div>");
+        let msgcount = 1;
+        let appending = () => {
+            divnod.html(`Contents Message Here : ${msgcount++}<br>`);
+            divnod.clone()
+                .addClass("append")
+                .appendTo($(".container"));
+            checkCount();
+            replaced = $("#appendBtn").replaceWith(replaceBtn);
+            replaceBtn.on("click", () => {
+                replaceBtn.replaceWith(replaced);
+                replaced.on("click", appending);
+            })
+        }
+
+        $("#prependBtn").on("click", () => {
+            divnod.html("Contents Message Here : "+(msgcount++)+ "<br>");
+            divnod.clone()
+                .addClass("prepend")
+                .prependTo($(".container"));
+            checkCount();
+        })
+        $("#appendBtn").on("click", appending);
+
+
+        
+        function checkCount(){
+            if(msgcount > 10){
+                let removeBtn = $("<button>").attr("id", "removeBtn").text("지우기");
+                removeBtn.insertBefore($("#prependBtn"));
+                removeBtn.on("click", () =>{
+                    $(".container").empty();
+                    msgcount = 1;
+                })
+            }
+        }
+    </script>
+</body>
+</html>
