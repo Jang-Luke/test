@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        #box{
+            border: 1px solid black;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- 동적 Element 추가에 사용되는 함수들 -->
+    <!-- before, prepend, append, after -->
+    <div id="box">복사해주세요.</div>
+    <div></div>
+    <div id="test"></div>
+    <button id="btn">클릭</button>
+    <script>
+        // $("#~~~"); // 문서 상에서 아이디가 ~~~인 인스턴스를 찾아와라
+        // $("<p>"); // 새로운 <p> 태그 인스턴스를 생성해라
+        $("#btn").on("click", () => {
+            $("<p>").text("p태그 인스턴스입니다~").appendTo($("#test"));
+            // $("#box").append(`<div>추가요~</div>`);
+        })
+
+        let btnIn = $("<button>");
+        btnIn.html("여기가 Append");
+        btnIn.css({"background-color":"red"});
+        $("#box").before(`<div>Before</div>`);
+        $("#box").after(`<div>after</div>`);
+        $("#box").prepend(`<div>prepend</div>`);
+        $("#box").append(btnIn);
+        
+    </script>
+</body>
+</html>
