@@ -12,17 +12,17 @@
     <p>P2</p>
     <p>P3</p>
     <p>P4</p>
-    <input type="text" id="indexNo">
-    <input type="text" id="changeBG">
+    <input type="text" id="indexNo" placeholder="행 번호">
+    <input type="text" id="changeBG" placeholder="배경 색">
     <button id="btn">적용</button>
     <script>
-        let pArr = $("p");
-        let btn = $("#btn");
-        btn.on("click", function(){
+        $("#btn").on("click", function(){
             let index = parseInt($("#indexNo").val())-1;
             let bgColor = $("#changeBG").val();
-            if(pArr.length > index && index >= 0){
+            if($("p").length > index && index >= 0){
                 $(`p:eq(${index})`).css({"background-color": bgColor});
+                $("#indexNo").val("");
+                $("#changeBG").val("");
             } else{
                 alert("1~4 까지의 값만 입력해주세요.")
             }
