@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +8,30 @@
     <title>Document</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <style>
-        *{
+        * {
             box-sizing: border-box;
         }
-        table, th, td{
+
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
-        [type='text']{
+
+        [type='text'] {
             margin-top: 2px;
             margin-bottom: 2px;
             padding: 3px;
             text-indent: 2px;
         }
+
+        .delete {
+            background-color: #00000050;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
     <fieldset>
         <legend>Input Controls</legend>
@@ -28,37 +39,82 @@
         <input type="text" id="content" placeholder="내용 입력"><br>
         <input type="text" id="author" placeholder="작성자 입력">
         <button id="add">추가하기</button>
+        <button id="undo">되돌리기</button><br>
+        <input type="text" id="delTitle" placeholder="삭제할 대상 제목">
+        <button id="delete">삭제하기</button>
     </fieldset>
     <hr>
-    <table id="books">
-        <tr>
-            <th>제목</th>
-            <th>내용</th>
-            <th>작성자</th>
-        </tr>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody id="books">
+        </tbody>
     </table>
     <script>
-        let table = $("#books");
-        let tableRow = $("<tr>");
-        let tableData = $("<td>");
+        let table = $('#books');
+        let tableRow = $('<tr>');
+        let tableData = $('<td>');
+        let removeButton = $('<button>');
+        let index = 0;
+        let undoIt = [];
+        let undoTarget = [];
 
-        $("#add").on("click", () => {
-            let title = $("#title").val().trim();
-            let content = $("#content").val().trim();
-            let author = $("#author").val().trim();
-            if(title != "" && content != "" && author != ""){
+        // 동적 바인딩 : 동적으로 추가되는 요소에 이벤틀르 주기 위해서는
+        // 그 동적 요소를 포함하는 정적 parent에 이벤트를 할당해야 함
+        $('#books').on('click', '.delete', function () {
+            let targetTableRow = $(this).closest('tr');
+            targetTableRow.css({'display':'none'});
+            undoTarget.push(targetTableRow);
+        })
+
+        $('#add').on('click', () => {
+            let title = $('#title').val().trim();
+            let content = $('#content').val().trim();
+            let author = $('#author').val().trim();
+            if (title != '' && content != '' && author != '') { // 정적 바인딩
                 let data1 = tableData.clone().append(title);
                 let data2 = tableData.clone().append(content);
                 let data3 = tableData.clone().append(author);
-                let tr = tableRow.clone().append(data1).append(data2).append(data3);
+                let remove = removeButton.clone().addClass('delete').text('X');
+                let data4 = tableData.clone().append(remove);
+                let tr = tableRow.clone().append(data1, data2, data3, data4);
                 table.append(tr);
-                $("#title").val("");
-                $("#content").val("");
-                $("#author").val("");
-            } else{
-                alert("Beep!!");
+                $('#title, #content, #author').val('');
+            } else {
+                alert('값을 모두 입력해야 합니다.');
             }
+        })
+        $('#undo').on('click', () => {
+            if (undoTarget.length > 0) {
+                undoTarget.pop().css({'display':'table-row'});
+            }
+        })
+
+        $('#delete').on('click', function() {
+            let trArr = table.children().get();
+            let targetTitle = $('#delTitle').val();
+            for(let i = 0; i < trArr.length; i++){
+                if(trArr[i].firstChild.textContent == targetTitle){
+                    trArr[i].remove();
+                    $('#delTitle').val('');
+                }
+            }
+            // let trArr = table.children().gt(-1);
+            // let targetTitle = $('#delTitle').val();
+            // for(let i = 0; i < trArr.length; i++){
+            //     if(trArr.children().eq(1).val() == targetTitle){
+            //         trArr.eq(i).remove();
+            //         $('#delTitle').val('');
+            //     }
+            // }
         })
     </script>
 </body>
+
 </html>
