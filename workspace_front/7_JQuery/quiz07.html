@@ -78,7 +78,7 @@
             let content = $('#content').val().trim();
             let author = $('#author').val().trim();
             if (title != '' && content != '' && author != '') { // 정적 바인딩
-                let data1 = tableData.clone().append(title);
+                let data1 = tableData.clone().append(title).addClass('dTitle');
                 let data2 = tableData.clone().append(content);
                 let data3 = tableData.clone().append(author);
                 let remove = removeButton.clone().addClass('delete').text('X');
@@ -99,20 +99,15 @@
         $('#delete').on('click', function() {
             let trArr = table.children().get();
             let targetTitle = $('#delTitle').val();
-            for(let i = 0; i < trArr.length; i++){
-                if(trArr[i].firstChild.textContent == targetTitle){
-                    trArr[i].remove();
-                    $('#delTitle').val('');
-                }
-            }
-            // let trArr = table.children().gt(-1);
-            // let targetTitle = $('#delTitle').val();
             // for(let i = 0; i < trArr.length; i++){
-            //     if(trArr.children().eq(1).val() == targetTitle){
-            //         trArr.eq(i).remove();
+            //     if(trArr[i].firstChild.textContent == targetTitle){
+            //         trArr[i].remove();
             //         $('#delTitle').val('');
             //     }
             // }
+            $('.dTitle').filter((_,e) => {
+                return e.textContent === targetTitle;
+            }).parent().remove();
         })
     </script>
 </body>
