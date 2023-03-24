@@ -8,8 +8,9 @@ let onlyOneEmoji = true;
             }
         }
         let send = () => {
+            if($('#inputTxt').html() == '<br>') {return}
             if (($('#inputTxt').html().trim() != '' || $('#inputEmoji').html().trim() != '')&& $('#user').prop('checked') == true) {
-                let date = new Date();
+                let time = moment().format('hh:mm');
                 let txt = $('<p>').addClass('pTxtStyle').append($('#inputTxt').html());
                 let emo = $('#inputEmoji').html();
                 let chat = $('<div>').addClass('chatTxt');
@@ -19,7 +20,7 @@ let onlyOneEmoji = true;
                     chat.prepend(emo).append(txt);
                 }
                 let chatLine = $('<div>').addClass('chatLineMine').append(chat);
-                let chatTime = $('<div>').addClass('chatTime').append(`${date.getHours()}:${date.getMinutes()}`);
+                let chatTime = $('<div>').addClass('chatTime').append(time);
                 chatLine.append(chatTime);
                 $('#chatBox').append(chatLine);
                 $('#inputTxt, #inputEmoji').text('').focus();
@@ -28,7 +29,7 @@ let onlyOneEmoji = true;
                 $('#emojiButton').removeClass('fa-bounce');
                 onlyOneEmoji = true;
             } else if (($('#inputTxt').html().trim() != '' || $('#inputEmoji').html().trim() != '')&& $('#user').prop('checked') == false) {
-                let date = new Date();
+                let time = moment().format('hh:mm');
                 let txt = $('<p>').addClass('pTxtStyle').append($('#inputTxt').html());
                 let emo = $('#inputEmoji').html();
                 let chat = $('<div>').addClass('chatTxt');
@@ -38,7 +39,7 @@ let onlyOneEmoji = true;
                     chat.prepend(emo).append(txt);
                 }
                 let chatLine = $('<div>').addClass('chatLineOpponent').append(chat);
-                let chatTime = $('<div>').addClass('chatTime').append(`${date.getHours()}:${date.getMinutes()}`);
+                let chatTime = $('<div>').addClass('chatTime').append(time);
                 chatLine.append(chatTime);
                 $('#chatBox').append(chatLine);
                 $('#inputTxt, #inputEmoji').text('').focus();
@@ -46,17 +47,11 @@ let onlyOneEmoji = true;
                 $('#emojiBox').addClass('hide');
                 $('#emojiButton').removeClass('fa-bounce');
                 onlyOneEmoji = true;
-            } else {
-                alert('Beep!')
-            }
+            } 
         }
         let div = document.querySelector('#inputTxt');
         div.onkeyup = function (e) {
             let a = document.activeElement;
-            // if (e.keyCode == 13) {
-            //     scrollInput();
-            //     return;
-            // }
             if (a.lastChild && a.lastChild.nodeName != 'BR') {
                 a.appendChild(document.createElement('br'));
                 scrollInputBox();
