@@ -25,7 +25,7 @@
     <div id="changeIt">
         <button id="btn">입력</button>
     </div>
-    <button id="cencel" style="display: none;">취소</button>
+    <button id="cancel" style="display: none;">취소</button>
     <script>
         let btnSel = document.querySelector("#btn");
         btnSel.addEventListener("click", function(){
@@ -33,14 +33,14 @@
             document.querySelector("#changeIt").innerHTML = msg;
             document.querySelector("#changeIt").className = "changed";
             btnSel.style.display = "none";
-            document.querySelector("#cencel").style.display = "block";
+            document.querySelector("#cancel").style.display = "block";
         })
 
-        document.querySelector("#cencel").addEventListener("click", function(){
+        document.querySelector("#cancel").addEventListener("click", function(){
             document.querySelector("#changeIt").innerHTML = "<button id='btn'>입력</button>";
             document.querySelector("#changeIt").className = "";
             btnSel.style.display = "block";
-            document.querySelector("#cencel").style.display = "none";
+            document.querySelector("#cancel").style.display = "none";
         })
         
 

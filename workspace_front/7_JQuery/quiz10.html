@@ -6,163 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            /* margin: auto; */
-            float: left;
-        }
-
-        .container {
-            width: 300px;
-            height: 500px;
-            border: 1px solid black;
-            border-radius: 6px;
-        }
-
-        .container>div {
-            width: 100%;
-        }
-
-        #chatBox {
-            height: 80%;
-            overflow-y: auto;
-            background-color: #a1d5f6;
-        }
-
-        .inputBar {
-            width: 100;
-            height: 15%;
-            /* border-radius: 6px; */
-            float: left;
-        }
-
-        .buttonBar {
-            width: 100%;
-            height: 5%;
-            border-radius: 6px;
-            float: left;
-        }
-
-        #inputBox {
-            width: 100%;
-            height: 100%;
-            border-radius: 6px;
-            float: left;
-        }
-
-        #inputTxt {
-            width: 100%;
-            height: 100%;
-            text-indent: 5px;
-            border: none;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        .buttonBox {
-            padding: 5px;
-            height: 100%;
-            background-color: lightgray;
-            border-radius: 6px;
-            margin: 0px;
-            float: left;
-        }
-
-        .buttonForm {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            border: none;
-            background-color: lightgray;
-            border-radius: 6px;
-            float: left;
-        }
-
-        .chatLineMine {
-            margin-left: 3px;
-            margin-right: 3px;
-            float: none;
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: right;
-            align-items: end;
-        }
-
-        .chatLineOpponent {
-            margin-left: 3px;
-            margin-right: 3px;
-            float: none;
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            align-items: end;
-        }
-
-        .chatTxt {
-            padding: 7px;
-            padding-bottom: 4px;
-            margin: 2px;
-            max-width: 150px;
-            border-radius: 10px;
-            word-wrap: break-word;
-            background-color: rgb(252, 252, 122);
-        }
-
-        .chatTime {
-            color: rgb(0, 0, 0);
-            margin-left: 5px;
-            margin-right: 8px;
-            margin-bottom: 3px;
-            float: left;
-            font-size: 6pt;
-        }
-
-        #emojiBox {
-            width: 100%;
-            height: 40%;
-            position: relative;
-            bottom: 299px;
-            float: left;
-            background-color: #00000050;
-            opacity: 80%;
-        }
-
-        .flex-left {
-            display: flex;
-            justify-content: left;
-            text-indent: 3px;
-            align-items: baseline;
-            padding: 3px;
-        }
-
-        .flex-space-between {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .overflowed {
-            overflow-y: auto;
-        }
-
-        .emoji {
-            width: 80px;
-            height: 80px;
-            margin: 5px;
-            display: block;
-        }
-
-        .hide {
-            display: none;
-        }
-        .pTxtStyle{
-            margin: 0px;
-            max-width: 136px;
-            word-wrap: break-word;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <link href="quiz10.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -175,37 +21,19 @@
             <div id="inputBox" class="overflowed">
                 <div contentEditable="true" aria-readonly="true" id="inputEmoji"></div>
                 <div contentEditable="true" class="flex-left overflowed" id="inputTxt">
-                    
+                    <br style="display:none">
                 </div>
             </div>
         </div>
         <div class="buttonBar flex-space-between">
             <div class="buttonBox">
-                <button class="buttonForm" id="emojiButton"> + </button>
+                <button class="buttonForm" id="emojiButton"><i class="fa-regular fa-face-smile fa-lg"></i></button>
             </div>
             <div class="buttonBox">
                 <button class="buttonForm" id="sendButton">전송하기</button>
             </div>
         </div>
         <div id="emojiBox" class="flex-space-between overflowed hide">
-            <img class="emoji" src="emoji1.png">
-            <img class="emoji" src="emoji2.png">
-            <img class="emoji" src="emoji3.png">
-            <img class="emoji" src="emoji4.png">
-            <img class="emoji" src="emoji5.png">
-            <img class="emoji" src="emoji6.png">
-            <img class="emoji" src="emoji7.png">
-            <img class="emoji" src="emoji8.png">
-            <img class="emoji" src="emoji9.png">
-            <img class="emoji" src="emoji10.png">
-            <img class="emoji" src="emoji11.png">
-            <img class="emoji" src="emoji12.png">
-            <img class="emoji" src="emoji13.png">
-            <img class="emoji" src="emoji14.png">
-            <img class="emoji" src="emoji15.png">
-            <img class="emoji" src="emoji16.png">
-            <img class="emoji" src="emoji17.png">
-            <img class="emoji" src="emoji18.png">
         </div>
     </div>
     <br>
@@ -216,118 +44,7 @@
 
 
 
-    <script>
-        // let onlyOneEmoji = true;
-        let sendByEnter = (e) => {
-            if (e.key == "Enter") {
-                send()
-            }
-        }
-        let send = () => {
-            if (($("#inputTxt").html().trim() != "" || $('#inputEmoji').html().trim() != '')&& $('#user').prop('checked') == true) {
-                let date = new Date();
-                let txt = $('<p>').addClass('pTxtStyle').append($("#inputTxt").html());
-                let emo = $('#inputEmoji').html();
-                let chat = $("<div>").addClass("chatTxt");
-                if(emo != ''){
-                    chat.prepend(emo, '<br>').append(txt);
-                } else{
-                    chat.prepend(emo).append(txt);
-                }
-                let chatLine = $("<div>").addClass("chatLineMine").append(chat);
-                let chatTime = $("<div>").addClass("chatTime").append(`${date.getHours()}:${date.getMinutes()}`);
-                chatLine.append(chatTime);
-                $("#chatBox").append(chatLine);
-                $("#inputTxt, #inputEmoji").text("").focus();
-                scrollBottom();
-                $('#emojiBox').addClass('hide');
-                // onlyOneEmoji = true;
-            } else if (($("#inputTxt").html().trim() != "" || $('#inputEmoji').html().trim() != '')&& $('#user').prop('checked') == false) {
-                let date = new Date();
-                let txt = $("#inputTxt").html();
-                let emo = $('#inputEmoji').html();
-                let chat = $("<div>").addClass("chatTxt");
-                if(emo != ''){
-                    chat.prepend(emo, '<br>').append(txt);
-                } else{
-                    chat.prepend(emo).append(txt);
-                }
-                let chatLine = $("<div>").addClass("chatLineOpponent").append(chat);
-                let chatTime = $("<div>").addClass("chatTime").append(`${date.getHours()}:${date.getMinutes()}`);
-                chatLine.append(chatTime);
-                $("#chatBox").append(chatLine);
-                $("#inputTxt, #inputEmoji").text("").focus();
-                scrollBottom();
-                $('#emojiBox').addClass('hide');
-                // onlyOneEmoji = true;
-            } else {
-                alert("Beep!")
-            }
-        }
-        let div = document.querySelector("#inputTxt");
-        div.onkeyup = function (e) {
-            let a = document.activeElement;
-            if (e.keyCode == 13) {
-                scrollInput();
-                return;
-            }
-            if (a.lastChild && a.lastChild.nodeName != "BR") {
-                a.appendChild(document.createElement("br"));
-                scrollInput();
-            }
-        };
-        div.onkeypress = function (e) {
-            if (e.keyCode == 13 && e.shiftKey == true) {
-                let selection = window.getSelection(),
-                    range = selection.getRangeAt(0),
-                    br = document.createElement("br");
-                range.deleteContents();
-                range.insertNode(br);
-                range.setStartAfter(br);
-                range.setEndAfter(br);
-                range.collapse(false);
-                selection.removeAllRanges();
-                selection.addRange(range);
-                scrollInput();
-                return false;
-            } else if (e.keyCode == 13 && e.shiftKey == false) {
-                let selection = window.getSelection(),
-                    range = selection.getRangeAt(0),
-                    br = document.createElement("br");
-                range.deleteContents();
-                selection.removeAllRanges();
-                selection.addRange(range);
-                sendByEnter(e);
-                scrollInput();
-                return false;
-            }
-        };
-        $('#sendButton').on('click', send)
-        $('#emojiButton').on('click', function () {
-            $('#emojiBox').toggleClass('hide');
-        })
-        $('img').on('click', function () {
-            // if (onlyOneEmoji) {
-                // onlyOneEmoji = false;
-                $('#inputEmoji').prepend($(this).clone());
-                $('#inputTxt').focus();
-                scrollInputTop();
-            // }
-        })
-
-        function scrollBottom() {
-            let scroll = document.querySelector("#chatBox");
-            scroll.scrollTop = scroll.scrollHeight;
-        }
-        function scrollInput() {
-            let scroll = document.querySelector("#inputBox");
-            scroll.scrollTop = scroll.scrollHeight;
-        }
-        function scrollInputTop() {
-            let scroll = document.querySelector("#inputBox");
-            scroll.scrollTop = 0;
-        }
-    </script>
+    <script src="quiz10.js"></script>
 </body>
 
 </html>
