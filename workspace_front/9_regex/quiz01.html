@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="phone" placeholder="핸드폰 번호를 입력하세요.">
+    <button id="check">검사</button>
+    <fieldset>
+        <legend>검사 결과</legend>
+
+    </fieldset>
+
+    <script>
+        const phoneNum = document.querySelector('#phone');
+        document.querySelector('#check').addEventListener('click', function() {
+            const number = document.querySelector('#phone').value.trim();
+            const regex = /^01\d(\s?-?\d{4}){2}$/;
+            if(number != '' && regex.test(number)){
+                const template = '인증이 완료되었습니다.';
+                document.querySelector('fieldset').textContent = template;
+            } else if (number != '' && regex.test(number) == false) {
+                const template = '핸드폰 번호가 아닙니다.';
+                document.querySelector('fieldset').textContent = template;
+            } else {
+                alert('값을 입력해주세요.')
+            }
+        })
+    </script>
+</body>
+</html>
