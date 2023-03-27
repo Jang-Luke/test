@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" id="inputId" placeholder="ID">
+    <button id="check">검증</button>
+    <div>
+        ID 조건<br>
+        1. 첫 글자는 알파벳 대문자만 가능<br>
+        2. 나머지는 알파벳 소문자, 숫자 또는 _만 가능<br>
+        3. 최소 7자리에서 13자리까지만 허용
+    </div>
+    <fieldset>
+        <legend>
+            검증 결과
+        </legend>
+        <div id="result"></div>
+    </fieldset>
+
+    <script>
+        const result = $('#result');
+
+        $('#check').on('click', function() {
+            const userId =  $('#inputId').val().trim();
+            const regex = /^[A-Z][a-z0-9_]{6,12}$/;
+            if(userId != '' && regex.test(userId)){
+                result.text('사용 가능한 ID 입니다.');
+            } else if(userId != '' && regex.test(userId) == false){
+                result.text('사용 불가능한 ID 입니다.');
+            } else {
+                alert('값을 입력해주세요.');
+            }
+        })
+    </script>
+</body>
+</html>
