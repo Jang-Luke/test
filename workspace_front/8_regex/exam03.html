@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- 
+    <script>
+        const string = `안녕하세요~ 저는 Jane 입니다.
+급한 용무라면 010-4321-1234 or 010-1144-9988 로 연락 주세요.`
+        const phoneNumberRegex = /(01\d-\d{4}-\d{4})/g;
+        const phoneNumberRegex2 = /(01\d-?\s?\d{4}-?\s?\d{4}) or (01\d-?\s?\d{4}-?\s?\d{4})/;
+        const parsePhoneNumber = phoneNumberRegex.exec(string);
+        const parsePhoneNumber2 = phoneNumberRegex.exec(string);
+        const parsePhoneNumber3 = phoneNumberRegex.exec(string);
+        const parsePhoneNumber4 = phoneNumberRegex.exec(string);
+        const splitPhoneNumber = string.split(phoneNumberRegex).filter((s) => phoneNumberRegex.test(s));
+        console.log(parsePhoneNumber);
+        console.log(parsePhoneNumber2);
+        console.log(parsePhoneNumber3);
+        console.log(parsePhoneNumber4);
+        console.log(splitPhoneNumber);
+        console.log('$& : ' + parsePhoneNumber[0]);
+        console.log('$1 : ' + parsePhoneNumber[1]);
+        console.log('$2 : ' + parsePhoneNumber[2]);
+        console.log('$2 : ' + RegExp.$2);
+    </script> -->
+    <script>
+        const string = `안녕하세요~ 저는 Jane 입니다.
+급한 용무라면 010-4321-1234 or 010-1144-9988 로 연락 주세요.`
+        const phoneNumberRegex = /(01\d-?\s?\d{4}-?\s?\d{4})/g;
+        while(phoneNumberRegex.exec(string) != null){
+            console.log(RegExp.lastMatch);
+        }
+    </script>
+</body>
+</html>
