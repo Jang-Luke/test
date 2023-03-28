@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
-<!-- 
+
+    <!-- 
     <script>
         const string = `안녕하세요~ 저는 Jane 입니다.
 급한 용무라면 010-4321-1234 or 010-1144-9988 로 연락 주세요.`
@@ -30,12 +32,13 @@
         console.log('$2 : ' + RegExp.$2);
     </script> -->
     <script>
-        const string = `안녕하세요~ 저는 Jane 입니다.
-급한 용무라면 010-4321-1234 or 010-1144-9988 로 연락 주세요.`
-        const phoneNumberRegex = /(01\d-?\s?\d{4}-?\s?\d{4})/g;
-        while(phoneNumberRegex.exec(string) != null){
-            console.log(RegExp.lastMatch);
+        const string = `안녕하세요~ 저는 서현우 입니다.
+급한 용무라면 010-5416-3849 or 010-2233-4243 로 연락 주세요.`
+        const phoneNumberRegex = /\*?01\d-?\s?\d{4}-?\s?\d{4}\*?/g;
+        while (result = phoneNumberRegex.exec(string)) {
+            console.log(result[0])
         }
     </script>
 </body>
+
 </html>
