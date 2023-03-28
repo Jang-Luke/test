@@ -9,7 +9,9 @@
 </head>
 
 <body>
+    <div id="box">
 
+    </div>
     <!-- 
     <script>
         const string = `안녕하세요~ 저는 Jane 입니다.
@@ -34,11 +36,13 @@
     <script>
         const string = `안녕하세요~ 저는 서현우 입니다.
 급한 용무라면 010-5416-3849 or 010-2233-4243 로 연락 주세요.`
-        const phoneNumberRegex = /(?<!\d)01\d-?\s?\d{4}-?\s?\d{4}(?!\d)/g;
+        // const phoneNumberRegex = /(?<!\d)01\d-?\s?\d{4}-?\s?\d{4}(?!\d)/g;
+        const phoneNumberRegex = /\b01\d-?\s?\d{4}-?\s?\d{4}\b/g;
         while (result = phoneNumberRegex.exec(string)) {
-            console.log(result[0])
+            let newP = document.createElement('p');
+            newP.innerText = result[0];
+            document.querySelector('#box').appendChild(newP);
         }
-        const phoneNumberRegex2 = /(?:\d{3}) /g
     </script>
 </body>
 
