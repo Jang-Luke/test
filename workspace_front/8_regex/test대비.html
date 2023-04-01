@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function () {
+            $('#btn1').on('click', function () {
+                let chk = $('input');
+                for (let i = 0; i < chk.length; i++) {
+                    if ($('input:eq(' + i + ')').prop('checked')) {
+                        console.log($(`input:eq(${i})`).val());
+                    }
+                    console.log($('input:eq(' + i + ')').prop('checked'));
+                    console.log($('input:eq(' + i + ')').attr('checked'));
+                }
+            })
+            $('#btn2').on('click', function() {
+                $('#chk1').attr('checked', 'checked');
+                // $('#chk1').prop('checked', true);
+                console.log($('#s1').prop('selectedIndex'));
+                
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" class="q" id="chk1" value="1">
+    <input type="checkbox" class="q" id="chk2" value="2">
+    <input type="checkbox" class="q" id="chk3" value="3">
+    <input type="checkbox" class="q" id="chk4" value="4">
+    <input type="checkbox" class="q" id="chk5" value="5" checked>
+    <select id="s1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <button id="btn1">출력</button>
+    <button id="btn2">1번 체크</button>
+
+</body>
+
+</html>
