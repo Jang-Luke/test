@@ -20,7 +20,7 @@
                 }
             })
             $('#btn2').on('click', function() {
-                $('#chk1').attr('checked', 'undefined');
+                $('#chk1').attr('checked', '');
                 // $('#chk1').prop('checked', true);
                 console.log($('#s1').prop('selectedIndex'));
                 
@@ -43,7 +43,9 @@
     </select>
     <button id="btn1">출력</button>
     <button id="btn2">1번 체크</button>
-
+    <script>
+        document.getElementsByClassName('a')[0].textContent
+    </script>
 </body>
 
 </html>
