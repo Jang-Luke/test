@@ -16,20 +16,32 @@
     </style>
 </head>
 <body>
-    <div class="con">
+    <div id="con">
 
     </div>
     <button id="btn">
         버튼
     </button>
     <script>
-        const arr = ['a','b','c','d','e'];
+        const brTag = document.createElement('br');
+        const arr = [1,2,3,4,5];
+        arr[5] = function(a, b) {
+            return a * b;
+        }
         document.querySelector('#btn').addEventListener('click', () => {
             alert('뀨~?');
         })
-        arr.forEach((element, index, arr) => {
-            document.querySelector('.con').textContent += element+1;
+        let arr2 = arr.map((element) => {
+            return element+2;
         })
+        arr2 = arr2.filter((value) => {
+            return value > 4;
+        })
+        arr2.forEach((element, index, arr) => {
+            document.querySelector('#con').textContent +=   element;
+        })
+
+        document.querySelector('#con').append(brTag.cloneNode(), arr[5](2,4));
     </script>
 </body>
 </html>
