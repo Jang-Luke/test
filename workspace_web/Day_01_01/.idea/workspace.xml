@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="">
+    <list default="true" id="eccade2b-6c54-4a66-9ea9-1e7d4e39ca9a" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/encodings.xml" afterDir="false" />
@@ -15,8 +12,6 @@
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/java/servlets/Exam_01.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/webapp/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_web/Day_01_01/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/encodings.xml" beforeDir="false" />
@@ -50,44 +45,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2NobcZHPxyR4daKAarZoZaDX3bK" />
+  <component name="ProjectId" id="2Nu1DVRdBgZvnjC8BUrR6gv1sSa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/luke/Documents/GitHub/test/workspace_web/Day_01_01"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="" />
-      <created>1680333463554</created>
+      <changelist id="eccade2b-6c54-4a66-9ea9-1e7d4e39ca9a" name="Changes" comment="" />
+      <created>1680499033243</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1680333463554</updated>
+      <updated>1680499033243</updated>
     </task>
     <servers />
   </component>
