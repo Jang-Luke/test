@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+        .wrapper{
+            margin: 0 auto;
+            width : 400px;
+            height : 200px;
+            border : 1px solid black;
+        }
+
+        .titles{
+            text-align:center;
+        }
+
+        .title{
+            display: inline-block;
+            width : 200px;
+            text-align: center;
+        }
+
+        .chk{
+            width : 50px;
+        }
+
+        .pp{
+            display: inline-block;
+            width : 100px;
+            text-align: center;
+        }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $("#all").on("change", function(){
+                    var all = $("#all").prop("checked");
+                    if(all == true){
+                        $(".chk").prop("checked", true);
+                        $(".batch").prop("checked",true);
+                    }else{
+                        $(".chk").prop("checked", false);
+                        $(".batch").prop("checked",false);
+                    }
+                })
+                $("#pro").on("change", function(){
+                    var pro = $("#pro").prop("checked");
+                    if(pro == true){
+                        $(".pro").prop("checked", true);
+                    }else{
+                        $(".pro").prop("checked", false);
+                    }
+                })
+                $("#pub").on("change", function(){
+                    var pub = $("#pub").prop("checked");
+                    if(pub == true){
+                        $(".pub").prop("checked", true);
+                    }else{
+                        $(".pub").prop("checked", false);
+                    }
+                })
+                const batchCheck = function() {
+                    const all = $("#all").prop("checked");
+                    const pro = $("#pro").prop("checked");
+                    const pub = $("#pub").prop("checked");
+                    if(!all && pro && pub){
+                        $('#all').prop('checked', true);
+                    } else if (all && (!pro || !pub)){
+                        $('#all').prop('checked', false);
+                    }
+                }
+                $('.batch').on('change', batchCheck)
+                $('.pro').on('change', function() {
+                    const prochk = Array.from(document.querySelectorAll('.pro'));
+                    
+                    if(prochk.every(e => e.checked === true)){
+                        $("#pro").prop("checked", true);
+                        batchCheck();
+                    } else {
+                        $("#pro").prop("checked", false);
+                        batchCheck();
+                    }
+                    
+                    // const prochk = $('.pro');
+                    // const result = prochk.filter((index, element) => {
+                    //     if(!element.checked) return false;
+                    //     return element.checked;
+                    // });
+                    // if(prochk.length == result.length){
+                    //     $("#pro").prop("checked", true);
+                    //     batchCheck();
+                    // } else {
+                    //     $("#pro").prop("checked", false);
+                    //     batchCheck();
+                    // }
+
+                    // let cnt = 0;
+                    // prochk.each((i, e) => {
+                    //     if(!e.checked){
+                    //         $("#pro").prop("checked", false);
+                    //         batchCheck();
+                    //         return false;
+                    //     } else {
+                    //         cnt++;
+                    //     }
+                    //     if(cnt==prochk.length) {
+                    //         $("#pro").prop("checked", true);
+                    //         batchCheck();
+                    //     }
+                    // })
+                })
+                $('.pub').on('change', function() {
+                    const pubchk = Array.from(document.querySelectorAll('.pub'));
+                    const pubchk2 = $.makeArray($('.pub'));
+                    if(pubchk2.every(e => e.checked === true)){
+                        $("#pub").prop("checked", true);
+                        batchCheck();
+                    } else {
+                        $("#pub").prop("checked", false);
+                        batchCheck();
+                    }
+
+                    // const result = pubchk.filter((index, element) => {
+                    //     if(!element.checked) return false;
+                    //     return element.checked;
+                    // })
+                    // if(pubchk.length == result.length){
+                    //     $("#pub").prop("checked", true);
+                    //     batchCheck();
+                    // } else {
+                    //     $("#pub").prop("checked", false);
+                    //     batchCheck();
+                    // }
+                    // let cnt = 0;
+                    // pubchk.each((i, e) => {
+                    //     if(!e.checked){
+                    //         $("#pub").prop("checked", false);
+                    //         batchCheck();
+                    //         return false;
+                    //     } else {
+                    //         cnt++;
+                    //     }
+                    //     if(cnt==pubchk.length) {
+                    //         $("#pub").prop("checked", true);
+                    //         batchCheck();
+                    //     }
+                    // })
+                })
+            })
+            
+        </script>
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <div class="titles">
+                <input id="all" class="batch" type="checkbox"><label>전체</label>
+                <input id="pro" class="batch" type="checkbox"><label>전문가</label>
+                <input id="pub" class="batch" type="checkbox"><label>일반사용자</label>
+            </div>
+            <hr>
+            <div class="list">
+                <div><input class="pro chk" type="checkbox"><label class="pp">전문가</label><div
+                        class=title>애완견에게 좋은 꿀팁 2</div></div>
+                <div><input class="pro chk" type="checkbox"><label class="pp">전문가</label><div
+                        class=title>애완견에게 좋은 꿀팁 1</div></div>
+                <div><input class="pub chk" type="checkbox"><label class="pp">일반
+                        사용자</label><div class=title>우리 집 멍멍이는..</div></div>
+                <div><input class="pro chk" type="checkbox"><label class="pp">전문가</label><div
+                        class=title>집사로서 명심해야 할 사항</div></div>
+                <div><input class="pub chk" type="checkbox"><label class="pp">일반
+                        사용자</label><div class=title>새우 키우고 있는데요.</div></div>
+                <div><input class="pub chk" type="checkbox"><label class="pp">일반
+                        사용자</label><div class=title>애용이가 벽을 자꾸 긁어요..</div></div>
+                <div><input class="pub chk" type="checkbox"><label class="pp">일반
+                        사용자</label><div class=title>허스키 하울링이요.</div></div>
+            </div>
+        </div>
+    </body>
+</html>

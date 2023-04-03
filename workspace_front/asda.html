@@ -29,7 +29,7 @@
             return a * b;
         }
         document.querySelector('#btn').addEventListener('click', () => {
-            alert('뀨~?');
+            alert('팟!');
         })
         let arr2 = arr.map((element) => {
             return element+2;
@@ -40,6 +40,10 @@
         arr2.forEach((element, index, arr) => {
             document.querySelector('#con').textContent +=   element;
         })
+        let arr3 = arr.reduce((total, e) => {
+            return total + e;
+        })
+        document.querySelector('#con').innerHTML += ('<br>' + arr3);
 
         document.querySelector('#con').append(brTag.cloneNode(), arr[5](2,4));
     </script>

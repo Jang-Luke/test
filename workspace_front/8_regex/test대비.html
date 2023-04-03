@@ -12,7 +12,7 @@
             $('#btn1').on('click', function () {
                 let chk = $('input');
                 for (let i = 0; i < chk.length; i++) {
-                    if ($('input:eq(' + i + ')').prop('checked')) {
+                    if ($('input').eq(i).prop('checked')) {
                         console.log($(`input:eq(${i})`).val());
                     }
                     console.log($('input:eq(' + i + ')').prop('checked'));
@@ -43,9 +43,6 @@
     </select>
     <button id="btn1">출력</button>
     <button id="btn2">1번 체크</button>
-    <script>
-        document.getElementsByClassName('a')[0].textContent
-    </script>
 </body>
 
 </html>
