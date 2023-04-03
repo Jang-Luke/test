@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../untitled/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_servlet_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/.idea/workspace_back.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/libraries/tomcat_servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/Day_01.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/java/servlets/Exam01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../workspace_back/Day_01/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_web/Day_01_01/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../../workspace_web/Day_01_01/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_web/Day_01_02/.project" beforeDir="false" afterPath="$PROJECT_DIR$/../../workspace_web/Day_01_02/.project" afterDir="false" />
-    </list>
+    <list default="true" id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
