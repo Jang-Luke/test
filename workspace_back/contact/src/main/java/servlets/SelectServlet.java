@@ -29,7 +29,9 @@ public class SelectServlet extends HttpServlet {
         printWriter.append("<script src=\"https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js\"></script>");
         printWriter.append("<style>");
         printWriter.append(".toCenter{text-align:center;border-radius:10px;background-color:lightgray;}");
+        printWriter.append(".toCenter:hover{cursor:pointer;}");
         printWriter.append(".disappear{display:none;}");
+        printWriter.append(".margin-top-1{margin-top:10px;}");
         printWriter.append("</style>");
         printWriter.append("</head>");
         printWriter.append("<body>");
@@ -58,7 +60,7 @@ public class SelectServlet extends HttpServlet {
         printWriter.append("<form class='disappear' action='DeleteServlet' method='post'>");
         printWriter.append("<label for='deleteId' class='form-label'>번호</label>");
         printWriter.append("<input name='deleteId' type='text' class='form-control' id='deleteId' placeholder='삭제할 연락처의 번호를 입력하세요.'>");
-        printWriter.append("<button class='btn btn-outline-success'>삭제할래</button>");
+        printWriter.append("<button class='btn btn-outline-success margin-top-1'>삭제할래</button>");
         printWriter.append("</form>");
         printWriter.append("</div>");
         printWriter.append("<div class='col-12'>");
@@ -72,7 +74,7 @@ public class SelectServlet extends HttpServlet {
         printWriter.append("<input name='updateContact' type='text' class='form-control' id='updateContact' placeholder='연락처를 입력하세요.'>");
         printWriter.append("<label for='updateBirthday' class='form-label'>생일</label>");
         printWriter.append("<input name='updateBirthday' type='date' class='form-control' id='updateBirthday' placeholder='생일을 입력하세요.'>");
-        printWriter.append("<button class='btn btn-outline-success'>수정할래</button>");
+        printWriter.append("<button class='btn btn-outline-success margin-top-1'>수정할래</button>");
         printWriter.append("</form>");
         printWriter.append("</div>");
         printWriter.append("<div class='col-12'>");
@@ -87,7 +89,7 @@ public class SelectServlet extends HttpServlet {
         printWriter.append("</body>");
         printWriter.append("</html>");
     }
-
+    //TODO: 정규식으로 전화번호 조건 걸기
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
