@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MessageProp")
 public class MessageProp extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
         String writer = request.getParameter("writer");
@@ -36,15 +40,12 @@ public class MessageProp extends HttpServlet {
         } else {
             printWriter.append("<p>입력 실패</p>");
         }
-        printWriter.append("<button id='toIndex'>돌아가기</button>");
+        printWriter.append("<button id='toIndex'>메인으로</button>");
+        printWriter.append("<button id='toSelect'>목록으로</button>");
         printWriter.append("<script>document.querySelector('#toIndex').addEventListener('click', () => {alert('입력 완료!'); location.href='index.html'})</script>");
+        printWriter.append("<script>document.querySelector('#toSelect').addEventListener('click', () => {location.href='SelectMessage'})</script>");
         printWriter.append("</body>");
         printWriter.append("</html>");
-
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 
 }

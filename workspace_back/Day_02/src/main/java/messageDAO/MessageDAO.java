@@ -55,6 +55,7 @@ public class MessageDAO {
             preparedStatement.setString(1, message);
             preparedStatement.setInt(2, id);
             result = preparedStatement.executeUpdate();
+            connection.commit();
         } catch(SQLException e){
             e.printStackTrace();
         }
