@@ -33,6 +33,34 @@ public class MessageDAO {
         return result;
     }
 
+    public int deleteMessageById(int id){
+        int result = 0;
+        String sql = "DELETE FROM MESSAGES WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public int updateMessageById(String message, int id){
+        int result = 0;
+        String sql = "UPDATE MESSAGES SET MESSAGE = ? WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, message);
+            preparedStatement.setInt(2, id);
+            result = preparedStatement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public List<Message> selectAll() {
         String sql = "SELECT * FROM MESSAGES";
         try(Connection connection = basicDataSource.getConnection();
@@ -47,20 +75,6 @@ public class MessageDAO {
             e.printStackTrace();
         }
         return new ArrayList<Message>();
-    }
-
-    public int deleteMessageById(int id){
-        int result = 0;
-        String sql = "DELETE FROM MESSAGES WHERE ID = ?";
-        try(Connection connection = basicDataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
-            result = preparedStatement.executeUpdate();
-            connection.commit();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return result;
     }
 
     private Message createMessage(ResultSet resultSet) throws SQLException {

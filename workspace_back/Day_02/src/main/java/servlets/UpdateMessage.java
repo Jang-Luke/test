@@ -11,25 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/DeleteMessage")
-public class DeleteMessage extends HttpServlet {
-
+@WebServlet("/UpdateMessage")
+public class UpdateMessage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String message = request.getParameter("message");
         int id = Integer.parseInt(request.getParameter("id"));
-        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
-        int result = messageDAO.deleteMessageById(id);
         PrintWriter printWriter = response.getWriter();
+        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
+        int result = messageDAO.updateMessageById(message, id);
         printWriter.append("<html>");
         printWriter.append("<head>");
         printWriter.append("</head>");
         printWriter.append("<body>");
         if (result > 0) {
-            printWriter.append("<p>삭제 완료!</p>");
+            printWriter.append("<p>수정 완료!</p>");
         } else {
-            printWriter.append("<p>삭제 실패ㅠ</p>");
+            printWriter.append("<p>수정 실패ㅠ</p>");
         }
         printWriter.append("<button id='toIndex'>돌아가기</button>");
         printWriter.append("<script>document.querySelector('#toIndex').addEventListener('click', () => {location.href='index.html'})</script>");
