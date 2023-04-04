@@ -1,12 +1,10 @@
 package servlets;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import commons.MyDataSource;
+import messageDAO.MessageDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,40 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/MessageProp")
 public class MessageProp extends HttpServlet {
-    public Connection getConnection() {
-        BasicDataSource bds = new BasicDataSource();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        bds.setUrl("jdbc:mysql://kh.cvssgzojc9ja.ap-northeast-2.rds.amazonaws.com:3306/syhrje10_db");
-        bds.setUsername("syhrje10");
-        bds.setPassword("vtrol!Q2w3e");
-        bds.setInitialSize(8);
-        Connection connection = null;
-        try {
-            connection = bds.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-    public int insertMessage(String writer, String message) {
-        int result = 0;
-        try {
-            Connection con = getConnection();
-            String sql = "INSERT INTO MESSAGES VALUES(0, ?, ?)";
-            PreparedStatement prepareStatement = con.prepareStatement(sql);
-            prepareStatement.setString(1, writer);
-            prepareStatement.setString(2, message);
-            result = prepareStatement.executeUpdate();
-//          con.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
@@ -57,7 +21,8 @@ public class MessageProp extends HttpServlet {
         String message = request.getParameter("message");
         System.out.println("작성자는 : " + writer);
         System.out.println("메세지는 : " + message);
-        int result = insertMessage(writer, message);
+        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
+        int result = messageDAO.insertMessage(writer, message);
         System.out.println(result > 0 ? "입력 성공" : "입력 실패");
         if (result>0){
             System.out.println("입력 성공");

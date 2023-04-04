@@ -1,5 +1,6 @@
 package servlets;
 
+import commons.MyDataSource;
 import messageDAO.MessageDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -21,10 +22,11 @@ public class SelectMessage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("Text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        MessageDAO messageDAO = new MessageDAO();
-        messageDAO.setBasicDataSource();
+        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
         PrintWriter printWriter = response.getWriter();
         messageDAO.selectAll().forEach((e)-> printWriter.append(e.toString()).append("<br>"));
+        printWriter.append("<button id='return'>돌아가기</button>");
+        printWriter.append("<script>document.querySelector('#id').addEventListener('click', () => {location.href='index.html'})</script>");
     }
 
     @Override

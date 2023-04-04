@@ -1,5 +1,6 @@
 package messageDAO;
 
+import commons.MyDataSource;
 import messageDTO.Message;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -11,19 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDAO {
-    private static BasicDataSource basicDataSource = new BasicDataSource();
+    private BasicDataSource basicDataSource;
 
-    public void setBasicDataSource() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
-        this.basicDataSource.setUrl("jdbc:mysql://kh.cvssgzojc9ja.ap-northeast-2.rds.amazonaws.com:3306/syhrje10_db");
-        this.basicDataSource.setUsername("syhrje10");
-        this.basicDataSource.setPassword("vtrol!Q2w3e");
-        this.basicDataSource.setInitialSize(8);
+    public MessageDAO(BasicDataSource basicDataSource) {
+        this.basicDataSource = basicDataSource;
     }
 
     public int insertMessage(String writer, String message) {
@@ -34,12 +26,13 @@ public class MessageDAO {
             prepareStatement.setString(1, writer);
             prepareStatement.setString(2, message);
             result = prepareStatement.executeUpdate();
-//          con.commit();
+//          connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
     }
+
     public List<Message> selectAll() {
         String sql = "SELECT * FROM MESSAGES";
         try(Connection connection = basicDataSource.getConnection();
