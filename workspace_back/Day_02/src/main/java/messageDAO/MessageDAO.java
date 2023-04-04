@@ -64,10 +64,10 @@ public class MessageDAO {
 
     public List<Message> selectAll() {
         String sql = "SELECT * FROM MESSAGES ORDER BY 1 DESC";
+        List<Message> messageList = new ArrayList<>();
         try(Connection connection = basicDataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery()){
-            List<Message> messageList = new ArrayList<>();
             while(resultSet.next()){
                 messageList.add(createMessage(resultSet));
             }
@@ -75,7 +75,7 @@ public class MessageDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return new ArrayList<Message>();
+        return messageList;
     }
 
     private Message createMessage(ResultSet resultSet) throws SQLException {
