@@ -26,7 +26,7 @@ public class MessageDAO {
             prepareStatement.setString(1, writer);
             prepareStatement.setString(2, message);
             result = prepareStatement.executeUpdate();
-//          connection.commit();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,6 +47,20 @@ public class MessageDAO {
             e.printStackTrace();
         }
         return new ArrayList<Message>();
+    }
+
+    public int deleteMessageById(int id){
+        int result = 0;
+        String sql = "DELETE FROM MESSAGES WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private Message createMessage(ResultSet resultSet) throws SQLException {

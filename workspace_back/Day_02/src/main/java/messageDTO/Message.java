@@ -37,6 +37,6 @@ public class Message {
 
     @Override
     public String toString() {
-        return "글 번호 : " + this.id + "<br>작성자 : " + this.writer + "<br>메세지 : " + this.message + "<br>=======================";
+        return "=======================<br>글 번호 : " + this.id + "<br>작성자 : " + this.writer + "<br>메세지 : " + this.message + "<br>=======================";
     }
 }

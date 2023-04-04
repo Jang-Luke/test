@@ -28,8 +28,24 @@
             </td>
         </tr>
     </table>
-    <form action="Where" method="get">
+    <form action="DeleteMessage" method="get" id="delete">
+        <input type="text" name="id"><br>
+        <input type="submit" value="메세지 삭제할래"><br>
+    </form>
+
+    <form action="Where" method="post">
         <input type="submit" value="확인">
     </form>
+    <script>
+        document.querySelector('#delete').addEventListener('submit', (event) => {
+            const result = confirm("정말로 삭제하시겠습니까?");
+            if(result){
+                return true;
+            } else{
+                event.preventDefault();
+                return false;
+            }
+        })
+    </script>
 </body>
 </html>

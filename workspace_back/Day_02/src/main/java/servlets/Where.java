@@ -12,16 +12,16 @@ import java.io.PrintWriter;
 public class Where extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("Text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter printWriter = response.getWriter();
         printWriter.append("루트 디렉토리 : ");
         String path = getServletContext().getRealPath("/");
         printWriter.append(path);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
