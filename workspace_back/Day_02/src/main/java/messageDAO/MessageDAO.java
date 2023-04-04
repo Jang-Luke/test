@@ -63,7 +63,7 @@ public class MessageDAO {
     }
 
     public List<Message> selectAll() {
-        String sql = "SELECT * FROM MESSAGES";
+        String sql = "SELECT * FROM MESSAGES ORDER BY 1 DESC";
         try(Connection connection = basicDataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery()){

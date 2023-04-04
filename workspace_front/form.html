@@ -1,12 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html>
+    <head>
+        <style>
+            .inputBar {
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: center;
+                background-color: lightgray;
+            }
+
+            p {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            label {
+                display: inline-block;
+                width: 60px;
+            }
+
+            .formFlex {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                margin: 10px;
+            }
+
+            input[type='text'] {
+                width: 200px;
+                padding: 2px;
+                margin: 3px;
+            }
+        </style>
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    </head>
+    <body>
+        <table border='1' align='center'>
+            <tr>
+                <th>글번호</th>
+                <th>작성자</th>
+                <th>메세지</th>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>장길웅</td>
+                <td>돌아가기 버튼 테스트</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>테스터1</td>
+                <td>ㅇㅋ</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>테스터2</td>
+                <td>집에 보내줘요~</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>테스터1</td>
+                <td>제발요~</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>tester1</td>
+                <td>나 돌아갈래~</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>tester1</td>
+                <td>Swal Test</td>
+            </tr>
+        </table>
+        <br>
+        <div class='inputBar'>
+            <form action='MessageProp' method='post' class='formSubmit'>
+                <div class="formFlex">
+                <label for='writer'>작성자</label>
+                <input type='text' name='writer' id='writer' placeholder='작성자를 입력하세요.'>
+            </div>
+            <div class="formFlex">
+                <label for='insertMessage'>내용</label>
+                <input type='text' name='message' id='insertMessage' placeholder='메세지를 입력하세요.'>
+            </div>
+            <div class="formFlex">
+                <input type='button' value='메세지 입력할래'>
+            </div>
+            </form>
+
+            <form action='DeleteMessage' method='post' class='formSubmit'>
+                <label for='deleteId'>글번호</label>
+                <input type='text' name='id' id='deleteId' placeholder='삭제할 글번호를 입력하세요.'>
+
+                <input type='button' value='메세지 삭제할래'>
+            </form>
+
+            <form action='UpdateMessage' method='post' class='formSubmit'>
+                <label for='modifyId'>글번호</label>
+                <input type='text' name='id' id='modifyId' placeholder='글번호를 입력하세요.'>
+
+                <label for='modifyMessage'>내용</label>
+                <input type='text' name='message' id='modifyMessage' placeholder='수정할 메세지를 입력하세요.'>
+
+                <input type='button' value='메세지 수정할래'>
+            </form>
+
+        </div>
+        <button id='toIndex'>돌아가기</button>
+        <script>
+            const forms = document.querySelectorAll('input[type=button]');
+            Array.from(forms).forEach((element)=>element.addEventListener('click', ()=>{
+                Swal.fire({
+                    title: '진짜?',
+                    showDenyButton: true,
+                    confirmButtonText: '네!',
+                    denyButtonText: '아니요..',
+                }).then((result)=>{
+                    if (result.isConfirmed) {
+                        this.parentNode.submit();
+                    } else if (result.isDenied) {
+                        return false;
+                    }
+                }
+                )
+            }
+            ));
+            document.querySelector('#toIndex').addEventListener('click', ()=>{
+                location.href = 'index.html'
+            }
+            )
+        </script>
+    </body>
 </html>
