@@ -2,7 +2,7 @@
 <Context path="/">
 <Resource
     name="jdbc/mysql"
-    type="javax.sql.DataSource"
+    type="javax.sql.BasicDataSource"
     username="syhrje10"
     password="vtrol!Q2w3e"
     driverClassName="com.mysql.cj.jdbc.Driver"

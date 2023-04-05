@@ -33,7 +33,7 @@ public class MessageDAO {
 
     private Connection getConnection() throws Exception{
         Context iCtx = new InitialContext();
-        DataSource dataSource = (DataSource)iCtx.lookup("java:/comp/env/jdbc/ora");
+        BasicDataSource dataSource = (BasicDataSource)iCtx.lookup("java:/comp/env/jdbc/ora");
         return dataSource.getConnection();
     }
 
