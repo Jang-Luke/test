@@ -31,6 +31,6 @@ public class UpdateServlet extends HttpServlet {
         birthday = stringBuilder.append(" 00:00:00").toString();
         ContactDAO contactDAO = ContactDAO.getInstance();
         contactDAO.updateContact(new ContactDTO(id, name, contact, Timestamp.valueOf(birthday)));
-        response.sendRedirect("selectForm.jsp");
+        response.sendRedirect("SelectServlet");
     }
 }

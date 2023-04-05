@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.stream.Collectors;
 
 @WebServlet("/InsertServlet")
 public class InsertServlet extends HttpServlet {
@@ -28,9 +29,20 @@ public class InsertServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         ContactDAO contactDAO = ContactDAO.getInstance();
         String name = request.getParameter("name");
-        String contact = request.getParameter("contact");
+        String contact = request.getParameter("contact")
+                .chars()
+                .filter(character ->  48 <= character && character <= 57)
+                .mapToObj(element -> (char)element)
+                .map(Object::toString)
+                .collect(Collectors.joining());
+        StringBuilder stringBuilder = new StringBuilder(contact.substring(0, 3));
+        contact = stringBuilder.append("-")
+                .append(contact.substring(3,7))
+                .append("-")
+                .append(contact.substring(7))
+                .toString();
         String birthday = request.getParameter("birthday");
-        StringBuilder stringBuilder = new StringBuilder(birthday);
+        stringBuilder = new StringBuilder(birthday);
         birthday = stringBuilder.append(" 00:00:00").toString();
         int result = contactDAO.insertContact(new ContactDTO(0, name, contact, Timestamp.valueOf(birthday)));
         printWriter.append("<html><head>");

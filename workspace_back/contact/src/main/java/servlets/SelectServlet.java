@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,14 +23,13 @@ public class SelectServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         ContactDAO contactDAO = ContactDAO.getInstance();
         List<ContactDTO> contactList = contactDAO.selectAll();
-//        request.setAttribute("contactList", contactList);
 //        request.getRequestDispatcher("selectForm.jsp").forward(request,response);
 //        response.sendRedirect("selectForm.jsp");
         printWriter.append("<html>");
         printWriter.append("<head>");
         printWriter.append("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet'>");
         printWriter.append("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js'></script>");
-        printWriter.append("<script src=\"https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js\"></script>");
+        printWriter.append("<script src='https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js'></script>");
         printWriter.append("<style>");
         printWriter.append(".toCenter{text-align:center;border-radius:10px;background-color:lightgray;}");
         printWriter.append(".toCenter:hover{cursor:pointer;}");
@@ -87,12 +87,14 @@ public class SelectServlet extends HttpServlet {
         printWriter.append("</div>");
         printWriter.append("<script>");
         printWriter.append("document.querySelector('#returnButton').addEventListener('click', () => {location.href='index.html';});");
-        printWriter.append("$('.toCenter').on('click', function() {$(this).siblings('form').toggleClass('disappear');})");
+        printWriter.append("$('.toCenter').on('click', function() {$(this).siblings('form').toggleClass('disappear');});");
+        printWriter.append("const now_utc = Date.now();const timeOff = new Date().getTimezoneOffset()*60000;");
+        printWriter.append("const today = new Date(now_utc-timeOff).toISOString().split('T')[0];");
+        printWriter.append("$('#updateBirthday').attr('max', today);");
         printWriter.append("</script>");
         printWriter.append("</body>");
         printWriter.append("</html>");
     }
-    //TODO: 정규식으로 전화번호 조건 걸기
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
