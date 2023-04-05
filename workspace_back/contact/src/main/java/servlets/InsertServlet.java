@@ -26,7 +26,7 @@ public class InsertServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-        ContactDAO contactDAO = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
+        ContactDAO contactDAO = ContactDAO.getInstance();
         String name = request.getParameter("name");
         String contact = request.getParameter("contact");
         String birthday = request.getParameter("birthday");

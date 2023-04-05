@@ -19,7 +19,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ContactDAO contactDAO = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
+        ContactDAO contactDAO = ContactDAO.getInstance();
         int id = Integer.parseInt(request.getParameter("deleteId"));
         int result = contactDAO.deleteContact(id);
         response.sendRedirect("SelectServlet");

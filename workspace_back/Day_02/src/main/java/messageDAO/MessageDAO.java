@@ -16,7 +16,8 @@ public class MessageDAO {
     private BasicDataSource basicDataSource;
     private static MessageDAO instance = null;
 
-    public static MessageDAO getInstance() {
+    // synchronized : Multi Tread 가 동시에 메서드를 실행하지 못하게 막는 Thread safe 한 코드
+    public synchronized static MessageDAO getInstance() {
         if (instance == null) {
             instance = new MessageDAO(MyDataSource.getBasicDataSource("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
         }

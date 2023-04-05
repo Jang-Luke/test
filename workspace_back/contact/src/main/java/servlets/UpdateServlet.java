@@ -29,7 +29,7 @@ public class UpdateServlet extends HttpServlet {
         String birthday = request.getParameter("updateBirthday");
         StringBuilder stringBuilder = new StringBuilder(birthday);
         birthday = stringBuilder.append(" 00:00:00").toString();
-        ContactDAO contactDAO = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
+        ContactDAO contactDAO = ContactDAO.getInstance();
         contactDAO.updateContact(new ContactDTO(id, name, contact, Timestamp.valueOf(birthday)));
         int result = contactDAO.deleteContact(id);
         response.sendRedirect("SelectServlet");

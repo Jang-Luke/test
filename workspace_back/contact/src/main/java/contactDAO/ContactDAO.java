@@ -1,5 +1,6 @@
 package contactDAO;
 
+import commons.MyDataSource;
 import contactDTO.ContactDTO;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -9,8 +10,15 @@ import java.util.List;
 
 public class ContactDAO {
     private final BasicDataSource basicDataSource;
+    private static ContactDAO instance = null;
+    public synchronized static ContactDAO getInstance(){
+        if (instance == null) {
+            instance = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
+        }
+        return instance;
+    }
 
-    public ContactDAO(BasicDataSource basicDataSource) {
+    private ContactDAO(BasicDataSource basicDataSource) {
         this.basicDataSource = basicDataSource;
     }
 
