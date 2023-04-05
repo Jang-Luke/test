@@ -23,7 +23,7 @@ public class MessageProp extends HttpServlet {
         response.setContentType("Text/html; charset=UTF-8");
         String writer = request.getParameter("writer");
         String message = request.getParameter("message");
-        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
+        MessageDAO messageDAO = MessageDAO.getInstance();
         PrintWriter printWriter = response.getWriter();
         int result = messageDAO.insertMessage(writer, message);
         printWriter.append("<html>");

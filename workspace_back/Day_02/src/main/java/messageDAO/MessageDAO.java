@@ -12,9 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDAO {
-    private BasicDataSource basicDataSource;
 
-    public MessageDAO(BasicDataSource basicDataSource) {
+    private BasicDataSource basicDataSource;
+    private static MessageDAO instance = null;
+
+    public static MessageDAO getInstance() {
+        if (instance == null) {
+            instance = new MessageDAO(MyDataSource.getBasicDataSource("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
+        }
+        return instance;
+    }
+
+    private MessageDAO(BasicDataSource basicDataSource) {
         this.basicDataSource = basicDataSource;
     }
 

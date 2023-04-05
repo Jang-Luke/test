@@ -24,7 +24,7 @@ public class DeleteMessage extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        MessageDAO messageDAO = new MessageDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/Day_02/src/main/resources/DB_properties.properties"));
+        MessageDAO messageDAO = MessageDAO.getInstance();
         int result = messageDAO.deleteMessageById(id);
         response.sendRedirect("SelectMessage");
     }
