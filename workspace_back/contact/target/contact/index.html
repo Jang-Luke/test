@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <style>
+        .buttonLayer {
+            display: flex;
+            justify-content: center;
+            flex-basis: 150px;
+            margin: 4px;
+        }
+
+        .disappear {
+            display: none;
+        }
+        .margin{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="indexFrom">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
+                <p class="margin">전화번호부!</p>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button id="insertButton" class="btn btn-primary buttonLayer formActivate">신규등록</button>
+            </div>
+            <div class="col-12">
+                <form class="d-flex justify-content-center" action="selectForm.jsp" method="get">
+                    <button id="showButton" class="btn btn-primary buttonLayer">연락처 목록 보기</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container disappear" id="insertForm">
+        <div class="row">
+            <div class="col-12">
+                <form action="InsertServlet" method="post">
+                    <label for="insertName" class="form-label">이름</label>
+                    <input name="name" type="text" class="form-control" id="insertName" placeholder="이름을 입력하세요.">
+                    <label for="insertContact" class="form-label">연락처</label>
+                    <input name="contact" type="text" class="form-control" id="insertContact" placeholder="연락처를 입력하세요.">
+                    <label for="insertBirthday" class="form-label">생일</label>
+                    <input name="birthday" type="date" class="form-control" id="insertBirthday" placeholder="생일을 입력하세요.">
+                    <button class="btn btn-outline-primary margin">입력할래</button>
+                </form>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button id="returnButton" class="btn btn-primary buttonLayer formActivate">돌아갈래</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.formActivate').on('click', function () {
+            $('#indexFrom').toggleClass('disappear');
+            $('#insertForm').toggleClass('disappear');
+        });
+    </script>
+</body>
+
+</html>

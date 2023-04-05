@@ -22,6 +22,6 @@ public class DeleteServlet extends HttpServlet {
         ContactDAO contactDAO = ContactDAO.getInstance();
         int id = Integer.parseInt(request.getParameter("deleteId"));
         int result = contactDAO.deleteContact(id);
-        response.sendRedirect("SelectServlet");
+        response.sendRedirect("selectForm.jsp");
     }
 }

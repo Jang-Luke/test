@@ -3,6 +3,7 @@ package servlets;
 import contactDAO.ContactDAO;
 import contactDTO.ContactDTO;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,12 @@ public class SelectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("Text/html; charset=UTF-8");
-        response.sendRedirect("selectForm.jsp");
         PrintWriter printWriter = response.getWriter();
         ContactDAO contactDAO = ContactDAO.getInstance();
         List<ContactDTO> contactList = contactDAO.selectAll();
+//        request.setAttribute("contactList", contactList);
+//        request.getRequestDispatcher("selectForm.jsp").forward(request,response);
+//        response.sendRedirect("selectForm.jsp");
         printWriter.append("<html>");
         printWriter.append("<head>");
         printWriter.append("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet'>");

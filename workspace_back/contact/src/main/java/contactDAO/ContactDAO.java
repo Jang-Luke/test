@@ -65,6 +65,7 @@ public class ContactDAO {
             preparedStatement.setString(3, contactDTO.getBirthday());
             preparedStatement.setInt(4, contactDTO.getId());
             result = preparedStatement.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException();

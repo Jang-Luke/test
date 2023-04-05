@@ -19,9 +19,9 @@ public class MyDataSource {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        Context initialContext = new InitialContext();
-        basicDataSource = (BasicDataSource)initialContext.lookup("java:/comp/env/jdbc/mysql");
-//        basicDataSource = new BasicDataSource();
+//        Context initialContext = new InitialContext();
+//        basicDataSource = (BasicDataSource)initialContext.lookup("java:/comp/env/jdbc/mysql");
+        basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(properties.getProperty("url"));
         basicDataSource.setUsername(properties.getProperty("id"));
         basicDataSource.setPassword(properties.getProperty("pw"));
