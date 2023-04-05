@@ -4,6 +4,9 @@ import commons.MyDataSource;
 import messageDTO.Message;
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +29,12 @@ public class MessageDAO {
 
     private MessageDAO(BasicDataSource basicDataSource) {
         this.basicDataSource = basicDataSource;
+    }
+
+    private Connection getConnection() throws Exception{
+        Context iCtx = new InitialContext();
+        DataSource dataSource = (DataSource)iCtx.lookup("java:/comp/env/jdbc/ora");
+        return dataSource.getConnection();
     }
 
     public int insertMessage(String writer, String message) {

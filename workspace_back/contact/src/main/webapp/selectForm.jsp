@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import java.util.List; %>
-<%@ page import contactDTO.ContactDTO; %>
-<%@ page import contactDAO.ContactDAO; %>
-<%@ page import commons.MyDataSource; %>
+<%@ page import="java.util.List" %>
+<%@ page import="contactDTO.ContactDTO" %>
+<%@ page import="contactDAO.ContactDAO" %>
+<%@ page import="commons.MyDataSource" %>
 <html>
     <head>
         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet'>
@@ -39,35 +39,16 @@
                             <th scope='col'>연락처</th>
                             <th scope='col'>생일</th>
                         </tr>
-                        <%! ContactDAO contactDAO = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties")); %>
+                        <%! ContactDAO contactDAO = ContactDAO.getInstance(); %>
                         <%! List<ContactDTO> contactList = contactDAO.selectAll(); %>
-                        <% for(int i = 0; i < contactList.length(); i++) { %>
-
+                        <% for(ContactDTO contact : contactList) { %>
+                        <tr>
+                            <th scope='row'><%= contact.getId() %></th>
+                            <td><%= contact.getName() %></td>
+                            <td><%= contact.getContact() %></td>
+                            <td><%= contact.getBirthday() %></td>
+                        </tr>
                         <% } %>
-                        <tr>
-                            <th scope='row'><%%></th>
-                            <td>장길웅</td>
-                            <td>01029203659</td>
-                            <td>1995-11-15</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>7</th>
-                            <td>고준수</td>
-                            <td>01022935832</td>
-                            <td>1995-02-18</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>9</th>
-                            <td>박병구</td>
-                            <td>01095883249</td>
-                            <td>1993-12-03</td>
-                        </tr>
-                        <tr>
-                            <th scope='row'>10</th>
-                            <td>주경호</td>
-                            <td>01046112093</td>
-                            <td>1997-04-02</td>
-                        </tr>
                     </table>
                 </div>
                 <div class='col-12'>

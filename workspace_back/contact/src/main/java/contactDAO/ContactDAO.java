@@ -13,7 +13,7 @@ public class ContactDAO {
     private static ContactDAO instance = null;
     public synchronized static ContactDAO getInstance(){
         if (instance == null) {
-            instance = new ContactDAO(MyDataSource.getInstance("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
+            instance = new ContactDAO(MyDataSource.getBasicDataSource("/Users/luke/Documents/GitHub/test/workspace_back/contact/src/main/resources/DB_properties.properties"));
         }
         return instance;
     }
@@ -72,7 +72,7 @@ public class ContactDAO {
         return result;
     }
 
-    public List<ContactDTO> SelectAll() {
+    public List<ContactDTO> selectAll() {
         String sql = "SELECT * FROM CONTACTS";
         List<ContactDTO> contactList = new ArrayList<>();
         try(Connection connection = basicDataSource.getConnection();
