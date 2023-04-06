@@ -40,7 +40,7 @@
             margin-bottom: 10px;
         }
 
-        #btn {
+        .btn {
             background-color: #1BBC9B;
             margin-bottom: 30px;
             color: white;
@@ -61,15 +61,18 @@
 
 <div>
     <form action="login" method="post">
-        <input type="text" name="id" placeholder="아이디" class="in"> <input
-            type="password" name="pw" placeholder="비밀번호" class="in"> <input
-            type="submit" id="btn" value="로그인"><br>
+        <input type="text" name="id" placeholder="아이디" class="in">
+        <input type="password" name="pw" placeholder="비밀번호" class="in">
+        <input type="submit" class="btn" id="btn" value="로그인"><br>
+        <input type="button" class="btn" id="toJoin" value="회원가입"><br>
+        <input type="checkbox" name="" id="">ID 기억하기
     </form>
     <a href="#none">비밀번호를 잊어버리셨나요?</a>
 </div>
-
-
-
-
+<script>
+    $('#toJoin').on('click', function() {
+        location.href="/member/joinform.jsp";
+    })
+</script>
 </body>
 </html>
