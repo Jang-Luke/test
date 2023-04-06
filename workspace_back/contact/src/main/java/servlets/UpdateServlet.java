@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.stream.Collectors;
 
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
@@ -25,9 +26,20 @@ public class UpdateServlet extends HttpServlet {
         response.setContentType("Text/html; charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("updateId"));
         String name = request.getParameter("updateName");
-        String contact = request.getParameter("updateContact");
+        String contact = request.getParameter("updateContact")
+                .chars()
+                .filter(character ->  48 <= character && character <= 57)
+                .mapToObj(element -> (char)element)
+                .map(Object::toString)
+                .collect(Collectors.joining());
+        StringBuilder stringBuilder = new StringBuilder(contact.substring(0, 3));
+        contact = stringBuilder.append("-")
+                .append(contact.substring(3,7))
+                .append("-")
+                .append(contact.substring(7))
+                .toString();
         String birthday = request.getParameter("updateBirthday");
-        StringBuilder stringBuilder = new StringBuilder(birthday);
+        stringBuilder = new StringBuilder(birthday);
         birthday = stringBuilder.append(" 00:00:00").toString();
         ContactDAO contactDAO = ContactDAO.getInstance();
         contactDAO.updateContact(new ContactDTO(id, name, contact, Timestamp.valueOf(birthday)));

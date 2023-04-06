@@ -25,7 +25,8 @@ public class InsertMessage extends HttpServlet {
         MessageDAO messageDAO = MessageDAO.getInstance();
         PrintWriter printWriter = response.getWriter();
         int result = messageDAO.insertMessage(writer, message);
-        request.getRequestDispatcher("insertView.jsp").forward(request, response);
+        response.sendRedirect("index.html");
+//        request.getRequestDispatcher("list.jsp").forward(request, response);
 
         printWriter.append("<html>");
         printWriter.append("<head>");

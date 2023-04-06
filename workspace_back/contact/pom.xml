@@ -35,6 +35,12 @@
       <artifactId>tomcat-dbcp</artifactId>
       <version>8.5.87</version>
     </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>contact</finalName>
