@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 @WebServlet("/UpdateServlet")
@@ -38,11 +41,9 @@ public class UpdateServlet extends HttpServlet {
                 .append("-")
                 .append(contact.substring(7))
                 .toString();
-        String birthday = request.getParameter("updateBirthday");
-        stringBuilder = new StringBuilder(birthday);
-        birthday = stringBuilder.append(" 00:00:00").toString();
+        Timestamp birthday = Timestamp.valueOf(LocalDate.parse(request.getParameter("updateBirthday")).atStartOfDay());
         ContactDAO contactDAO = ContactDAO.getInstance();
-        contactDAO.updateContact(new ContactDTO(id, name, contact, Timestamp.valueOf(birthday)));
+        contactDAO.updateContact(new ContactDTO(id, name, contact, birthday));
         response.sendRedirect("SelectServlet");
     }
 }

@@ -47,12 +47,12 @@
             <div class="col-12">
                 <form action="InsertServlet" method="post" id="insertCommand">
                     <label for="insertName" class="form-label">이름</label>
-                    <input name="name" type="text" class="form-control" id="insertName" placeholder="이름을 입력하세요.">
+                    <input name="insertName" type="text" class="form-control" id="insertName" placeholder="이름을 입력하세요.">
                     <label for="insertContact" class="form-label">연락처</label>
-                    <input name="contact" type="text" class="form-control" id="insertContact" placeholder="연락처를 입력하세요.">
+                    <input name="insertContact" type="text" class="form-control" id="insertContact" placeholder="연락처를 입력하세요.">
                     <label for="insertBirthday" class="form-label">생일</label>
-                    <input name="birthday" type="date" class="form-control" id="insertBirthday" placeholder="생일을 입력하세요.">
-                    <button class="btn btn-outline-primary margin">입력할래</button>
+                    <input name="insertBirthday" type="date" class="form-control" id="insertBirthday" placeholder="생일을 입력하세요.">
+                    <button type="button" class="btn btn-outline-primary margin confirmSubmit">입력할래</button>
                 </form>
             </div>
             <div class="col-12 d-flex justify-content-center">
@@ -83,6 +83,22 @@
                 });
             }
         })
+        const showAlert = function() {
+            Swal.fire({
+                title: '진짜?',
+                showDenyButton: true,
+                confirmButtonText: '네!!',
+                denyButtonText: '아니요..',
+            }).then((result)=>{
+                    if (result.isConfirmed) {
+                        this.closest('form').submit();
+                    } else if (result.isDenied) {
+                        return false;
+                    }
+                }
+            )
+        };
+        $('.confirmSubmit').on('click', showAlert);
         const now_utc = Date.now();
         const timeOff = new Date().getTimezoneOffset()*60000;
         const today = new Date(now_utc-timeOff).toISOString().split("T")[0];

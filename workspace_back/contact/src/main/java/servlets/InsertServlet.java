@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 @WebServlet("/InsertServlet")
@@ -28,8 +31,8 @@ public class InsertServlet extends HttpServlet {
         response.setContentType("Text/html; charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
         ContactDAO contactDAO = ContactDAO.getInstance();
-        String name = request.getParameter("name");
-        String contact = request.getParameter("contact")
+        String name = request.getParameter("insertName");
+        String contact = request.getParameter("insertContact")
                 .chars()
                 .filter(character ->  48 <= character && character <= 57)
                 .mapToObj(element -> (char)element)
@@ -41,10 +44,8 @@ public class InsertServlet extends HttpServlet {
                 .append("-")
                 .append(contact.substring(7))
                 .toString();
-        String birthday = request.getParameter("birthday");
-        stringBuilder = new StringBuilder(birthday);
-        birthday = stringBuilder.append(" 00:00:00").toString();
-        int result = contactDAO.insertContact(new ContactDTO(0, name, contact, Timestamp.valueOf(birthday)));
+        Timestamp birthday = Timestamp.valueOf(LocalDate.parse(request.getParameter("insertBirthday")).atStartOfDay());
+        int result = contactDAO.insertContact(new ContactDTO(0, name, contact, birthday));
         printWriter.append("<html><head>");
         printWriter.append("<script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>");
         printWriter.append("</head><body>");

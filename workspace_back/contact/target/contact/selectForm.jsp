@@ -53,7 +53,7 @@
             <form class='disappear' action='DeleteServlet' method='post'>
                 <label for='deleteId' class='form-label'>번호</label>
                 <input name='deleteId' type='text' class='form-control' id='deleteId' placeholder='삭제할 연락처의 번호를 입력하세요.'>
-                <button class='btn btn-outline-success margin-top-1'>삭제할래</button>
+                <button type="button" class='btn btn-outline-success margin-top-1 confirmSubmit'>삭제할래</button>
             </form>
         </div>
         <div class='col-12'>
@@ -67,7 +67,7 @@
                 <input name='updateContact' type='text' class='form-control' id='updateContact' placeholder='연락처를 입력하세요.'>
                 <label for='updateBirthday' class='form-label'>생일</label>
                 <input name='updateBirthday' type='date' class='form-control' id='updateBirthday' placeholder='생일을 입력하세요.'>
-                <button class='btn btn-outline-success margin-top-1'>수정할래</button>
+                <button type="button" class='btn btn-outline-success margin-top-1 confirmSubmit'>수정할래</button>
             </form>
         </div>
         <div class='col-12'>
@@ -76,11 +76,18 @@
     </div>
 </div>
 <script>
+    $('#deleteId').on('keypress', function(event) {
+        if(event.key == 'Enter'){
+            event.preventDefault();
+            const deleteId = $('#deleteId').val();
+            location.href="DeleteServlet?deleteId="+deleteId;
+        }
+    });
     const nameRegex = /^[가-힣]+$/;
     const phoneRegex = /^01\d([-\s.\/]?\d{4})([-\s.\/]?\d{4})$/;
     $('#updateCommand').on('submit', function(event) {
-        const nameValue = $('#insertName').val();
-        const phoneValue = $('#insertContact').val();
+        const nameValue = $('#updateName').val();
+        const phoneValue = $('#updateContact').val();
         if (nameRegex.test(nameValue) && phoneRegex.test(phoneValue)) {
             return true;
         } else {
@@ -93,10 +100,22 @@
             });
         }
     });
-    document.querySelector('#returnButton').addEventListener('click', ()=>{
-            location.href = 'index.html';
-        }
-    );
+    const showAlert = function() {
+        Swal.fire({
+            title: '진짜?',
+            showDenyButton: true,
+            confirmButtonText: '네!!',
+            denyButtonText: '아니요..',
+        }).then((result)=>{
+                if (result.isConfirmed) {
+                    this.closest('form').submit();
+                } else if (result.isDenied) {
+                    return false;
+                }
+            }
+        )
+    };
+    $('.confirmSubmit').on('click', showAlert);
     $('.opener').on('click', function() {
         $(this).siblings('form').toggleClass('disappear');
     });

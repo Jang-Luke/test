@@ -41,14 +41,10 @@ public class ContactDTO {
     }
 
     public String getBirthday() {
-        return dateFormatting(birthday);
+        return birthday.toLocalDateTime().toLocalDate().toString();
     }
 
     public void setBirthday(String birthday) {
         this.birthday = Timestamp.valueOf(birthday);
-    }
-    private String dateFormatting(Timestamp timestamp){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return simpleDateFormat.format(timestamp);
     }
 }
