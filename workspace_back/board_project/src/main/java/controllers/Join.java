@@ -2,6 +2,7 @@ package controllers;
 
 import board_DAO.MemberDAO;
 import board_DTO.MemberDTO;
+import commons.EncryptionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class Join extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("inId");
-        String pw = request.getParameter("inPw");
+        String pw = EncryptionUtils.getSHA256(request.getParameter("inPw"));
         String name = request.getParameter("inName");
         String phone = request.getParameter("inPhone")
                 .chars()
@@ -47,5 +48,6 @@ public class Join extends HttpServlet {
             response.sendRedirect("/error.html");
             throw new RuntimeException(e);
         }
+        response.sendRedirect("../index.jsp");
     }
 }
