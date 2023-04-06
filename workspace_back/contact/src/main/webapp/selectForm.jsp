@@ -38,36 +38,14 @@
                     <th scope='col'>연락처</th>
                     <th scope='col'>생일</th>
                 </tr>
-                <tr>
-                    <th scope='row'>1</th>
-                    <td>장길웅</td>
-                    <td>010-2920-3659</td>
-                    <td>1995-11-15</td>
-                </tr>
-                <tr>
-                    <th scope='row'>2</th>
-                    <td>박소희</td>
-                    <td>010-3889-2914</td>
-                    <td>1994-03-17</td>
-                </tr>
-                <tr>
-                    <th scope='row'>3</th>
-                    <td>정혁규</td>
-                    <td>010-3411-0064</td>
-                    <td>1998-08-26</td>
-                </tr>
-                <tr>
-                    <th scope='row'>4</th>
-                    <td>정석준</td>
-                    <td>010.2291.0744</td>
-                    <td>1996-06-18</td>
-                </tr>
-                <tr>
-                    <th scope='row'>5</th>
-                    <td>최선혜</td>
-                    <td>010-3487-4551</td>
-                    <td>1997-04-07</td>
-                </tr>
+                <C:forEach var="contact" items="${requestScope.contactList}">
+                    <tr>
+                        <th scope='row'>${contact.id}</th>
+                        <td>${contact.name}</td>
+                        <td>${contact.contact}</td>
+                        <td>${contact.birthday}</td>
+                    </tr>
+                </C:forEach>
             </table>
         </div>
         <div class='col-12'>
