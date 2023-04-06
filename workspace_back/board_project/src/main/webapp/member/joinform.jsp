@@ -216,7 +216,7 @@
     })
     $('#duplicationCheck').on('click', function() {
         if (checkIdValidation()) {
-        window.open("/IdCheck?inId="+$('#inId').val(), "", "width=350px,height=250px");
+            window.open("/IdCheck?inId="+$('#inId').val(), "", "width=350px,height=250px");
         } else{
             Swal.fire({
                 title: '아이디를 다시 확인해주세요.',
