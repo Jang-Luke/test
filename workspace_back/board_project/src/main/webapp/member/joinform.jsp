@@ -41,7 +41,7 @@
 </head>
 
 <body>
-<form action="../index.jsp" id="frm" method="post">
+<form action="/Join" id="frm" method="post">
     <div class="container">
         <div class="row">
             <div class="col-12 text-align-center">
@@ -53,7 +53,7 @@
                 아이디
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inId" class="form-control" id="inId" placeholder="아이디를 입력해주세요.">
+                <input type="text" name="inId" class=" form-control enterToNext" id="inId" placeholder="아이디를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
                 <button type="button" id="duplicationCheck" class="btn btn-outline-primary">중복확인</button>
@@ -64,7 +64,7 @@
                 패스워드
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="password" class="form-control" id="inPw" placeholder="패스워드를 입력해주세요.">
+                <input type="password" name="inPw" class=" form-control enterToNext" id="inPw" placeholder="패스워드를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
             </div>
@@ -74,7 +74,7 @@
                 패스워드 확인
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="password" class="form-control" id="inPw2" placeholder="패스워드를 다시 입력해주세요.">
+                <input type="password" class=" form-control enterToNext" id="inPw2" placeholder="패스워드를 다시 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
                 <p id="validatePW"></p>
@@ -85,7 +85,7 @@
                 이름
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" class="form-control" id="inName" placeholder="이름 입력해주세요.">
+                <input type="text" name="inName" class=" form-control enterToNext" id="inName" placeholder="이름 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -95,7 +95,7 @@
                 전화번호
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" class="form-control" id="inPhone" placeholder="전화번호를 입력해주세요.">
+                <input type="text" name="inPhone" class=" form-control enterToNext" id="inPhone" placeholder="전화번호를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -105,7 +105,7 @@
                 이메일
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" class="form-control" id="inEmail" placeholder="이메일을 입력해주세요.">
+                <input type="text" name="inEmail" class=" form-control enterToNext" id="inEmail" placeholder="이메일을 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -115,7 +115,7 @@
                 우편번호
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" class="form-control" id="postNum" readonly>
+                <input type="text" name="inZipcode" class=" form-control enterToNext" id="inZipcode" readonly>
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
                 <button type="button" class="btn btn-outline-primary">찾기</button>
@@ -126,7 +126,7 @@
                 주소1
             </div>
             <div class="col-9 col-sm-10 col-md-10 p-1">
-                <input type="text" class="form-control" id="address1" readonly>
+                <input type="text" name="inAddress1" class=" form-control enterToNext" id="inAddress1" readonly>
             </div>
         </div>
         <div class="row">
@@ -134,7 +134,7 @@
                 주소2
             </div>
             <div class="col-9 col-sm-10 col-md-10 p-1">
-                <input type="text" class="form-control" id="address2">
+                <input type="text" name="inAddress2" class=" form-control enterToNext" id="inAddress2">
             </div>
         </div>
         <div class="row">
@@ -150,9 +150,8 @@
     const idRegex = /^[a-z0-9_]{6,14}$/;
     const pwRegex = /.{6,12}/;
     const nameRegex = /^[가-힣]+$/;
-    const phoneRegex = /^01\d\d{8}\b$/;
-    const emailRegex = /\w+@\w+\.com$/;
-    const submit = document.querySelector('#frm');
+    const phoneRegex = /^01\d([-\s.\/]?\d{4})([-\s.\/]?\d{4})$/;
+    const emailRegex = /\w{4,16}@\w+\.com$/;
     const pw1 = document.querySelector('#inPw');
     const pw2 = document.querySelector('#inPw2');
     let checkIdValidation = () => {
@@ -164,15 +163,15 @@
         const pw2Value = document.querySelector('#inPw2').value;
         const result = document.querySelector('#validatePW');
         if (pw1Value == pw2Value && pw1Value != '' && pw2Value != '') {
-            document.querySelector('#validatePW').innerText = '비밀번호가 일치합니다.';
-            document.querySelector('#validatePW').className = 'validate';
+            result.innerText = '비밀번호가 일치합니다.';
+            result.className = 'validate';
             return true;
         } else if (pw1Value == '' || pw2Value == '') {
-            document.querySelector('#validatePW').innerText = '';
-            document.querySelector('#validatePW').className = '';
+            result.innerText = '';
+            result.className = '';
         } else {
-            document.querySelector('#validatePW').innerText = '패스워드가 일치하지 않습니다.';
-            document.querySelector('#validatePW').className = '';
+            result.innerText = '패스워드가 일치하지 않습니다.';
+            result.className = '';
         }
     }
     let checkNameValidation = () => {
@@ -193,6 +192,10 @@
                 icon: 'success',
                 title: '가입 성공!',
                 text: '메인 페이지로 이동하여 로그인하세요.',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#submitBtn').closest('form').submit();
+                }
             });
         } else {
             Swal.fire({
@@ -202,33 +205,52 @@
             })
         }
     }
-
+    $('#inId').on('keyup', function (event) {
+        const target = $('#duplicationCheck');
+        if (target.hasClass('btn-black') && event.key !== 'Enter') {
+            target.removeClass('btn-black');
+            target.addClass('btn-outline-primary');
+            target.text('중복확인');
+            target.prop('disabled', false);
+        }
+    })
     $('#duplicationCheck').on('click', function() {
+        if (checkIdValidation()) {
         window.open("/IdCheck?inId="+$('#inId').val(), "", "width=350px,height=250px");
+        } else{
+            Swal.fire({
+                title: '아이디를 다시 확인해주세요.',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000,
+            });
+        }
     })
 
     $('#submitBtn').on('click', function() {
         const result = checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation();
-        if (result) {
-            $(this).closest('form').submit();
+        const is_id_validate = $('#duplicationCheck').hasClass('btn-black');
+        if (result && is_id_validate) {
             showAlert(result);
+        } else if(result && !is_id_validate) {
+            Swal.fire({
+                title: '아이디 중복 여부를 확인해주세요.',
+                icon: 'question',
+                showConfirmButton: false,
+                timer: 1000
+            })
         } else{
             showAlert(result);
         }
     })
-    // submit.onsubmit = () => {
-    //     const result = checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation();
-    //     if (result) {
-    //         showAlert(result);
-    //         return result;
-    //     } else {
-    //         showAlert(result);
-    //         return result;
-    //     }
-    //
-    // }
     pw1.addEventListener('keyup', checkPwValidation);
     pw2.addEventListener('keyup', checkPwValidation);
+    $('.enterToNext').on('keyup', function(event) {
+        if (event.key=='Enter') {
+            event.preventDefault();
+            $(this).closest('.row').next().find('.enterToNext').focus();
+        }
+    })
 </script>
 </body>
 

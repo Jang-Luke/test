@@ -2,7 +2,7 @@ package board_DTO;
 
 import java.sql.Timestamp;
 
-public class BoardDTO {
+public class MemberDTO {
     private String id;
     private String pw;
     private String name;
@@ -13,7 +13,7 @@ public class BoardDTO {
     private String address2;
     private Timestamp join_date;
 
-    public BoardDTO(String id, String pw, String name, String phone, String email, String zipcode, String address1, String address2, Timestamp join_date) {
+    public MemberDTO(String id, String pw, String name, String phone, String email, String zipcode, String address1, String address2, Timestamp join_date) {
         this.id = id;
         this.pw = pw;
         this.name = name;
