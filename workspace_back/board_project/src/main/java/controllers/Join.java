@@ -21,8 +21,6 @@ public class Join extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("Text/html; charset=UTF-8");
         String id = request.getParameter("inId");
         String pw = EncryptionUtils.getSHA256(request.getParameter("inPw"));
         String name = request.getParameter("inName");

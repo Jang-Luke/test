@@ -19,8 +19,6 @@ public class TryLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("Text/html; charset=UTF-8");
         String id = request.getParameter("mainId");
         String pw = request.getParameter("mainPw");
         MemberDAO memberDAO = MemberDAO.getInstance();
