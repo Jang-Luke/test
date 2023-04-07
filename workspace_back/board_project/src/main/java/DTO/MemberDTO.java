@@ -1,4 +1,4 @@
-package board_DTO;
+package DTO;
 
 import java.sql.Timestamp;
 
@@ -13,6 +13,7 @@ public class MemberDTO {
     private String address2;
     private Timestamp join_date;
 
+    public MemberDTO(){}
     public MemberDTO(String id, String pw, String name, String phone, String email, String zipcode, String address1, String address2, Timestamp join_date) {
         this.id = id;
         this.pw = pw;

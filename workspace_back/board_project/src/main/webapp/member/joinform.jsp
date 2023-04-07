@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <base href="resonable">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
         * {
             padding: 0px;
@@ -118,7 +118,7 @@
                 <input type="text" name="inZipcode" class=" form-control enterToNext" id="inZipcode" readonly>
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
-                <button type="button" class="btn btn-outline-primary">찾기</button>
+                <button type="button" id="searchAddress" class="btn btn-outline-primary">찾기</button>
             </div>
         </div>
         <div class="row">
@@ -154,39 +154,63 @@
     const emailRegex = /\w{4,16}@\w+\.com$/;
     const pw1 = document.querySelector('#inPw');
     const pw2 = document.querySelector('#inPw2');
-    let checkIdValidation = () => {
+    const pwValidationText = document.querySelector('#validatePW');
+
+    const checkIdValidation = () => {
         const id = document.querySelector('#inId').value;
         return idRegex.test(id);
     }
-    let checkPwValidation = () => {
-        const pw1Value = document.querySelector('#inPw').value;
-        const pw2Value = document.querySelector('#inPw2').value;
-        const result = document.querySelector('#validatePW');
-        if (pw1Value == pw2Value && pw1Value != '' && pw2Value != '') {
-            result.innerText = '비밀번호가 일치합니다.';
-            result.className = 'validate';
-            return true;
-        } else if (pw1Value == '' || pw2Value == '') {
-            result.innerText = '';
-            result.className = '';
-        } else {
-            result.innerText = '패스워드가 일치하지 않습니다.';
-            result.className = '';
+    const passwordCallback = {
+        comparePassword: function(pw1, pw2){
+            return pw1 === pw2;
+        },
+        is_passwords_empty: function(pw1, pw2){
+            return pw1 === '' || pw2 === '';
+        }
+    };
+    let passwordCheckTools = {
+        validate_password: function(){
+            pwValidationText.innerText = '비밀번호가 일치합니다.';
+            pwValidationText.className = 'validate';
+            passwordCheckTools.result = true;
+        },
+        invalidate_password: function(){
+            pwValidationText.innerText = '패스워드가 일치하지 않습니다.';
+            pwValidationText.className = '';
+            passwordCheckTools.result = false;
+        },
+        initialize_validation: function(){
+            pwValidationText.innerText = '';
+            pwValidationText.className = '';
+            passwordCheckTools.result = false;
+        },
+        result: null
+    }
+    const checkPwValidation = () => {
+        if (passwordCallback.is_passwords_empty(pw1.value, pw2.value)){
+            passwordCheckTools.initialize_validation();
+            return passwordCheckTools.result;
+        } else if (passwordCallback.comparePassword(pw1.value,pw2.value)) {
+            passwordCheckTools.validate_password();
+            return passwordCheckTools.result;
+        } else{
+            passwordCheckTools.invalidate_password();
+            return passwordCheckTools.result;
         }
     }
-    let checkNameValidation = () => {
+    const checkNameValidation = () => {
         const name = document.querySelector('#inName').value;
         return nameRegex.test(name);
     }
-    let checkPhoneValidation = () => {
+    const checkPhoneValidation = () => {
         const phone = document.querySelector('#inPhone').value;
         return phoneRegex.test(phone);
     }
-    let checkEmailValidation = () => {
+    const checkEmailValidation = () => {
         const email = document.querySelector('#inEmail').value;
         return emailRegex.test(email);
     }
-    let showAlert = (bool) => {
+    const showAlert = (bool) => {
         if (bool) {
             Swal.fire({
                 icon: 'success',
@@ -205,9 +229,9 @@
             })
         }
     }
-    $('#inId').on('keyup', function (event) {
+    $('#inId').on('change', function () {
         const target = $('#duplicationCheck');
-        if (target.hasClass('btn-black') && event.key !== 'Enter') {
+        if (target.hasClass('btn-black')) {
             target.removeClass('btn-black');
             target.addClass('btn-outline-primary');
             target.text('중복확인');
@@ -226,10 +250,13 @@
             });
         }
     })
+    const is_all_arguments_validate = function(){
+        return checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation();
+    }
 
     $('#submitBtn').on('click', function() {
-        const result = checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation();
         const is_id_validate = $('#duplicationCheck').hasClass('btn-black');
+        const result = is_all_arguments_validate();
         if (result && is_id_validate) {
             showAlert(result);
         } else if(result && !is_id_validate) {
@@ -251,6 +278,18 @@
             $(this).closest('.row').next().find('.enterToNext').focus();
         }
     })
+    $('#searchAddress').on('click', execDaumPostcode);
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                var roadAddr = data.roadAddress;
+
+                document.getElementById('inZipcode').value = data.zonecode;
+                document.getElementById("inAddress1").value = roadAddr;
+
+            }
+        }).open();
+    }
 </script>
 </body>
 

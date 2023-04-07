@@ -1,12 +1,14 @@
-package board_DAO;
+package DAO;
 
-import board_DTO.MemberDTO;
+import DTO.MemberDTO;
+import commons.EncryptionUtils;
 import commons.MyDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 public class MemberDAO {
     private final BasicDataSource basicDataSource;
@@ -40,7 +42,33 @@ public class MemberDAO {
             return result;
         }
     }
-    public boolean is_id_duplicated(String id) throws Exception{
+    public MemberDTO getAccount(MemberDTO memberDTO) throws Exception{
+        String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PW = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setString(1, memberDTO.getId());
+            preparedStatement.setString(2, EncryptionUtils.getSHA256(memberDTO.getPw()));
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if (resultSet.next()) {
+                    String id = resultSet.getString("ID");
+                    String pw = resultSet.getString("PW");
+                    String name = resultSet.getString("NAME");
+                    String phone = resultSet.getString("PHONE");
+                    String email = resultSet.getString("EMAIL");
+                    String zipcode = resultSet.getString("ZIPCODE");
+                    String address1 = resultSet.getString("ADDRESS_1");
+                    String address2 = resultSet.getString("ADDRESS_2");
+                    Timestamp join_date = resultSet.getTimestamp("JOIN_DATE");
+                    return new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, join_date);
+                } else {
+                    MemberDTO notExist = new MemberDTO();
+                    notExist.setId("1");
+                    return notExist;
+                }
+            }
+        }
+    }
+    public boolean is_id_duplicate(String id) throws Exception{
         String sql = "SELECT * FROM MEMBERS WHERE ID = ?";
         try(Connection connection = basicDataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);){

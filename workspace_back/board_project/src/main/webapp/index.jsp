@@ -60,9 +60,9 @@
 
 
 <div>
-    <form action="login" method="post">
-        <input type="text" name="id" placeholder="아이디" class="in">
-        <input type="password" name="pw" placeholder="비밀번호" class="in">
+    <form action="/TryLogin" method="post">
+        <input type="text" name="mainId" placeholder="아이디" class="in">
+        <input type="password" name="mainPw" placeholder="비밀번호" class="in">
         <input type="submit" class="btn" id="btn" value="로그인"><br>
         <input type="button" class="btn" id="toJoin" value="회원가입"><br>
         <input type="checkbox" name="" id="">ID 기억하기
