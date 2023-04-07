@@ -17,10 +17,17 @@
     <title>Main</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container headContainer">
         <div class="row">
             <div class="col-12">
                 <p>환영합니다 ${requestScope.matchedAccount.name}님 !</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bodyContainer">
+        <div class="row">
+            <div class="col-12">
+
             </div>
         </div>
     </div>
