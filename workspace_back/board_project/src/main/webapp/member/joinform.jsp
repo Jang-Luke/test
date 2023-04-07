@@ -13,6 +13,7 @@
     <script src='https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <style>
         * {
             padding: 0px;
@@ -145,6 +146,7 @@
         </div>
     </div>
 </form>
+<button id="aa">aa</button>
 
 <script>
     const idRegex = /^[a-z0-9_]{6,14}$/;
@@ -210,6 +212,12 @@
         const email = document.querySelector('#inEmail').value;
         return emailRegex.test(email);
     }
+    const encryptionPw = function() {
+        var hash = CryptoJS.MD5(pw1.value);
+        var key = CryptoJS.enc.Utf8.parse(hash);
+        var base64 = CryptoJS.enc.Base64.stringify(key);
+        return base64;
+    }
     const showAlert = (bool) => {
         if (bool) {
             Swal.fire({
@@ -218,6 +226,7 @@
                 text: '메인 페이지로 이동하여 로그인하세요.',
             }).then((result) => {
                 if (result.isConfirmed) {
+                    pw1.value = encryptionPw(pw1.value);
                     $('#submitBtn').closest('form').submit();
                 }
             });
@@ -283,10 +292,8 @@
         new daum.Postcode({
             oncomplete: function (data) {
                 var roadAddr = data.roadAddress;
-
                 document.getElementById('inZipcode').value = data.zonecode;
                 document.getElementById("inAddress1").value = roadAddr;
-
             }
         }).open();
     }

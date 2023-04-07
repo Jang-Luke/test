@@ -2,7 +2,6 @@ package controllers;
 
 import DAO.MemberDAO;
 import DTO.MemberDTO;
-import commons.EncryptionUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class Join extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("inId");
-        String pw = EncryptionUtils.getSHA256(request.getParameter("inPw"));
+        String pw = request.getParameter("inPw");
         String name = request.getParameter("inName");
         String phone = request.getParameter("inPhone")
                 .chars()

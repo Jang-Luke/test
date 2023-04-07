@@ -1,7 +1,6 @@
 package DAO;
 
 import DTO.MemberDTO;
-import commons.EncryptionUtils;
 import commons.MyDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -47,7 +46,7 @@ public class MemberDAO {
         try(Connection connection = basicDataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);){
             preparedStatement.setString(1, memberDTO.getId());
-            preparedStatement.setString(2, EncryptionUtils.getSHA256(memberDTO.getPw()));
+            preparedStatement.setString(2, memberDTO.getPw());
             try(ResultSet resultSet = preparedStatement.executeQuery()){
                 if (resultSet.next()) {
                     String id = resultSet.getString("ID");

@@ -94,6 +94,21 @@ public class MemberDTO {
         return join_date.toLocalDateTime().toLocalDate().toString();
     }
 
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", join_date=" + join_date +
+                '}';
+    }
+
     public void setJoin_date(Timestamp join_date) {
         this.join_date = join_date;
     }

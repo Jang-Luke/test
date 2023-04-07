@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <style>
         @import
         url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
@@ -61,17 +62,42 @@
 
 <div>
     <form action="/TryLogin" method="post">
-        <input type="text" name="mainId" placeholder="아이디" class="in">
-        <input type="password" name="mainPw" placeholder="비밀번호" class="in">
-        <input type="submit" class="btn" id="btn" value="로그인"><br>
+        <input type="text" id="mainId" name="mainId" placeholder="아이디" class="in">
+        <input type="password" id="mainPw" name="mainPw" placeholder="비밀번호" class="in">
+        <input type="button" class="btn" id="btn" value="로그인"><br>
         <input type="button" class="btn" id="toJoin" value="회원가입"><br>
         <input type="checkbox" name="" id="">ID 기억하기
     </form>
     <a href="#none">비밀번호를 잊어버리셨나요?</a>
 </div>
 <script>
+    const id = document.querySelector('#mainId');
+    const pw = document.querySelector('#mainPw');
+    const loginBtn = $('#btn');
     $('#toJoin').on('click', function() {
         location.href="/member/joinform.jsp";
+    })
+    const encryptionPw = function(pw) {
+        var hash = CryptoJS.MD5(pw);
+        var key = CryptoJS.enc.Utf8.parse(hash);
+        var base64 = CryptoJS.enc.Base64.stringify(key);
+        return base64;
+    }
+    const doSubmit = function() {
+        pw.value = encryptionPw(pw.value);
+        loginBtn.closest('form').submit();
+    }
+    loginBtn.on('click', doSubmit);
+    id.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            $('#mainId').next().focus();
+        }
+    })
+    pw.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            doSubmit();
+        }
     })
 </script>
 </body>
