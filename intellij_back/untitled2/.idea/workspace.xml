@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/java/servlets/Exam_01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_back/Day_02/src/main/webapp/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../workspace_web/Day_01_01/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/libraries/tomcat_servlet.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/Day_01.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/java/servlets/Exam01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/src/main/webapp/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/Day_01/target/classes/servlets/Exam01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/src/main/java/LoginServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../workspace_back/untitled1/src/main/webapp/index.html" beforeDir="false" />
-    </list>
+    <list default="true" id="ae37f154-3df9-4b4c-bcd2-552588b7d51c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
