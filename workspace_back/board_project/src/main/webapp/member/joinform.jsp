@@ -49,6 +49,7 @@
                 회원가입 정보
             </div>
         </div>
+        <!--아이디 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 아이디
@@ -60,6 +61,7 @@
                 <button type="button" id="duplicationCheck" class="my-btn btn-outline-primary">중복확인</button>
             </div>
         </div>
+        <!--패스워드 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 패스워드
@@ -70,6 +72,7 @@
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
             </div>
         </div>
+        <!--패스워드 확인 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 패스워드 확인
@@ -81,6 +84,7 @@
                 <p id="validatePW"></p>
             </div>
         </div>
+        <!--이름 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 이름
@@ -91,6 +95,7 @@
             <div class="col-12 col-sm-3 col-md-4">
             </div>
         </div>
+        <!--전화번호 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 전화번호
@@ -101,6 +106,7 @@
             <div class="col-12 col-sm-3 col-md-4">
             </div>
         </div>
+        <!--이메일 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 이메일
@@ -111,6 +117,7 @@
             <div class="col-12 col-sm-3 col-md-4">
             </div>
         </div>
+        <!--우편번호 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 우편번호
@@ -122,6 +129,7 @@
                 <button type="button" id="searchAddress" class="my-btn btn-outline-primary">찾기</button>
             </div>
         </div>
+        <!--주소1 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 주소1
@@ -130,6 +138,7 @@
                 <input type="text" name="inAddress1" class=" form-control enterToNext" id="inAddress1" readonly>
             </div>
         </div>
+        <!--주소2 입력창-->
         <div class="row">
             <div class="col-3 col-sm-2 col-md-2 font-size-sm">
                 주소2
@@ -138,6 +147,7 @@
                 <input type="text" name="inAddress2" class=" form-control enterToNext" id="inAddress2">
             </div>
         </div>
+        <!--버튼 바-->
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <button type="button" class="my-btn btn-outline-primary m-1" id="submitBtn">회원 가입</button>

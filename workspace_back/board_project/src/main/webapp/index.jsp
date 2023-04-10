@@ -116,7 +116,7 @@
         <table>
             <tr>
                 <td>
-                        ${sessionScope.loginKey.id} 님 환영합니다.
+                    ${sessionScope.loginKey.id} 님 환영합니다.
                 </td>
             </tr>
             <tr>
