@@ -46,6 +46,6 @@ public class Join extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect("/error.html");
         }
-        response.sendRedirect("../index.jsp");
+        response.sendRedirect("../index.jsp?state=a_j");
     }
 }

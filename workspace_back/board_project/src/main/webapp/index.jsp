@@ -1,5 +1,7 @@
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
     <title>Insert title here</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import
         url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
@@ -56,10 +59,20 @@
 </head>
 
 <body>
+<C:if test="${param.state=='a_j'}">
 
+    <script>
+        Swal.fire({
+            title: '회원가입을 축하합니다.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+</C:if>
 
-
-
+<C:choose>
+    <C:when test="${sessionScope.loginKey==null}">
 <div>
     <form action="/TryLogin" method="post">
         <input type="text" id="mainId" name="mainId" placeholder="아이디" class="in">
@@ -69,7 +82,6 @@
         <input type="checkbox" name="" id="">ID 기억하기
     </form>
     <a href="#none">비밀번호를 잊어버리셨나요?</a>
-</div>
 <script>
     const id = document.querySelector('#mainId');
     const pw = document.querySelector('#mainPw');
@@ -100,5 +112,24 @@
         }
     })
 </script>
+</div>
+    </C:when>
+    <C:otherwise>
+        <table>
+            <tr>
+                <td>
+                    ${sessionScope.loginKey.id} 님 환영합니다.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/Logout"><button id="logout">로그아웃</button></a>
+                </td>
+            </tr>
+        </table>
+
+    </C:otherwise>
+</C:choose>
+
 </body>
 </html>
