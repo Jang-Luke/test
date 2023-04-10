@@ -1,6 +1,6 @@
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
@@ -11,9 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
-        ;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
         * {
             font-family: 'Noto Sans KR', sans-serif;
@@ -23,7 +21,7 @@
             background-color: #1BBC9B;
         }
 
-        div {
+        .my-container {
             margin: auto;
             width: 300px;
             background-color: #EEEFF1;
@@ -44,7 +42,7 @@
             margin-bottom: 10px;
         }
 
-        .btn {
+        .my-btn {
             background-color: #1BBC9B;
             margin-bottom: 30px;
             color: white;
@@ -64,7 +62,7 @@
     <script>
         Swal.fire({
             title: '회원가입을 축하합니다.',
-            icon: 'success',
+            icon: 'info',
             showConfirmButton: false,
             timer: 1500
         })
@@ -73,57 +71,59 @@
 
 <C:choose>
     <C:when test="${sessionScope.loginKey==null}">
-<div>
-    <form action="/TryLogin" method="post">
-        <input type="text" id="mainId" name="mainId" placeholder="아이디" class="in">
-        <input type="password" id="mainPw" name="mainPw" placeholder="비밀번호" class="in">
-        <input type="button" class="btn" id="btn" value="로그인"><br>
-        <input type="button" class="btn" id="toJoin" value="회원가입"><br>
-        <input type="checkbox" name="" id="">ID 기억하기
-    </form>
-    <a href="#none">비밀번호를 잊어버리셨나요?</a>
-<script>
-    const id = document.querySelector('#mainId');
-    const pw = document.querySelector('#mainPw');
-    const loginBtn = $('#btn');
-    $('#toJoin').on('click', function() {
-        location.href="/member/joinform.jsp";
-    })
-    const encryptionPw = function(pw) {
-        var hash = CryptoJS.MD5(pw);
-        var key = CryptoJS.enc.Utf8.parse(hash);
-        var base64 = CryptoJS.enc.Base64.stringify(key);
-        return base64;
-    }
-    const doSubmit = function() {
-        pw.value = encryptionPw(pw.value);
-        loginBtn.closest('form').submit();
-    }
-    loginBtn.on('click', doSubmit);
-    id.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            $('#mainId').next().focus();
-        }
-    })
-    pw.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') {
-            doSubmit();
-        }
-    })
-</script>
-</div>
+        <div class="my-container">
+            <form action="/TryLogin" method="post">
+                <input type="text" id="mainId" name="mainId" placeholder="아이디" class="in">
+                <input type="password" id="mainPw" name="mainPw" placeholder="비밀번호" class="in">
+                <input type="button" class="my-btn" id="btn" value="로그인"><br>
+                <input type="button" class="my-btn" id="toJoin" value="회원가입"><br>
+                <input type="checkbox" name="" id="">ID 기억하기
+            </form>
+            <a href="#none">비밀번호를 잊어버리셨나요?</a>
+        </div>
+        <script>
+            const id = document.querySelector('#mainId');
+            const pw = document.querySelector('#mainPw');
+            const loginBtn = $('#btn');
+            $('#toJoin').on('click', function () {
+                location.href = "/member/joinform.jsp";
+            })
+            const encryptionPw = function (pw) {
+                var hash = CryptoJS.MD5(pw);
+                var key = CryptoJS.enc.Utf8.parse(hash);
+                var base64 = CryptoJS.enc.Base64.stringify(key);
+                return base64;
+            }
+            const doSubmit = function () {
+                pw.value = encryptionPw(pw.value);
+                loginBtn.closest('form').submit();
+            }
+            loginBtn.on('click', doSubmit);
+            id.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    $('#mainId').next().focus();
+                }
+            })
+            pw.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    doSubmit();
+                }
+            })
+        </script>
     </C:when>
     <C:otherwise>
         <table>
             <tr>
                 <td>
-                    ${sessionScope.loginKey.id} 님 환영합니다.
+                        ${sessionScope.loginKey.id} 님 환영합니다.
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/Logout"><button id="logout">로그아웃</button></a>
+                    <a href="/Logout">
+                        <button id="logout">로그아웃</button>
+                    </a>
                 </td>
             </tr>
         </table>
