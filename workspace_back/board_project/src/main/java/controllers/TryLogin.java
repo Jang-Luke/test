@@ -41,11 +41,10 @@ public class TryLogin extends HttpServlet {
 //                request.setAttribute("matchedAccount", result);
                 request.getSession().setAttribute("loginKey", result);
                 System.out.println(result.getId());
-//                request.getRequestDispatcher("/main.jsp").forward(request, response);
+//                request.getRequestDispatcher("/myPage.jsp").forward(request, response);
                 response.sendRedirect("/index.jsp");
             } else{
                 request.setAttribute("loginFailed", true);
-                System.out.println("실패");
                 request.getRequestDispatcher("/index.jsp").forward(request,response);
             }
         } catch (Exception e) {

@@ -58,7 +58,7 @@
                 <input type="text" name="inId" class=" form-control enterToNext" id="inId" placeholder="아이디를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
-                <button type="button" id="duplicationCheck" class="my-btn btn-outline-primary">중복확인</button>
+                <button type="button" id="duplicationCheck" class="btn btn-outline-primary">중복확인</button>
             </div>
         </div>
         <!--패스워드 입력창-->
@@ -126,7 +126,7 @@
                 <input type="text" name="inZipcode" class=" form-control enterToNext" id="inZipcode" readonly>
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
-                <button type="button" id="searchAddress" class="my-btn btn-outline-primary">찾기</button>
+                <button type="button" id="searchAddress" class="btn btn-outline-primary">찾기</button>
             </div>
         </div>
         <!--주소1 입력창-->
@@ -150,8 +150,8 @@
         <!--버튼 바-->
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                <button type="button" class="my-btn btn-outline-primary m-1" id="submitBtn">회원 가입</button>
-                <button class="my-btn btn-outline-danger m-1" type="reset">다시 입력</button>
+                <button type="button" class="btn btn-outline-primary m-1" id="submitBtn">회원 가입</button>
+                <button class="btn btn-outline-danger m-1" type="reset">다시 입력</button>
             </div>
         </div>
     </div>

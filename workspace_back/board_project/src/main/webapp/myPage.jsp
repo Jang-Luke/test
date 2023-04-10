@@ -20,7 +20,13 @@
     <div class="container headContainer">
         <div class="row">
             <div class="col-12">
-                <p>환영합니다 ${requestScope.matchedAccount.name}님 !</p>
+                <p>환영합니다 ${sessionScope.loginKey.name}님 !</p>
+                <p>ID : ${sessionScope.loginKey.id}</p>
+                <p>PHONE : ${sessionScope.loginKey.phone}</p>
+                <p>EMAIL : ${sessionScope.loginKey.email}</p>
+                <p>ZIPCODE : ${sessionScope.loginKey.zipcode}</p>
+                <p>ADDRESS : ${sessionScope.loginKey.address1} - ${sessionScope.loginKey.address2}</p>
+                <p>JOIN_DATE : ${sessionScope.loginKey.join_date}</p>
             </div>
         </div>
     </div>

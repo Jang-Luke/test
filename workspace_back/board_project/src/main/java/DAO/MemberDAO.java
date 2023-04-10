@@ -37,7 +37,16 @@ public class MemberDAO {
             preparedStatement.setString(8, memberDTO.getAddress2());
             int result = preparedStatement.executeUpdate();
             connection.commit();
-            System.out.println(result);
+            return result;
+        }
+    }
+    public int deleteMember(MemberDTO memberDTO) throws Exception {
+        String sql = "DELETE FROM MEMBERS WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setString(1, memberDTO.getId());
+            int result = preparedStatement.executeUpdate();
+            connection.commit();
             return result;
         }
     }

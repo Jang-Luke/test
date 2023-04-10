@@ -17,13 +17,13 @@
                         <h1>중복된 아이디입니다.</h1>
             </div>
             <div class="col-12 d-flex justify-content-center">
-                        <input class="my-btn btn-secondary check w-25" id="duplicate" type="button" value="확인">
+                        <input class="btn btn-secondary check w-25" id="duplicate" type="button" value="확인">
                     </C:when>
                     <C:otherwise>
                         <h1>사용 가능한 아이디입니다.</h1>
             </div>
             <div class="col-12 d-flex justify-content-center">
-                        <input class="my-btn btn-success check w-25" id="validate" type="button" value="확인">
+                        <input class="btn btn-success check w-25" id="validate" type="button" value="확인">
                     </C:otherwise>
                 </C:choose>
             </div>

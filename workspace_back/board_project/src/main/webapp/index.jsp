@@ -115,19 +115,34 @@
     <C:otherwise>
         <table>
             <tr>
-                <td>
-                    ${sessionScope.loginKey.id} 님 환영합니다.
-                </td>
+                <th colspan="3">
+                        ${sessionScope.loginKey.id} 님 환영합니다.
+                </th>
             </tr>
             <tr>
+                <td>
+                    <a href="/MyPage">
+                        <button>마이페이지</button>
+                    </a>
+                </td>
                 <td>
                     <a href="/Logout">
                         <button id="logout">로그아웃</button>
                     </a>
                 </td>
+                <td>
+                    <button type="button" id="memberOut">회원탈퇴</button>
+                </td>
             </tr>
         </table>
-
+        <script>
+            $('#memberOut').on('click', function() {
+                window.open("/member/confirmDelete.jsp", "_blank", "width=350px,height=250px");
+            });
+            var deleteMember = function() {
+                location.href = "/MemberOut";
+            }
+        </script>
     </C:otherwise>
 </C:choose>
 
