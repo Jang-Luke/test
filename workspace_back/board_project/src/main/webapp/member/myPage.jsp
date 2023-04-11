@@ -58,7 +58,7 @@
     </div>
 </div>
 <form action="/UpdateProp" method="post" id="modifyForm">
-    <table>
+    <table align="center">
         <tr>
             <td>ID</td>
             <td><input type="text" id="modifyId" name="modifyId" class="myPageText" value="${sessionScope.loginKey.id}" readonly></td>
@@ -105,7 +105,6 @@
         <div class="col-12 d-flex justify-content-center">
             <button type="button" id="return">돌아가기</button>
             <button type="button" id="modify">정보수정</button>
-            <button type="button" id="modify2">정보수정2</button>
             <button type="button" id="modifyConfirm" class="hidden">수정확인</button>
             <button type="button" id="cancel" class="hidden">수정취소</button>
         </div>
@@ -142,8 +141,7 @@
     };
 
     document.querySelector('#return').addEventListener('click', () => location.href = '/index.jsp');
-    document.querySelector('#modify').addEventListener('click', () => location.href = '/ModifyMember'); // 수정페이지 거쳐서 servlet으로
-    $('#modify2').on('click', function () {
+    $('#modify').on('click', function () {
         $('input').removeAttr('readonly');
         $('#modifyId').prop('readonly', true);
         $('button').toggleClass('hidden');
@@ -152,7 +150,9 @@
         location.reload()
     });
     $('#modifyConfirm').on('click', function (){
-        if (is_all_arguments_validate()) {
+        if (nameRegex.test(
+            $('#modifyName').val())
+        ) {
             $('#modifyForm').submit();
         } else {
             Swal.fire({

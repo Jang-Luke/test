@@ -90,7 +90,7 @@
 </table>
 <br>
 <div class='inputBar'>
-    <form action='MessageProp' method='post' class='formSubmit'>
+    <form action='insert.message' method='post' class='formSubmit'>
         <div class='formFlex'>
             <label for='writer'>작성자</label>
             <input type='text' name='writer' id='writer' placeholder='작성자를 입력하세요.'>
@@ -103,7 +103,7 @@
             <input type='button' value='메세지 입력할래'>
         </div>
     </form>
-    <form action='DeleteMessage' method='post' class='formSubmit'>
+    <form action='delete.message' method='post' class='formSubmit'>
         <div class='formFlex'>
             <label for='deleteId'>글번호</label>
             <input type='text' name='id' id='deleteId' placeholder='삭제할 글번호를 입력하세요.'>
@@ -112,7 +112,7 @@
             <input type='button' value='메세지 삭제할래'>
         </div>
     </form>
-    <form action='UpdateMessage' method='post' class='formSubmit'>
+    <form action='update.message' method='post' class='formSubmit'>
         <div class='formFlex'>
             <label for='modifyId'>글번호</label>
             <input type='text' name='id' id='modifyId' placeholder='글번호를 입력하세요.'>

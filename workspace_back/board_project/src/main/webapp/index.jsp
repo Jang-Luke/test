@@ -121,6 +121,11 @@
             </tr>
             <tr>
                 <td>
+                    <a href="/toBoard">
+                        <button>게시판으로</button>
+                    </a>
+                </td>
+                <td>
                     <a href="/MyPage">
                         <button>마이페이지</button>
                     </a>
