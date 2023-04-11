@@ -113,7 +113,7 @@
         </script>
     </C:when>
     <C:otherwise>
-        <table>
+        <table align="center">
             <tr>
                 <th colspan="3">
                         ${sessionScope.loginKey.id} 님 환영합니다.

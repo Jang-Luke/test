@@ -20,9 +20,9 @@
             background-color: #1BBC9B
         }
         .background-color-green{
-            background-color: #1ae8e1
+            background-color: #a0dbb7
         }
-        border-radius-10{
+        .border-radius-10{
             border-radius: 10px;
         }
 
@@ -32,22 +32,25 @@
     <div class="container headContainer background-color-green border-radius-10">
         <div class="row">
             <div class="col-12">
-                <p>환영합니다 ${sessionScope.loginKey.name}님 !</p>
-                <p>ID : ${sessionScope.loginKey.id}</p>
-                <p>PHONE : ${sessionScope.loginKey.phone}</p>
-                <p>EMAIL : ${sessionScope.loginKey.email}</p>
-                <p>ZIPCODE : ${sessionScope.loginKey.zipcode}</p>
-                <p>ADDRESS : ${sessionScope.loginKey.address1} - ${sessionScope.loginKey.address2}</p>
-                <p>JOIN_DATE : ${sessionScope.loginKey.join_date}</p>
+                <span>환영합니다 ${sessionScope.loginKey.name}님 !</span>
+                <span>ID : ${sessionScope.loginKey.id}</span>
+                <span>PHONE : ${sessionScope.loginKey.phone}</span>
+                <span>EMAIL : ${sessionScope.loginKey.email}</span>
+                <span>ZIPCODE : ${sessionScope.loginKey.zipcode}</span>
+                <span>ADDRESS : ${sessionScope.loginKey.address1} - ${sessionScope.loginKey.address2}</span>
+                <span>JOIN_DATE : ${sessionScope.loginKey.join_date}</span>
             </div>
         </div>
     </div>
     <div class="container-fluid bodyContainer">
         <div class="row">
             <div class="col-12">
-
+                <button id="return">돌아가기</button>
             </div>
         </div>
     </div>
+    <script>
+        document.querySelector('#return').addEventListener('click', () => location.href='/index.jsp');
+    </script>
 </body>
 </html>

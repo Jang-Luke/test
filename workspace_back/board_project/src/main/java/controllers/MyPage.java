@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MyPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/myPage.jsp");
+        response.sendRedirect("/member/myPage.jsp");
     }
 
     @Override

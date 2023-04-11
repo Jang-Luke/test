@@ -41,7 +41,7 @@ public class Join extends HttpServlet {
         String address2 = request.getParameter("inAddress2");
         MemberDAO memberDAO = MemberDAO.getInstance();
         try {
-            memberDAO.insertMember(new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, null));
+            int result = memberDAO.insertMember(new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, null));
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("/error.html");
