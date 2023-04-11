@@ -36,7 +36,7 @@ public class TryLogin extends HttpServlet {
         String pw = request.getParameter("mainPw");
         MemberDAO memberDAO = MemberDAO.getInstance();
         try {
-            MemberDTO result = memberDAO.getAccount(new MemberDTO(id, pw, "가", "010-0000-0000", "email.@email.com", "", "", "", null));
+            MemberDTO result = memberDAO.doLogin(new MemberDTO(id, pw, "가", "010-0000-0000", "email.@email.com", "", "", "", null));
             if (!result.getId().equals("1")) {
 //                request.setAttribute("matchedAccount", result);
                 request.getSession().setAttribute("loginKey", result);

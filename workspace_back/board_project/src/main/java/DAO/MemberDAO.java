@@ -50,30 +50,44 @@ public class MemberDAO {
             return result;
         }
     }
-    public MemberDTO getAccount(MemberDTO memberDTO) throws Exception{
+    public MemberDTO searchById(String id) throws Exception {
+        String sql = "SELECT * FROM MEMBERS WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setString(1, id);
+            try(ResultSet resultSet = preparedStatement.executeQuery();){
+                return getAccount(resultSet);
+            }
+        }
+    }
+    public MemberDTO doLogin(MemberDTO memberDTO) throws Exception{
         String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PW = ?";
         try(Connection connection = basicDataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);){
             preparedStatement.setString(1, memberDTO.getId());
             preparedStatement.setString(2, memberDTO.getPw());
             try(ResultSet resultSet = preparedStatement.executeQuery()){
-                if (resultSet.next()) {
-                    String id = resultSet.getString("ID");
-                    String pw = resultSet.getString("PW");
-                    String name = resultSet.getString("NAME");
-                    String phone = resultSet.getString("PHONE");
-                    String email = resultSet.getString("EMAIL");
-                    String zipcode = resultSet.getString("ZIPCODE");
-                    String address1 = resultSet.getString("ADDRESS_1");
-                    String address2 = resultSet.getString("ADDRESS_2");
-                    Timestamp join_date = resultSet.getTimestamp("JOIN_DATE");
-                    return new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, join_date);
-                } else {
-                    MemberDTO notExist = new MemberDTO();
-                    notExist.setId("1");
-                    return notExist;
-                }
+                return getAccount(resultSet);
             }
+        }
+    }
+
+    private MemberDTO getAccount(ResultSet resultSet) throws Exception {
+        if (resultSet.next()) {
+            String id = resultSet.getString("ID");
+            String pw = resultSet.getString("PW");
+            String name = resultSet.getString("NAME");
+            String phone = resultSet.getString("PHONE");
+            String email = resultSet.getString("EMAIL");
+            String zipcode = resultSet.getString("ZIPCODE");
+            String address1 = resultSet.getString("ADDRESS_1");
+            String address2 = resultSet.getString("ADDRESS_2");
+            Timestamp join_date = resultSet.getTimestamp("JOIN_DATE");
+            return new MemberDTO(id, pw, name, phone, email, zipcode, address1, address2, join_date);
+        } else {
+            MemberDTO notExist = new MemberDTO();
+            notExist.setId("1");
+            return notExist;
         }
     }
     public boolean is_id_duplicate(String id) throws Exception{
@@ -84,6 +98,23 @@ public class MemberDAO {
             try(ResultSet resultSet = preparedStatement.executeQuery();){
                 return resultSet.next();
             }
+        }
+    }
+
+    public int modifyMember(MemberDTO memberDTO) throws Exception{
+        String sql = "UPDATE MEMBERS SET NAME = ?, PHONE = ?, EMAIL = ?, ZIPCODE = ?, ADDRESS_1 = ?, ADDRESS_2 = ? WHERE ID = ?";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setString(1, memberDTO.getName());
+            preparedStatement.setString(2, memberDTO.getPhone());
+            preparedStatement.setString(3, memberDTO.getEmail());
+            preparedStatement.setString(4, memberDTO.getZipcode());
+            preparedStatement.setString(5, memberDTO.getAddress1());
+            preparedStatement.setString(6, memberDTO.getAddress2());
+            preparedStatement.setString(7, memberDTO.getId());
+            int result = preparedStatement.executeUpdate();
+            connection.commit();
+            return result;
         }
     }
 }
