@@ -42,7 +42,7 @@
 </head>
 
 <body>
-<form action="/Join" id="frm" method="post">
+<form action="/createAccount.member" id="frm" method="post">
     <div class="container">
         <div class="row">
             <div class="col-12 text-align-center">
@@ -258,7 +258,7 @@
     })
     $('#duplicationCheck').on('click', function() {
         if (checkIdValidation()) {
-            window.open("/IdCheck?inId="+$('#inId').val(), "", "width=350px,height=250px");
+            window.open("/idDuplicationCheck.member?inId="+$('#inId').val(), "", "width=350px,height=250px");
         } else{
             Swal.fire({
                 title: '아이디를 다시 확인해주세요.',

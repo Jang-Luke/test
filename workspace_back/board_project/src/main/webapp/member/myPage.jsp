@@ -57,11 +57,14 @@
         </div>
     </div>
 </div>
-<form action="/UpdateProp" method="post" id="modifyForm">
+<form action="/updateAccount.member" method="post" id="modifyForm">
     <table align="center">
         <tr>
             <td>ID</td>
-            <td><input type="text" id="modifyId" name="modifyId" class="myPageText" value="${sessionScope.loginKey.id}" readonly></td>
+            <td>
+                <input type="text" id="modifyId" name="modifyId" class="myPageText" value="${sessionScope.loginKey.id}" readonly>
+                <input type="text" id="modifyPw" name="modifyPw" class="hidden" value="${sessionScope.loginKey.pw}" readonly>
+            </td>
         </tr>
         <tr>
             <td>Name</td>

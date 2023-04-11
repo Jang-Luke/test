@@ -19,7 +19,6 @@ public class MessageController extends HttpServlet {
         response.setContentType("Text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String command = request.getRequestURI();
-        System.out.println(command);
         try {
             if (command.equals("/select.message")) {
                 MessageDAO messageDAO = MessageDAO.getInstance();

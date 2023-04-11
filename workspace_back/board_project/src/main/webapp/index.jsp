@@ -58,7 +58,6 @@
 
 <body>
 <C:if test="${param.state=='a_j'}">
-
     <script>
         Swal.fire({
             title: '회원가입을 축하합니다.',
@@ -68,11 +67,21 @@
         })
     </script>
 </C:if>
+<C:if test="${requestScope.loginFailed=='fail'}">
+    <script>
+        Swal.fire({
+            title: '아이디 또는 비밀번호를 다시 확인해주세요.',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+</C:if>
 
 <C:choose>
     <C:when test="${sessionScope.loginKey==null}">
         <div class="my-container">
-            <form action="/TryLogin" method="post">
+            <form action="/tryLogin.member" method="post">
                 <input type="text" id="mainId" name="mainId" placeholder="아이디" class="in">
                 <input type="password" id="mainPw" name="mainPw" placeholder="비밀번호" class="in">
                 <input type="button" class="my-btn" id="btn" value="로그인"><br>
@@ -126,12 +135,12 @@
                     </a>
                 </td>
                 <td>
-                    <a href="/MyPage">
+                    <a href="/toMyPage.member">
                         <button>마이페이지</button>
                     </a>
                 </td>
                 <td>
-                    <a href="/Logout">
+                    <a href="/logout.member">
                         <button id="logout">로그아웃</button>
                     </a>
                 </td>
@@ -145,7 +154,7 @@
                 window.open("/member/confirmDelete.jsp", "_blank", "width=350px,height=250px");
             });
             var deleteMember = function() {
-                location.href = "/MemberOut";
+                location.href = "/deleteAccount.member";
             }
         </script>
     </C:otherwise>
