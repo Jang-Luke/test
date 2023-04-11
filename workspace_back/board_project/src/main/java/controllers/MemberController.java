@@ -18,7 +18,6 @@ public class MemberController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String command = request.getRequestURI();
-        System.out.println(command);
         try {
             // 회원가입
             if (command.equals("/createAccount.member")) {

@@ -124,13 +124,13 @@
     <C:otherwise>
         <table align="center">
             <tr>
-                <th colspan="3">
+                <th colspan="4">
                         ${sessionScope.loginKey.id} 님 환영합니다.
                 </th>
             </tr>
             <tr>
                 <td>
-                    <a href="/toBoard">
+                    <a href="/board/board_main.jsp">
                         <button>게시판으로</button>
                     </a>
                 </td>
