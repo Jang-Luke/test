@@ -15,9 +15,21 @@
     <script src='https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Main</title>
+    <style>
+        body{
+            background-color: #1BBC9B
+        }
+        .background-color-green{
+            background-color: #1ae8e1
+        }
+        border-radius-10{
+            border-radius: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="container headContainer">
+    <div class="container headContainer background-color-green border-radius-10">
         <div class="row">
             <div class="col-12">
                 <p>환영합니다 ${sessionScope.loginKey.name}님 !</p>
