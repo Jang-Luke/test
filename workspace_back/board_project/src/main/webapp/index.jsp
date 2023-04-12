@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="/board/board_main.jsp">
+                    <a href="/select.board">
                         <button>게시판으로</button>
                     </a>
                 </td>

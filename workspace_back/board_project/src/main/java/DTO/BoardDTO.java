@@ -1,22 +1,27 @@
 package DTO;
 
 import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 public class BoardDTO {
     private long id;
     private String writer;
     private String title;
     private String contents;
-    private int view_count;
-    private Timestamp write_date;
+    private int viewCount;
+    private Timestamp writeDate;
 
-    public BoardDTO(int id, String writer, String title, String contents, int view_count, Timestamp write_date) {
+    public BoardDTO(long id, String writer, String title, String contents, int viewCount, Timestamp writeDate) {
         this.id = id;
         this.writer = writer;
         this.title = title;
         this.contents = contents;
-        this.view_count = view_count;
-        this.write_date = write_date;
+        this.viewCount = viewCount;
+        this.writeDate = writeDate;
     }
 
     public long getId() {
@@ -51,19 +56,38 @@ public class BoardDTO {
         this.contents = contents;
     }
 
-    public int getView_count() {
-        return view_count;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setView_count(int view_count) {
-        this.view_count = view_count;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
-    public Timestamp getWrite_date() {
-        return write_date;
+    public void setWriteDate(Timestamp writeDate) {
+        this.writeDate = writeDate;
     }
 
-    public void setWrite_date(Timestamp write_date) {
-        this.write_date = write_date;
+    public String getWriteDate(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+        return writeDate.toLocalDateTime().plusHours(9).format(dateTimeFormatter);
     }
+
+    public String getFormattedWriteDate(){
+        Duration afterWrite = Duration.between(writeDate.toLocalDateTime().plusHours(9) ,LocalDateTime.now());
+        System.out.println(afterWrite.toMinutes());
+        if (afterWrite.toMinutes() < 1L){
+            return "1분 이내";
+        } else if (afterWrite.toMinutes() < 5L) {
+            return "5분 이내";
+        } else if (afterWrite.toHours() < 1L) {
+            return "1시간 이내";
+        } else if (afterWrite.toDays() < 1L) {
+            return "오늘 내";
+        } else {
+            return getWriteDate();
+        }
+
+    }
+
 }
