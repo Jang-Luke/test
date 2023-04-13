@@ -71,10 +71,8 @@
                 </a>
                 <button type="button" class="btn btn-light hidden" id="cancelModify">수정취소</button>
             </C:if>
-            <a href="javascript:history.back()">
-                //TODO: 왔던 페이지로 돌아가는 기능으로 수정
-                <button type="button" class="btn btn-outline-secondary">돌아가기</button>
-            </a>
+<%--            TODO: 왔던 페이지로 돌아가는 기능으로 수정--%>
+                <button type="button" id="return" class="btn btn-outline-secondary">돌아가기</button>
         </div>
     </div>
 </div>
@@ -91,6 +89,9 @@
     $('form').on('submit', function() {
         $('#modifyTitle').val($('#titleView').text());
         $('#modifyContent').val($('#contentView').text());
+    });
+    $('#return').on('click', function(){
+        location.href=document.referrer;
     })
 </script>
 </body>

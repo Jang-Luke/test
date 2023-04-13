@@ -2,7 +2,7 @@
 <%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link href="../summernote-0/summernote.css" rel="stylesheet"/>
-    <script src="../summernote-0/summernote.js"></script>
-    <script src="lang/summernote-ko-KR.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <title>Document</title>
     <style>
         .hidden {
@@ -24,9 +23,10 @@
         .border-solid-1 {
             border: 1px solid black;
         }
-
-        .codex-editor__redactor {
-            padding-bottom: 50px !important;
+        .font-size-title {
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -65,25 +65,14 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
-            ],
-            lang: 'ko-KR', // default: 'en-US'
-            height: 300,
-            minHeight: 150,
-            maxHeight: 600,
-            focus: true,
+            height: 300,                 // 에디터 높이
+            minHeight: null,             // 최소 높이
+            maxHeight: null,             // 최대 높이
+            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+            lang: "ko-KR",					// 한글 설정
+            placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
         });
     });
-    var markupStr = $('#summernote').summernote('code');
-    var markupStr = 'hello world';
-    $('#summernote').summernote('code', markupStr);
     const inContents = document.querySelector('#inContents');
     $('#doWrite').on('click', function () {
         $(this).closest('form').submit();
