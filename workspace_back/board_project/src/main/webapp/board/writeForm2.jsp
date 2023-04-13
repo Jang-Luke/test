@@ -11,11 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="simple-image.js"></script>
-    <link href="simple-image.css" rel="stylesheet"/>
 
     <link href="../summernote-0/summernote.css" rel="stylesheet"/>
     <script src="../summernote-0/summernote.js"></script>
+    <script src="lang/summernote-ko-KR.js"></script>
     <title>Document</title>
     <style>
         .hidden {
@@ -55,7 +54,7 @@
         <%--        </div>--%>
         <div class="row boardFooter">
             <div class="col-12 d-flex justify-content-end border-solid-1">
-                <a href="/board/board_main.jsp">
+                <a href="/select.board?currentPage=1">
                     <button>목록으로</button>
                 </a>
                 <button id="doWrite">작성완료</button>
@@ -64,11 +63,23 @@
     </div>
 </form>
 <script>
-    $('#summernote').summernote({
-        height: 300,
-        minHeight: 150,
-        maxHeight: 600,
-        focus: true,
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ],
+            lang: 'ko-KR', // default: 'en-US'
+            height: 300,
+            minHeight: 150,
+            maxHeight: 600,
+            focus: true,
+        });
     });
     var markupStr = $('#summernote').summernote('code');
     var markupStr = 'hello world';

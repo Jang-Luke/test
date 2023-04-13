@@ -3,6 +3,7 @@ package DAO;
 import DTO.BoardDTO;
 import commons.MyDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
+import statics.Settings;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,13 +51,30 @@ public class BoardDAO {
         }
     }
 
-    public List<BoardDTO> selectAll() throws Exception { //findAll
-        String sql = "SELECT * FROM BOARD";
+    public List<BoardDTO> findAll() throws Exception {
+        String sql = "SELECT * FROM BOARD ORDER BY ID DESC";
         try (Connection connection = basicDataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
             try (ResultSet resultSet = preparedStatement.executeQuery();) {
                 List<BoardDTO> contentsList = new ArrayList<>();
                 while (resultSet.next()) {
+                    contentsList.add(getContentsContainer(resultSet));
+                }
+                return contentsList;
+            }
+        }
+    }
+
+    // 1. SELECT * FROM BOARD ORDER BY ID DESC
+    public List<BoardDTO> findAll(int start, int end) throws Exception {
+        String sql = "SELECT * FROM (SELECT BOARD.*, ROW_NUMBER() OVER(ORDER BY ID ASC) \"NO\" FROM BOARD) NUM WHERE NO BETWEEN ? AND ?;";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setInt(1, start);
+            preparedStatement.setInt(2, end);
+            try(ResultSet resultSet = preparedStatement.executeQuery();){
+                List<BoardDTO> contentsList = new ArrayList<>();
+                while(resultSet.next()){
                     contentsList.add(getContentsContainer(resultSet));
                 }
                 return contentsList;
@@ -103,6 +121,16 @@ public class BoardDAO {
         }
     }
 
+    private int getRecordCount() throws Exception {
+        String sql = "SELECT COUNT(*) FROM BOARD";
+        try(Connection connection = basicDataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();){
+            resultSet.next();
+            return resultSet.getInt(1);
+        }
+    }
+
     private BoardDTO getContentsContainer(ResultSet resultSet) throws Exception { //
         long id = resultSet.getLong("ID");
         String writer = resultSet.getString("WRITER");
@@ -113,23 +141,53 @@ public class BoardDAO {
         return new BoardDTO(id, writer, title, contents, view_count, write_date);
     }
 
-    public String getPageNavi() throws Exception {
+    public List<List<String>> getPageNavi(int currentPage) throws Exception {
         // 네비게이터를 만들기 위해 필요한 초기 정보
         String sql = "SELECT COUNT(*) FROM BOARD";
-        int recordTotalCount = selectAll().size(); // 1. 전체 글의 개수 (147)
-        int recordCountPerPage = 10; // 2. 페이지 당 보여줄 글의 개수
-        int naviCountPerPage = 10; // 3. 페이지 당 보여줄 네비게이터의 개수
+        int recordTotalCount = getRecordCount(); // 1. 전체 글의 개수
+        // Settings.BOARD_RECORD_COUNT_PER_PAGE // 2. 페이지 당 보여줄 글의 개수
+        // Settings.BOARD_NAVI_COUNT_PER_PAGE // 3. 페이지 당 보여줄 네비게이터의 개수
 
-        int pageTotalCount = (int)Math.ceil((double)recordTotalCount/recordCountPerPage);
+        int pageTotalCount = (int)Math.ceil((double)recordTotalCount/Settings.BOARD_RECORD_COUNT_PER_PAGE);
         // 4. 1번과 2번 항목에 의해 총 페이지의 개수가 정해짐. 나머지가 발생하면 페이지 + 1
 
-        int currentPage = 20;
+        if (currentPage < 1) {
+            currentPage = 1;
+        } else if (currentPage > pageTotalCount) {
+            currentPage = pageTotalCount;
+        }
 
-        int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
-        int endNavi = startNavi+(naviCountPerPage-1);
-        System.out.println("현재 페이지 : " + currentPage);
-        System.out.println("네비 시작 값 : " + startNavi);
-        System.out.println("네비 끝 값 : " + endNavi);
-        return "";
+        int startNavi = (currentPage-1) / Settings.BOARD_NAVI_COUNT_PER_PAGE * Settings.BOARD_NAVI_COUNT_PER_PAGE + 1;
+        int endNavi = startNavi+(Settings.BOARD_NAVI_COUNT_PER_PAGE-1);
+
+        if (endNavi > pageTotalCount) {
+            endNavi = pageTotalCount;
+        }
+
+        boolean needPrev = true;
+        boolean needNext = true;
+
+        if (startNavi == 1) {
+            needPrev = false;
+        }
+        if (endNavi==pageTotalCount) {
+            needNext = false;
+        }
+        List<String> naviPrevNext = new ArrayList<>();
+        if (needPrev) {
+            naviPrevNext.add("<< ");
+        }
+        if (needNext) {
+            naviPrevNext.add(">>");
+        }
+
+        List<String> naviNumbers = new ArrayList<>();
+        for (int i = startNavi; i <= endNavi; i++) {
+            naviNumbers.add(String.valueOf(i));
+        }
+        List<List<String>> navigators = new ArrayList<>();
+        navigators.add(naviPrevNext);
+        navigators.add(naviNumbers);
+        return navigators;
     }
 }

@@ -51,7 +51,7 @@
     <%--        </div>--%>
     <div class="row boardFooter">
         <div class="col-12 d-flex justify-content-end border-solid-1">
-            <a href="/board/board_main.jsp">
+            <a href="/select.board?currentPage=1">
                 <button>목록으로</button>
             </a>
             <button id="doWrite">작성완료</button>

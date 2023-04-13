@@ -2,6 +2,7 @@ package controllers;
 
 import DAO.BoardDAO;
 import DTO.BoardDTO;
+import statics.Settings;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,13 +25,24 @@ public class BoardController extends HttpServlet {
                 String contents = request.getParameter("inContents");
                 BoardDTO newContents = new BoardDTO(0, writer, title, contents, 0, null);
                 int result = BoardDAO.getInstance().insertContent(newContents);
-                response.sendRedirect("/select.board");
+                response.sendRedirect("/select.board?currentPage=1");
 
-            } else if (command.equals("/select.board")) { //items
-                List<BoardDTO> contentsList = BoardDAO.getInstance().selectAll();
+            } else if (command.startsWith("/select.board")) { //items
+                BoardDAO boardDAO = BoardDAO.getInstance();
+                int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+
+                int start = currentPage * Settings.BOARD_RECORD_COUNT_PER_PAGE - (Settings.BOARD_RECORD_COUNT_PER_PAGE-1);
+                int end = currentPage * Settings.BOARD_RECORD_COUNT_PER_PAGE;
+
+                List<BoardDTO> contentsList = boardDAO.findAll(start, end);
+                List<List<String>> boardNavigator = boardDAO.getPageNavi(currentPage);
                 request.setAttribute("contentsList", contentsList);
                 request.setAttribute("length", contentsList.size());
-                System.out.println(request.getContextPath());
+                request.setAttribute("navigatorNum", boardNavigator.get(1));
+                request.setAttribute("navigatorLast", boardNavigator.get(1).get(boardNavigator.get(1).size()-1));
+                request.setAttribute("navigatorPrevNext", boardNavigator.get(0));
+                request.setAttribute("navigatorPrevNextLength", boardNavigator.get(0).size());
+
                 request.getRequestDispatcher("/board/board_main.jsp").forward(request, response);
 
             } else if (command.startsWith("/viewTarget.board")) {
@@ -38,19 +50,20 @@ public class BoardController extends HttpServlet {
                 targetContent = BoardDAO.getInstance().viewTargetContent(targetContent);
                 request.setAttribute("targetContent", targetContent);
                 System.out.println(request.getContextPath());
+
                 request.getRequestDispatcher("/board/content_view.jsp").forward(request,response);
 
             } else if (command.startsWith("/delete.board")) {
                 BoardDTO targetContent = getTarget(request);
                 int result = BoardDAO.getInstance().deleteContent(targetContent);
-                response.sendRedirect("/select.board");
+                response.sendRedirect("/select.board?currentPage=1");
 
             } else if (command.startsWith("/modify.board")) {
                 long id = Long.parseLong(request.getParameter("id"));
                 String title = request.getParameter("modifyTitle");
                 String content = request.getParameter("modifyContent");
                 int result = BoardDAO.getInstance().updateContent(new BoardDTO(id, null, title, content, 0, null));
-                response.sendRedirect("/select.board");
+                response.sendRedirect("/viewTarget.board?id="+id);
 
             }
         } catch (Exception e) {

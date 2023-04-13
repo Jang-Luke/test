@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="/select.board">
+                    <a href="/select.board?currentPage=1">
                         <button>게시판으로</button>
                     </a>
                 </td>

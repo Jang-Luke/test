@@ -74,7 +74,7 @@ public class BoardDTO {
     }
 
     public String getFormattedWriteDate(){
-        Duration afterWrite = Duration.between(writeDate.toLocalDateTime().plusHours(9) ,LocalDateTime.now());
+        Duration afterWrite = Duration.between(writeDate.toLocalDateTime() ,LocalDateTime.now());
         System.out.println(afterWrite.toMinutes());
         if (afterWrite.toMinutes() < 1L){
             return "1분 이내";

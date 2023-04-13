@@ -37,6 +37,9 @@
             min-width: 70px;
             border: none;
         }
+        .navi{
+            margin: 1px 3px 1px 3px;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +71,22 @@
     </C:choose>
     </div>
     <div class="row boardFooter">
+        <div class="col-12 d-flex justify-content-center">
+            <C:if test="${not empty requestScope.navigatorPrevNext && requestScope.navigatorPrevNextLength > 0 && requestScope.navigatorPrevNext[0] == '<< '}">
+                <span class="navi"><a href="/select.board?currentPage=${requestScope.navigatorNum[0]-1}">${requestScope.navigatorPrevNext[0]}</a></span>
+            </C:if>
+            <C:forEach var="navi" items="${requestScope.navigatorNum}">
+                <span class="navi"><a href="/select.board?currentPage=${navi}">${navi}</a></span>
+            </C:forEach>
+            <C:choose>
+                <C:when test="${not empty requestScope.navigatorPrevNext && requestScope.navigatorPrevNextLength > 0 && requestScope.navigatorPrevNext[0] == '>>'}">
+                    <span class="navi"><a href="/select.board?currentPage=${requestScope.navigatorLast+1}">${requestScope.navigatorPrevNext[0]}</a></span>
+                </C:when>
+                <C:when test="${not empty requestScope.navigatorPrevNext && requestScope.navigatorPrevNextLength > 1 && requestScope.navigatorPrevNext[1] == '>>'}">
+                    <span class="navi"><a href="/select.board?currentPage=${requestScope.navigatorLast+1}">${requestScope.navigatorPrevNext[1]}</a></span>
+                </C:when>
+            </C:choose>
+        </div>
         <div class="col-12 d-flex justify-content-end border-solid-1">
             <a href="/board/writeForm2.jsp">
                 <button class="btn btn-outline-primary">작성하기</button>
