@@ -69,7 +69,7 @@
     </div>
     <div class="row boardFooter">
         <div class="col-12 d-flex justify-content-end border-solid-1">
-            <a href="/board/writeForm.jsp">
+            <a href="/board/writeForm2.jsp">
                 <button class="btn btn-outline-primary">작성하기</button>
             </a>
         </div>

@@ -113,4 +113,23 @@ public class BoardDAO {
         return new BoardDTO(id, writer, title, contents, view_count, write_date);
     }
 
+    public String getPageNavi() throws Exception {
+        // 네비게이터를 만들기 위해 필요한 초기 정보
+        String sql = "SELECT COUNT(*) FROM BOARD";
+        int recordTotalCount = selectAll().size(); // 1. 전체 글의 개수 (147)
+        int recordCountPerPage = 10; // 2. 페이지 당 보여줄 글의 개수
+        int naviCountPerPage = 10; // 3. 페이지 당 보여줄 네비게이터의 개수
+
+        int pageTotalCount = (int)Math.ceil((double)recordTotalCount/recordCountPerPage);
+        // 4. 1번과 2번 항목에 의해 총 페이지의 개수가 정해짐. 나머지가 발생하면 페이지 + 1
+
+        int currentPage = 20;
+
+        int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+        int endNavi = startNavi+(naviCountPerPage-1);
+        System.out.println("현재 페이지 : " + currentPage);
+        System.out.println("네비 시작 값 : " + startNavi);
+        System.out.println("네비 끝 값 : " + endNavi);
+        return "";
+    }
 }
