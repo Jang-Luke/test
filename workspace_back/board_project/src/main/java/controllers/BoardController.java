@@ -1,7 +1,9 @@
 package controllers;
 
 import DAO.BoardDAO;
+import DAO.ReplyDAO;
 import DTO.BoardDTO;
+import DTO.ReplyDTO;
 import statics.Settings;
 
 import javax.servlet.ServletException;
@@ -48,9 +50,9 @@ public class BoardController extends HttpServlet {
             } else if (command.startsWith("/viewTarget.board")) {
                 BoardDTO targetContent = getTarget(request);
                 targetContent = BoardDAO.getInstance().viewTargetContent(targetContent);
+                List<ReplyDTO> targetReplies = ReplyDAO.getInstance().findReplyByParentId(targetContent);
                 request.setAttribute("targetContent", targetContent);
-                System.out.println(request.getContextPath());
-
+                request.setAttribute("targetReplies", targetReplies);
                 request.getRequestDispatcher("/board/content_view.jsp").forward(request,response);
 
             } else if (command.startsWith("/delete.board")) {

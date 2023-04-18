@@ -91,6 +91,9 @@
             <a href="/board/writeForm2.jsp">
                 <button class="btn btn-outline-primary">작성하기</button>
             </a>
+            <a href="/board/writeForm2.jsp">
+                <button class="btn btn-light">메인으로</button>
+            </a>
         </div>
     </div>
 </div>
