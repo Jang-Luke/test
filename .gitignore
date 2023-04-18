@@ -1,4 +1,4 @@
-*.DS_Store
+.DS_Store
 workspace_back/board_project/src/main/webapp/META-INF/context.xml
 workspace_back/board_project/src/main/webapp/board/simple-image.css
 workspace_back/board_project/src/main/webapp/summernote-0/*
