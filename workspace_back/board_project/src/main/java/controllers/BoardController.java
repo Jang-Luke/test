@@ -1,9 +1,9 @@
 package controllers;
 
-import DAO.BoardDAO;
-import DAO.ReplyDAO;
-import DTO.BoardDTO;
-import DTO.ReplyDTO;
+import dao.BoardDAO;
+import dao.ReplyDAO;
+import dto.BoardDTO;
+import dto.ReplyDTO;
 import statics.Settings;
 
 import javax.servlet.ServletException;

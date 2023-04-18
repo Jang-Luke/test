@@ -1,8 +1,8 @@
 package controllers;
 
-import DAO.ReplyDAO;
-import DTO.MemberDTO;
-import DTO.ReplyDTO;
+import dao.ReplyDAO;
+import dto.MemberDTO;
+import dto.ReplyDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
