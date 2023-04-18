@@ -1,11 +1,9 @@
-package DTO;
+package dto;
 
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class BoardDTO {
     private long id;

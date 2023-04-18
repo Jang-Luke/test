@@ -1,7 +1,7 @@
-package DAO;
+package dao;
 
-import DTO.BoardDTO;
-import DTO.ReplyDTO;
+import dto.BoardDTO;
+import dto.ReplyDTO;
 import commons.MyDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -9,7 +9,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ReplyDAO {
     private final BasicDataSource basicDataSource;

@@ -1,6 +1,6 @@
-package DAO;
+package dao;
 
-import DTO.MemberDTO;
+import dto.MemberDTO;
 import commons.MyDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 

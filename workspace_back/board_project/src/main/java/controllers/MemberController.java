@@ -1,7 +1,7 @@
 package controllers;
 
-import DAO.MemberDAO;
-import DTO.MemberDTO;
+import dao.MemberDAO;
+import dto.MemberDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 @WebServlet("*.member")
