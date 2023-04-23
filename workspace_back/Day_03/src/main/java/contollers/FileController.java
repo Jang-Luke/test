@@ -6,12 +6,12 @@ import dao.FilesDAO;
 import dto.FilesDTO;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 @WebServlet("*.file")
@@ -49,10 +49,36 @@ public class FileController extends HttpServlet {
 
                 filesDAO.insertFile(new FilesDTO(0, originalName, systemName, filePath, 0));
                 response.sendRedirect("/");
+            // 파일 전부 출력
             } else if (command.equals("/findAllFiles.file")) {
                 List<FilesDTO> fileList = filesDAO.findAllFiles();
                 request.setAttribute("fileList", fileList);
                 request.getRequestDispatcher("/file/viewFiles.jsp").forward(request, response);
+            // 파일 다운로드
+            } else if (command.equals("/download.file")) {
+                String uploadPath = request.getServletContext().getRealPath("upload");
+                String systemName = request.getParameter("systemName");
+                String originalName = request.getParameter("originalName");
+                originalName = new String(originalName.getBytes("UTF-8"), "ISO-8859-1");
+                response.reset();
+                response.setHeader("Content-Disposition", "attachment;filename="+originalName);
+
+                File target = new File(uploadPath + "/" + systemName);
+                System.out.println(uploadPath);
+                System.out.println(systemName);
+                System.out.println(originalName);
+                try(ServletOutputStream servletOutputStream = response.getOutputStream();
+                    FileInputStream fileInputStream = new FileInputStream(target);
+                    DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+                    FileOutputStream fileOutputStream = new FileOutputStream(target);
+                    DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);) {
+                    byte[] fileContents = new byte[(int) target.length()];
+                    dataInputStream.readFully(fileContents);
+                    servletOutputStream.write(fileContents);
+                    servletOutputStream.flush();
+//                    dataOutputStream.write(fileContents);
+//                    dataOutputStream.flush();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
