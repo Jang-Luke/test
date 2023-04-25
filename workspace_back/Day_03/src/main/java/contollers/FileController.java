@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Enumeration;
 import java.util.List;
 
 @WebServlet("*.file")
@@ -30,24 +31,22 @@ public class FileController extends HttpServlet {
                 if (!realPathFile.exists()) {
                     realPathFile.mkdir();
                 }
-                System.out.println(realPath);
-                System.out.println(realPathFile.getPath());
+
                 MultipartRequest multipartRequest = new MultipartRequest(request, realPath, 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
 
-                // id
-                // 업로드 시킬 때 당시의 원본 이름.
-                String originalName = multipartRequest.getOriginalFileName("file");
-                // 업로드 되어 RenamePolicy 영향을 받은 후 이름.
-                String systemName = multipartRequest.getFilesystemName("file");
-                // 파일이 업로드 된 경로
-                String filePath = realPathFile.getPath();
-                // parent_id
-//                long parentId = Long.parseLong(request.getParameter("parentId"));
+                Enumeration<String> names = multipartRequest.getFileNames();
+                while (names.hasMoreElements()) {
+                    String fileName = names.nextElement();
+                    if (multipartRequest.getFile(fileName) != null) {
+                        String originalName = multipartRequest.getOriginalFileName(fileName);
+                        String systemName = multipartRequest.getFilesystemName(fileName);
+                        String filePath = realPathFile.getPath();
+                        filesDAO.insertFile(new FilesDTO(0, originalName, systemName, filePath, 0));
+                    }
+                }
 
                 String acceptedMessage = multipartRequest.getParameter("message");
-                System.out.println("전송된 메세지 : " + acceptedMessage);
 
-                filesDAO.insertFile(new FilesDTO(0, originalName, systemName, filePath, 0));
                 response.sendRedirect("/");
             // 파일 전부 출력
             } else if (command.equals("/findAllFiles.file")) {

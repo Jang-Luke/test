@@ -16,7 +16,9 @@
             </div>
             <div class="col-12">
                 <input type="text" class="form-control" name="message" placeholder="전송할 메세지 입력">
-                <input type="file" class="form-control" name="file">
+                <input type="file" class="form-control" name="file1"><br>
+                <input type="file" class="form-control" name="file2"><br>
+                <input type="file" class="form-control" name="file3">
             </div>
             <div class="col-12">
                 <button class="btn btn-light">Upload</button>
