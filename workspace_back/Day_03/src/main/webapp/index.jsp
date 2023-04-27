@@ -18,6 +18,7 @@
             </div>
             <div class="col-6">
                 <a href="/findAllFiles.file">View File List</a>
+                <a href="/test.file">TESTTESTTEST</a>
             </div>
         </div>
     </div>

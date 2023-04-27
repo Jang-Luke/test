@@ -78,6 +78,11 @@ public class FileController extends HttpServlet {
 //                    dataOutputStream.write(fileContents);
 //                    dataOutputStream.flush();
                 }
+            } else if (command.equals("/test.file")) {
+                System.out.println("테스트 매핑 성공");
+                filesDAO.testMethod("QQQ");
+                System.out.println("테스트 메서드 실행");
+                response.sendRedirect("/");
             }
         } catch (Exception e) {
             e.printStackTrace();

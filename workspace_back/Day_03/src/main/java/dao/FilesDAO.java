@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,22 @@ public class FilesDAO {
             }
         }
     }
+public String testMethod(String a) throws Exception {
+    String sql = "UPDATE TEST_RS SET NAME = ? WHERE ID = 1";
+    String[] columnNames = new String[] {"VALUE"};
+    System.out.println(sql);
+    try(Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql, columnNames)) {
+        preparedStatement.setString(1, a);
+        preparedStatement.executeUpdate();
+        try(ResultSet resultSet = preparedStatement.getResultSet()){
+            resultSet.next();
+            String value = resultSet.getString("VALUE");
+            System.out.println(value);
+            return value;
+        } // 디폴트 값도 오토제네레이티드 키 인가?
+    }
+}
 
     private FilesDTO getFileContainer(ResultSet resultSet) throws Exception {
         long id = resultSet.getLong("ID");

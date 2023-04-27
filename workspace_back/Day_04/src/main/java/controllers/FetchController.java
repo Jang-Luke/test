@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dto.ContactDTO;
 
 import javax.servlet.ServletException;
@@ -12,9 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 @WebServlet("*.fetch")
@@ -85,6 +89,18 @@ public class FetchController extends HttpServlet {
             jsonWriter.jsonValue(responseJson.toString()).flush();
 
 //            response.getWriter().append(responseJson.toString());
+        } else if (command.equals("/exam06.fetch")) {
+            String realPath = request.getServletContext().getRealPath("upload");
+            File realPathFile = new File(realPath);
+            System.out.println(realPath);
+            if (!realPathFile.exists()) {
+                realPathFile.mkdir();
+            }
+
+            MultipartRequest multipartRequest = new MultipartRequest(request, realPath, 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
+
+
+            response.sendRedirect("/");
         }
     }
 }
