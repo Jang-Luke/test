@@ -10,6 +10,7 @@ public class Human {
 	public Human() {
 	}
 
+
 	// setter 가 존재하면 composition 도 가능하고 aggregation 도 가능하다.
 	// (외부에서 주입받을 경우 life cycle이 달라지기 때문)
 }
