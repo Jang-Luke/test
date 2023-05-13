@@ -15,11 +15,16 @@ public class JpaMain {
 
         try {
             tx.begin();
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(0)
-                    .setMaxResults(10)
-                    .getResultList();
-            result.forEach(e -> System.out.println("member.name = " + e.getName()));
+
+            Member member1 = new Member(170L, "C");
+            Member member2 = new Member(180L, "D");
+            Member member3 = new Member(190L, "E");
+
+            em.persist(member1);
+            em.persist(member2);
+            em.persist(member3);
+            System.out.println("==-=-=-=-=-==-=-");
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
