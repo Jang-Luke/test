@@ -24,12 +24,6 @@ public class UserStoreImpl implements UserStore {
 
     @Override
     public String create(User newUser) {
-        String sql = "INSERT INTO users VALUES(0, ?, ?)";
-        try (Connection connection = MySqlConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement()) {
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         this.userMap.put(newUser.getId(), newUser);
         return newUser.getId();
     }

@@ -14,13 +14,16 @@ import java.util.UUID;
 @ToString
 public class User {
 
-    private Long id;
+    private String id;
     private String name;
     private String email;
 
-    public User(Long id, String name, String email) {
-        this.id = Optional.ofNullable(id)
-                .orElse(0L);
+    public User() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public User(String name, String email) {
+        this();
         this.name = name;
         this.email = email;
     }
