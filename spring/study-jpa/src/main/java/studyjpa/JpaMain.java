@@ -16,15 +16,10 @@ public class JpaMain {
         try {
             tx.begin();
 
-            Member member1 = new Member(170L, "C");
-            Member member2 = new Member(180L, "D");
-            Member member3 = new Member(190L, "E");
-
-            em.persist(member1);
-            em.persist(member2);
-            em.persist(member3);
-            System.out.println("==-=-=-=-=-==-=-");
-
+            Member member = new Member(200L, "member200");
+            em.persist(member);
+            em.flush();
+            System.out.println("-=-=-=-=-=-=-=-");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
