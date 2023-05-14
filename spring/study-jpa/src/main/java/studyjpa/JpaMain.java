@@ -16,9 +16,10 @@ public class JpaMain {
         try {
             tx.begin();
 
-            Member member = new Member(200L, "member200");
-            em.persist(member);
-            em.flush();
+            Member member = em.find(Member.class, 150L);
+            member.setName("A");
+            em.clear();
+            Member member2 = em.find(Member.class, 150L);
             System.out.println("-=-=-=-=-=-=-=-");
             tx.commit();
         } catch (Exception e) {
