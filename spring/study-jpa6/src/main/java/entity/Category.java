@@ -14,7 +14,7 @@ import java.util.List;
 public class Category extends BaseEntity {
     @Id
     @GeneratedValue
-    @Column(name = "Category_id")
+    @Column(name = "category_isd")
     private Long id;
     private String name;
     @OneToMany(mappedBy = "category")
