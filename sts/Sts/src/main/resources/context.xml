@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="samsung" class="kh.spring.elec.SamsungTV" lazy-init="true">
+		<property name="price" value="2000000"></property>
+		<property name="brand" value="Samsung"></property>
+		<property name="speaker" ref="apple"></property>
+	</bean>
+	<bean id="lg" class="kh.spring.elec.LGTV" lazy-init="true">
+		<constructor-arg name="price" value="1000000"></constructor-arg>
+		<constructor-arg name="brand" value="LG"></constructor-arg>
+		<constructor-arg name="speaker" ref="sony"></constructor-arg>
+	</bean>
+	
+	<bean id="sony" class="kh.spring.elec.SonySpeaker" lazy-init="true">
+		
+	</bean>
+	<bean id="apple" class="kh.spring.elec.AppleSpeaker" lazy-init="true"></bean>
+</beans>
