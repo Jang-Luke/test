@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" class="content" placeholder="보낼 메세지를 입력하세요.">
+    <button type="button" value="전송" class="sendBtn" onclick="sendMessage()">전송</button>
+
+    <div>
+        <span>메세지</span>
+        <div class="msgArea"></div>
+    </div>
+    <script>
+        const socket = new WebSocket("ws://localhost:8080/websocket");
+        socket.onopen = function (e) {
+            console.log('open sever!');
+        };
+        socket.onerror = function (e) {
+            console.log(e);
+        }
+        socket.onmessage = function (e) {
+            console.log(e.data);
+            const msgArea = document.querySelector('.msgArea');
+            const newMsg = document.createElement('div');
+            newMsg.innerText = e.data;
+            msgArea.append(newMsg);
+        }
+
+        function sendMsg() {
+            const content = document.querySelector('.content').value;
+            socket.send(content);
+        }
+    </script>
+</body>
+</html>

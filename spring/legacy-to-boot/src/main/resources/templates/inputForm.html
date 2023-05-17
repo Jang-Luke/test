@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is Input</title>
+    <style>
+        .container{
+            display:flex;
+            flex-flow: column wrap;
+        }
+        .container *{
+            display: inherit;
+        }
+        .container input {
+            flex: 1rem 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/inputProc" method="post">
+            <input type="text" name="title" id="title" placeholder="영화 제목">
+            <input type="text" name="genre" id="genre" placeholder="영화 장르">
+            <input type="submit" value="확인">
+        </form>
+        <a href="/">Back</a>
+    </div>
+</body>
+</html>
