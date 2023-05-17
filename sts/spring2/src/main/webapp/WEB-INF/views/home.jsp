@@ -11,5 +11,18 @@
 	<form action="/" method="post">
 		<input type="text" name="param">
 	</form>
+	<table>
+		<tr>
+			<th colspan=2>Index</th>
+		</tr>
+		<tr>
+			<td>
+				<a href="/to/input">toInput</a>
+			</td>
+			<td>
+				<a href="/to/output">toOutput</a>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
