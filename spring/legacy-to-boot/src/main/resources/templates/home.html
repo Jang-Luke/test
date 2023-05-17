@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <p>Welcome to my Home!</p>
+    <form action="/" method="post">
+        <input type="text" name="myMessage" id="myMessage">
+        <input type="submit" value="전송">
+    </form>
+    <table>
+        <tr>
+            <th colspan="2">
+                Index
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <a href="/to/input">toInput</a>
+            </td>
+            <td>
+                <a href="/to/output">toOutput</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
