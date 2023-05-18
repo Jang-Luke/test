@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kh.spring.dto.MovieDto;
+
 @Controller
 @RequestMapping("/to")
 public class ToController {
@@ -17,13 +19,9 @@ public class ToController {
 	public String toOutput() {
 		return "outputForm";
 	}
-	@PostMapping("inputProc")
-	public String inputProc(@RequestParam String title, @RequestParam String genre) {
-//		String title = request.getParameter("title");
-//		String genre = request.getParameter("genre");
-		
-		System.out.println(title);
-		System.out.println(genre);
+	
+	@PostMapping("/inputProc")
+	public String inputProc(MovieDto movie) {
 		return "redirect:/";
 	}
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Input Form Here</h2>
-	<form action="/to/inputProc" method="post">
+	<form action="/movie/register" method="post">
 		<table>
 			<tr>
 				<td>
