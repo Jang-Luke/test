@@ -52,8 +52,34 @@ public class OracleMovieRepository implements MovieRepository {
 		}
 	}
 	
+	@Override
+	public void delete(Long id) throws SQLException {
+		String sql = "delete from movies where id = ?";
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			preparedStatement.setLong(1, id);
+			if (preparedStatement.executeUpdate() == 0) {
+				throw new SQLException();
+			}
+		}
+	}
+	
+	@Override
+	public void modify(MovieDto movie) throws SQLException {
+		String sql = "update movies set title = ?, genre = ? where id = ?";
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+			preparedStatement.setString(1, movie.getTitle());
+			preparedStatement.setString(2, movie.getGenre());
+			preparedStatement.setLong(3, movie.getId());
+			if (preparedStatement.executeUpdate() == 0) {
+				throw new SQLException();
+			}
+		}
+	}
+
 	private MovieDto mapRow(ResultSet resultSet) throws SQLException {
-		int id = resultSet.getInt(1);
+		Long id = resultSet.getLong(1);
 		String title = resultSet.getString(2);
 		String genre = resultSet.getString(3);
 		return new MovieDto(id, title, genre);

@@ -9,6 +9,8 @@ import kh.spring.dto.MovieDto;
 
 @Repository
 public interface MovieRepository {
-	public void save(MovieDto Movie) throws SQLException;
+	public void save(MovieDto movie) throws SQLException;
 	public List<MovieDto> findAll() throws SQLException;
+	public void delete(Long id) throws SQLException;
+	public void modify(MovieDto movie) throws SQLException;
 }

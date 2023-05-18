@@ -15,6 +15,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @ComponentScan(
+		basePackages = "kh.spring.configuration",
 		excludeFilters = @Filter(type = FilterType.ANNOTATION,
 		classes = ExcludedComponent.class)
 )

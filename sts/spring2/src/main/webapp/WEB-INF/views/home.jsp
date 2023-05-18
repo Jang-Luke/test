@@ -13,7 +13,7 @@
 	</form>
 	<table>
 		<tr>
-			<th colspan=2>Index</th>
+			<th colspan=4>Index</th>
 		</tr>
 		<tr>
 			<td>
@@ -21,6 +21,12 @@
 			</td>
 			<td>
 				<a href="/movie/list">Show Movie List</a>
+			</td>
+			<td>
+				<a href="/movie/delete">Delete movie</a>
+			</td>
+			<td>
+				<a href="/movie/modify">Modify movie</a>
 			</td>
 		</tr>
 	</table>

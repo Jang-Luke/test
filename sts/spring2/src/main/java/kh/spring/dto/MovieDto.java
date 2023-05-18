@@ -1,16 +1,10 @@
 package kh.spring.dto;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieDto {
-	private AtomicInteger idSupplier;
-	@Nullable
-	private int id;
+	private Long id;
 	private String title;
 	private String genre;
 	
@@ -18,23 +12,18 @@ public class MovieDto {
 	public MovieDto() {
 	}
 	
-	@Autowired
-	public MovieDto(AtomicInteger atomicInteger) {
-		this.idSupplier = atomicInteger;
-	}
-	
-	public MovieDto(int id, String title, String genre) {
+	public MovieDto(Long id, String title, String genre) {
 		this.id = id;
 		this.title = title;
 		this.genre = genre;
 	}
-	
-	AtomicInteger getIdSupplier() {
-		return idSupplier;
-	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
