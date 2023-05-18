@@ -20,7 +20,7 @@
 				<a href="/to/input">toInput</a>
 			</td>
 			<td>
-				<a href="/to/output">toOutput</a>
+				<a href="/movie/list">Show Movie List</a>
 			</td>
 		</tr>
 	</table>
