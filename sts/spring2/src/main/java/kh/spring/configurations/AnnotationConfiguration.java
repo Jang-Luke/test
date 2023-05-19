@@ -1,7 +1,5 @@
 package kh.spring.configurations;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -9,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -20,11 +19,6 @@ import com.zaxxer.hikari.HikariDataSource;
 		classes = ExcludedComponent.class)
 )
 public class AnnotationConfiguration {
-	
-	@Bean
-	public AtomicInteger atomicInteger() {
-		return new AtomicInteger();
-	}
 	
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource(){
@@ -38,5 +32,12 @@ public class AnnotationConfiguration {
 	    HikariDataSource dataSource = new HikariDataSource(hikariConfig);
 	 
 	    return dataSource;
+	}
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		jdbcTemplate.setDataSource(dataSource());
+		return jdbcTemplate;
 	}
 }

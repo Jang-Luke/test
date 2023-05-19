@@ -14,12 +14,12 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.dto.Message;
 
-@Repository
+
 public class OracleMessageRepository implements MessageRepository {
 	
 	private DataSource dataSource;
 	
-	@Autowired
+	
 	public OracleMessageRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -39,9 +39,10 @@ public class OracleMessageRepository implements MessageRepository {
 	}
 
 	@Override
-	public void save(Message message, Connection connection) throws SQLException {
+	public void save(Message message) throws SQLException {
 		String sql = "insert into message values(message_seq.nextval, ?, ?)";
-		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 			preparedStatement.setString(1, message.getWriter());
 			preparedStatement.setString(2, message.getMessage());
 			if (preparedStatement.executeUpdate() == 0) {
@@ -51,9 +52,10 @@ public class OracleMessageRepository implements MessageRepository {
 	}
 
 	@Override
-	public Message modify(Message message, Connection connection) throws SQLException {
+	public Message modify(Message message) throws SQLException {
 		String sql = "update message set writer = ?, message = ? where id = ?";
-		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 			preparedStatement.setString(1, message.getWriter());
 			preparedStatement.setString(2, message.getMessage());
 			preparedStatement.setLong(3, message.getId());
@@ -65,9 +67,10 @@ public class OracleMessageRepository implements MessageRepository {
 	}
 	
 	@Override
-	public void delete(Message message, Connection connection) throws SQLException {
+	public void delete(Message message) throws SQLException {
 		String sql = "delete from message where id = ?";
-		try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+		try(Connection connection = dataSource.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 			preparedStatement.setLong(1, message.getId());
 			if (preparedStatement.executeUpdate() == 0) {
 				throw new SQLException("존재하지 않는 글입니다.");

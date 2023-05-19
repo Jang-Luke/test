@@ -54,7 +54,7 @@ public class MessageController {
 	public String modify(Message message, Model model) throws SQLException {
 		Message modifiedmessage = messageService.modify(message);
 		model.addAttribute("message", modifiedmessage);
-		return "redirect:/message/list";
+		return "redirect:/message/modify";
 	}
 	
 	@GetMapping("/delete")
@@ -66,7 +66,7 @@ public class MessageController {
 	@PostMapping("/delete")
 	public String delete(Message message, Model model) throws SQLException{
 		messageService.delete(message);
-		return "redirect:/message/list";
+		return "redirect:/message/delete";
 	}
 	
 	private void setList(Model model) throws SQLException {

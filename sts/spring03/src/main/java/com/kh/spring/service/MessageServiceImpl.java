@@ -16,12 +16,10 @@ import com.kh.spring.repository.MessageRepository;
 public class MessageServiceImpl implements MessageService {
 	
 	private MessageRepository messageRepository;
-	private DataSource dataSource;
 	
 	@Autowired
-	public MessageServiceImpl(MessageRepository messageRepository, DataSource dataSource) {
+	public MessageServiceImpl(MessageRepository messageRepository) {
 		this.messageRepository = messageRepository;
-		this.dataSource = dataSource;
 	}
 	
 	@Override
@@ -32,48 +30,30 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void save(Message message) throws SQLException {
-		Connection connection = null;
 		try {
-			connection = dataSource.getConnection();
-			messageRepository.save(message, connection);
-			connection.commit();
+			messageRepository.save(message);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			connection.rollback();
-		} finally {
-			connection.close();
 		}
 	}
 
 	@Override
 	public Message modify(Message message) throws SQLException {
-		Connection connection = null;
 		Message modifiedmessage = new Message();
 		try {
-			connection = dataSource.getConnection();
-			modifiedmessage = messageRepository.modify(message, connection);
-			connection.commit();
+			modifiedmessage = messageRepository.modify(message);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			connection.rollback();
-		} finally {
-			connection.close();
 		}
 		return modifiedmessage;
 	}
 
 	@Override
 	public void delete(Message message) throws SQLException {
-		Connection connection = null;
 		try {
-			connection = dataSource.getConnection();
-			messageRepository.delete(message, connection);
-			connection.commit();
+			messageRepository.delete(message);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			connection.rollback();
-		} finally {
-			connection.close();
 		}
 	}
 	
