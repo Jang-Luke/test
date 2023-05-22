@@ -2,7 +2,7 @@ package kh.spring.dto;
 
 import java.time.LocalDateTime;
 
-public class Member {
+public class Member implements Encryptable {
 	private Long id;
 	private String username;
 	private String password;
@@ -30,64 +30,66 @@ public class Member {
 		this.registerDate = registerDate;
 	}
 
-	Long getId() {
+	public Long getId() {
 		return id;
 	}
-	void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	String getUsername() {
+	public String getUsername() {
 		return username;
 	}
-	void setUsername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
-	String getPassword() {
+	@Override
+	public String getPassword() {
 		return password;
 	}
-	void setPassword(String password) {
+	@Override
+	public void setPassword(String password) {
 		this.password = password;
 	}
-	String getName() {
+	public String getName() {
 		return name;
 	}
-	void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	String getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	void setPhone(String phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	String getEmail() {
+	public String getEmail() {
 		return email;
 	}
-	void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
-	String getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
-	void setZipcode(String zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	String getAddress1() {
+	public String getAddress1() {
 		return address1;
 	}
-	void setAddress1(String address1) {
+	public void setAddress1(String address1) {
 		this.address1 = address1;
 	}
-	String getAddress2() {
+	public String getAddress2() {
 		return address2;
 	}
-	void setAddress2(String address2) {
+	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	LocalDateTime getRegisterDate() {
+	public LocalDateTime getRegisterDate() {
 		return registerDate;
 	}
-	void setRegisterDate(LocalDateTime registerDate) {
+	public void setRegisterDate(LocalDateTime registerDate) {
 		this.registerDate = registerDate;
 	}
 }

@@ -2,6 +2,8 @@ package kh.spring;
 
 import javax.sql.DataSource;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.password.PasswordEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -31,4 +33,10 @@ public class AppConfig {
 		jdbcTemplate.setDataSource(dataSource());
 		return jdbcTemplate; 
 	}
+	
+	@Bean
+	public PasswordEncryptor passwordEncryptor() {
+		return new BasicPasswordEncryptor();
+	}
+	
 }

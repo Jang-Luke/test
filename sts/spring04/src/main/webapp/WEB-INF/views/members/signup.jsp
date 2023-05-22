@@ -18,7 +18,9 @@
         * {
             padding: 0px;
         }
-
+		.hidden{
+			display:none;
+		}
         .inputBox {
             width: 100%;
             height: 100%;
@@ -38,11 +40,14 @@
         .validate {
             color: #87ceeb;
         }
+        .checked{
+        	font-weight:bold;
+        }
     </style>
 </head>
 
 <body>
-<form action="/createAccount.member" id="frm" method="post">
+<form action="/members/signup" id="frm" method="post">
     <div class="container">
         <div class="row">
             <div class="col-12 text-align-center">
@@ -55,10 +60,11 @@
                 아이디
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inId" class=" form-control enterToNext" id="inId" placeholder="아이디를 입력해주세요.">
+                <input type="text" name="username" class=" form-control enterToNext" id="inId" placeholder="아이디를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
                 <button type="button" id="duplicationCheck" class="btn btn-outline-primary">중복확인</button>
+                <button type="button" id="duplicationChecked" class="btn btn-secondary hidden">다시입력</button>
             </div>
         </div>
         <!--패스워드 입력창-->
@@ -67,7 +73,7 @@
                 패스워드
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="password" name="inPw" class=" form-control enterToNext" id="inPw" placeholder="패스워드를 입력해주세요.">
+                <input type="password" name="password" class=" form-control enterToNext" id="inPw" placeholder="패스워드를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
             </div>
@@ -90,7 +96,7 @@
                 이름
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inName" class=" form-control enterToNext" id="inName" placeholder="이름 입력해주세요.">
+                <input type="text" name="name" class=" form-control enterToNext" id="inName" placeholder="이름 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -101,7 +107,7 @@
                 전화번호
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inPhone" class=" form-control enterToNext" id="inPhone" placeholder="전화번호를 입력해주세요.">
+                <input type="text" name="phone" class=" form-control enterToNext" id="inPhone" placeholder="전화번호를 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -112,7 +118,7 @@
                 이메일
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inEmail" class=" form-control enterToNext" id="inEmail" placeholder="이메일을 입력해주세요.">
+                <input type="text" name="email" class=" form-control enterToNext" id="inEmail" placeholder="이메일을 입력해주세요.">
             </div>
             <div class="col-12 col-sm-3 col-md-4">
             </div>
@@ -123,7 +129,7 @@
                 우편번호
             </div>
             <div class="col-9 col-sm-7 col-md-6 p-1">
-                <input type="text" name="inZipcode" class=" form-control enterToNext" id="inZipcode" readonly>
+                <input type="text" name="zipcode" class=" form-control enterToNext" id="inZipcode" readonly>
             </div>
             <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
                 <button type="button" id="searchAddress" class="btn btn-outline-primary">찾기</button>
@@ -135,7 +141,7 @@
                 주소1
             </div>
             <div class="col-9 col-sm-10 col-md-10 p-1">
-                <input type="text" name="inAddress1" class=" form-control enterToNext" id="inAddress1" readonly>
+                <input type="text" name="address1" class=" form-control enterToNext" id="inAddress1" readonly>
             </div>
         </div>
         <!--주소2 입력창-->
@@ -144,7 +150,7 @@
                 주소2
             </div>
             <div class="col-9 col-sm-10 col-md-10 p-1">
-                <input type="text" name="inAddress2" class=" form-control enterToNext" id="inAddress2">
+                <input type="text" name="address2" class=" form-control enterToNext" id="inAddress2">
             </div>
         </div>
         <!--버튼 바-->
@@ -220,7 +226,7 @@
             }
         }
         const is_all_arguments_validate = function(){
-            return checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation();
+            return checkIdValidation() && checkPwValidation() && checkNameValidation() && checkPhoneValidation() && checkEmailValidation() &&checkIdDuplication();
         }
         
         document.querySelector('#submitBtn').addEventListener('click', function() {
@@ -245,11 +251,19 @@
             }).open();
         };
         $('#duplicationCheck').on('click', function() {
-        	const id = $('#inId').val();
-        	
+        	const id = $('#inId');
+        	if (!checkIdValidation()) {
+				Swal.fire({
+					icon:'error',
+					title:'사용할 수 없는 아이디입니다.',
+					showConfirmButton:false,
+					timer:1000
+				});
+        		return false;
+			}
         	$.ajax({
-        		url:"/member/idCheck",
-        		data:{username:id},
+        		url:"/members/idCheck",
+        		data:{username:id.val()},
         		method: 'post'
         	}).done(function(resp){
         		resp = JSON.parse(resp);
@@ -260,7 +274,7 @@
 						showConfirmButton: false,
 						timer: 1000
 					});
-					$('#inId').val('');
+					id.val('');
 				} else {
 					Swal.fire({
 						icon: 'success',
@@ -268,9 +282,27 @@
 						showConfirmButton: false,
 						timer: 1000
 					});
+					id.prop('readonly', true);
+					switchCheckButton();
 				};
         	});
         });
+        $('#duplicationChecked').on('click', function() {
+        	if (checkIdDuplication()) {
+        		switchCheckButton();
+        		$('#inId').prop('readonly', false);
+			}
+        })
+        function switchCheckButton() {
+        	const idCheckButton = $('#duplicationCheck');
+        	const idCheckedButton = $('#duplicationChecked');
+        	idCheckButton.toggleClass('hidden');
+        	idCheckedButton.toggleClass('hidden');
+        	idCheckedButton.toggleClass('checked');
+        }
+        function checkIdDuplication() {
+        	return $('#duplicationChecked').hasClass('checked');
+        }
     </script>
 </body>
 
