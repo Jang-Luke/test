@@ -18,7 +18,7 @@
   <c:when test="${sessionScope.loginId != null}">
     <p>= ${sessionScope.loginId} = 님 환영합니다.</p>
     <hr>
-    <a href="/boards/list">게시판으로</a>
+    <a href="/boards">게시판으로</a>
     <br>
     <a href="/boards/register">작성하기</a>
     <br>
@@ -86,5 +86,8 @@
     </script>
   </c:otherwise>
 </c:choose>
+<br><br><br>
+<hr>
+<a href="/mybatis">to mybatis</a>
 </body>
 </html>

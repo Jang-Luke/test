@@ -79,6 +79,12 @@
   </div>
 </div>
 <hr>
-<a href="/boards/list">목록으로</a>
+<c:if test="${sessionScope.loginId == board.writer}">
+  <a href="/boards/${board.id}/delete">삭제하기</a>
+  <a href="/boards/${board.id}/modify">수정하기</a>
+</c:if>
+<a href="/boards">목록으로</a>
+<a href="/boards/datatablelist">데이터 테이블로</a>
+<a href="/">홈으로</a>
 </body>
 </html>

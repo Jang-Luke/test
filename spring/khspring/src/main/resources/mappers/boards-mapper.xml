@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Boards">
+    <insert id="insert">
+        insert into boards values(0, #{writer}, #{title}, #{content}, default, default, default)
+    </insert>
+    <select id="selectAll" resultType="kh.study.khspring.dto.Board">
+        select * from boards
+    </select>
+    <select id="select" resultType="kh.study.khspring.dto.Board">
+        select * from boards where id = ${id}
+    </select>
+    <update id="update">
+        update boards set title = #{title}, content = #{content} where id = ${id}
+    </update>
+    <delete id="delete">
+        delete from boards where id = ${id}
+    </delete>
+    <update id="increaseViewCount">
+        update boards set view_count = view_count + 1 where id = ${id}
+    </update>
+</mapper>

@@ -11,5 +11,11 @@ public interface BoardRepository {
 
     void save(BoardDto boardDto) throws SQLException;
 
-    Board findById(Long boardId)throws SQLException;
+    Board findById(Long boardId) throws SQLException;
+
+    BoardRepository increaseViewCount(Long boardId) throws SQLException;
+
+    void delete(Long boardId) throws SQLException;
+
+    void modify(Long boardId, Board board) throws SQLException;
 }

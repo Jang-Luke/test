@@ -3,6 +3,7 @@ package kh.study.khspring.repository;
 import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
 import kh.study.khspring.dto.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -10,14 +11,12 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
+//@Repository
+//@RequiredArgsConstructor
 public class MysqlMemberRepository implements MemberRepository {
 
+//    private final JdbcTemplate jdbcTemplate;
     private JdbcTemplate jdbcTemplate;
-
-    public MysqlMemberRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public boolean isMember(String username) {

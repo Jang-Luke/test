@@ -4,6 +4,7 @@ import kh.study.khspring.dto.Board;
 import kh.study.khspring.dto.BoardDto;
 import kh.study.khspring.service.BoardService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/boards")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BoardController {
-    private BoardService boardService;
+    private final BoardService boardService;
 
-    @GetMapping("/list")
+    @GetMapping
     public String findAll(Model model) throws SQLException {
         List<Board> boards = boardService.findAll();
         model.addAttribute("boards", boards);
@@ -32,7 +33,7 @@ public class BoardController {
     @PostMapping
     public String register(BoardDto boardDto) throws SQLException {
         boardService.save(boardDto);
-        return "redirect:/boards/list";
+        return "redirect:/boards";
     }
 
     @GetMapping("/{boardId}")
@@ -47,6 +48,25 @@ public class BoardController {
         List<Board> boards = boardService.findAll();
         model.addAttribute("boards", boards);
         return "/boards/datatablelist";
+    }
+
+    @GetMapping("/{boardId}/delete")
+    public String delete(@PathVariable Long boardId) throws SQLException {
+        boardService.delete(boardId);
+        return "/boards/list";
+    }
+
+    @GetMapping("/{boardId}/modify")
+    public String toModifyForm(@PathVariable Long boardId, Model model) throws SQLException {
+        Board board = boardService.findById(boardId);
+        model.addAttribute("board", board);
+        return "/boards/modify";
+    }
+
+    @PostMapping("/{boardId}/modify")
+    public String modify(@PathVariable Long boardId, @ModelAttribute Board board) throws SQLException {
+        boardService.modify(boardId, board);
+        return "redirect:/boards/{boardId}";
     }
 
     @ExceptionHandler(SQLException.class)

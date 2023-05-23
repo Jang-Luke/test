@@ -4,17 +4,16 @@ import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
 import kh.study.khspring.dto.Member;
 import kh.study.khspring.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-    private MemberRepository memberRepository;
 
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
+    private final MemberRepository memberRepository;
 
     @Override
     public boolean isMember(String username) {

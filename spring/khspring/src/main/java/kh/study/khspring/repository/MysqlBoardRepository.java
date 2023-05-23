@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
-@AllArgsConstructor
+//@Repository
+//@RequiredArgsConstructor
 public class MysqlBoardRepository implements BoardRepository {
+
+//    private final JdbcTemplate jdbcTemplate;
     private JdbcTemplate jdbcTemplate;
 
     @Override
@@ -32,5 +34,22 @@ public class MysqlBoardRepository implements BoardRepository {
     public Board findById(Long boardId) throws SQLException {
         String sql = "select * from boards where id = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), boardId);
+    }
+
+    @Override
+    public BoardRepository increaseViewCount(Long boardId) throws SQLException {
+        String sql = "update boards set view_count = +1 where id = ?";
+        jdbcTemplate.update(sql, boardId);
+        return this;
+    }
+
+    @Override
+    public void delete(Long boardId) throws SQLException {
+
+    }
+
+    @Override
+    public void modify(Long boardId, Board board) throws SQLException {
+
     }
 }

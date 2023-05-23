@@ -1,11 +1,9 @@
 package kh.study.khspring.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.datetime.DateFormatter;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +14,7 @@ import java.time.format.DateTimeFormatterBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Board {
     private Long id;
     private String writer;
@@ -37,8 +36,7 @@ public class Board {
             return "오늘";
         } else {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM-dd");
-            String formedDate = writeDate.toLocalDate().format(dateFormat);
-            return formedDate;
+            return writeDate.toLocalDate().format(dateFormat);
         }
     }
 }
