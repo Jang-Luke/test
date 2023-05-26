@@ -3,8 +3,9 @@ package kh.study.khspring.controller;
 import kh.study.khspring.dto.Encryptable;
 import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
-import kh.study.khspring.dto.Member;
+import kh.study.khspring.entity.Member;
 import kh.study.khspring.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.jasypt.util.password.PasswordEncryptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +22,11 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/members")
+@RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
-    private PasswordEncryptor passwordEncryptor;
-    private HttpSession session;
-
-    public MemberController(MemberService memberService, PasswordEncryptor passwordEncryptor, HttpSession session) {
-        this.memberService = memberService;
-        this.passwordEncryptor = passwordEncryptor;
-        this.session = session;
-    }
+    private final MemberService memberService;
+    private final HttpSession session;
 
     @GetMapping("/signup")
     public String toSignup() {
@@ -40,7 +35,6 @@ public class MemberController {
 
     @PostMapping("/signup")
     public String signup(Member member) {
-        encryptPassword(member);
         memberService.save(member);
         return "redirect:/";
     }
@@ -57,23 +51,8 @@ public class MemberController {
                     .ifPresent(c -> removeUsernameCookie(c, response))
                 )
             );
-
-
-//        Arrays.stream(request.getCookies())
-//                .filter(e -> e.getName().equals("rememberUsername"))
-//                .findAny()
-//                .ifPresent(c -> removeUsernameCookie(c, response));
-//
-//        if (loginDto.getRememberUsername()) {
-//            addUsernameCookie(loginDto.getUsername(), response);
-//        } else {
-//        }
-        LoginResponse loginResponse = memberService.login(loginDto);
-        if (passwordEncryptor.checkPassword(loginDto.getPassword(), loginResponse.getPassword())) {
-            session.setAttribute("loginId", loginDto.getUsername());
-        } else {
-            throw new RuntimeException();
-        }
+        String loginId = memberService.login(loginDto);
+        session.setAttribute("loginId", loginId);
         return "redirect:/";
     }
 
@@ -94,11 +73,6 @@ public class MemberController {
     public String idDuplicationCheck(String username) {
         boolean result = memberService.isMember(username);
         return String.valueOf(result);
-    }
-    private void encryptPassword(Encryptable type) {
-        String plainPassword = type.getPassword();
-        String encryptedPassword = passwordEncryptor.encryptPassword(plainPassword);
-        type.setPassword(encryptedPassword);
     }
 
     private void addUsernameCookie(String username, HttpServletResponse response) {

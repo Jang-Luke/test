@@ -4,12 +4,32 @@
 <html>
 <head>
   <title>Register</title>
+  <style>
+    .container{
+        margin: auto;
+        width: 90vw;
+    }
+    #title{
+        display: block;
+        width: 100%;
+        padding: 5px;
+    }
+    #content{
+        display: block;
+        width: 100%;
+        min-height: 350px;
+        padding: 5px;
+    }
+  </style>
 </head>
 <body>
-<form action="/boards" method="post">
-  <input type="hidden" name="writer" value="${sessionScope.loginId}">
-  <input type="text" name="title" id="title" placeholder="제목">
-  <textarea name="content" id="content" cols="30" rows="10" placeholder="내용"></textarea>
+<form action="/boards" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <input type="hidden" name="writer" value="${sessionScope.loginId}">
+    <input type="text" name="title" id="title" placeholder="제목">
+    <textarea name="content" id="content" cols="30" rows="10" placeholder="내용"></textarea>
+    <input type="file" name="files" id="files" multiple>
+  </div>
   <hr>
   <input type="submit" value="작성하기">
 </form>

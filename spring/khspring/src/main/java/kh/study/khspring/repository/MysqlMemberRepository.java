@@ -2,13 +2,9 @@ package kh.study.khspring.repository;
 
 import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
-import kh.study.khspring.dto.Member;
-import lombok.RequiredArgsConstructor;
+import kh.study.khspring.entity.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //@Repository

@@ -66,7 +66,6 @@
   </c:forEach>
   </tbody>
 </table>
-<a href="/boards">목록으로</a>
 <a href="/">홈으로</a>
 <script>
     // let table = new DataTable('#data-list-table');

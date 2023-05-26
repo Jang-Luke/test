@@ -22,8 +22,6 @@
     <br>
     <a href="/boards/register">작성하기</a>
     <br>
-    <a href="/boards/datatablelist">데이터 테이블로</a>
-    <br>
     <a href="/members/logout">로그아웃</a>
   </c:when>
   <c:otherwise>
@@ -57,7 +55,8 @@
               <button type="button">회원가입</button>
             </a>
             <br>
-            ID 기억하기<input type="checkbox" name="rememberUsername" id="usernameCheck" value="true">
+            ID 기억하기<input type="checkbox" name="rememberUsername" id="usernameCheck" value="on">
+            <input type="hidden" name="_rememberUsername" id="_usernameCheck" value="on">
           </td>
         </tr>
       </table>

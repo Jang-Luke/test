@@ -1,8 +1,7 @@
 package kh.study.khspring.repository;
 
-import kh.study.khspring.dto.Board;
+import kh.study.khspring.entity.Board;
 import kh.study.khspring.dto.BoardDto;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,8 +21,9 @@ public class MyBatisBoardRepository implements BoardRepository {
     }
 
     @Override
-    public void save(BoardDto boardDto) throws SQLException {
-        sqlSessionTemplate.insert("Boards.insert", boardDto);
+    public Long save(Board board) throws SQLException {
+        sqlSessionTemplate.insert("Boards.insert", board);
+        return board.getId();
     }
 
     @Override

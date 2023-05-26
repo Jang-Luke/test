@@ -2,8 +2,7 @@ package kh.study.khspring.repository;
 
 import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
-import kh.study.khspring.dto.Member;
-import lombok.AllArgsConstructor;
+import kh.study.khspring.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

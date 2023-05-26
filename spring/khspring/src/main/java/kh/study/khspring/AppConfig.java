@@ -20,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.sql.DataSource;
 
@@ -66,6 +67,13 @@ public class AppConfig {
     @Bean
     public PasswordEncryptor passwordEncryptor() {
         return new BasicPasswordEncryptor();
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10*1024*1024); // 10mb
+        return multipartResolver;
     }
 
 }

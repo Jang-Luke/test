@@ -1,14 +1,16 @@
 package kh.study.khspring.controller;
 
-import kh.study.khspring.dto.Board;
+import kh.study.khspring.entity.Board;
 import kh.study.khspring.dto.BoardDto;
+import kh.study.khspring.entity.Files;
 import kh.study.khspring.service.BoardService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,12 +19,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final HttpSession session;
 
     @GetMapping
     public String findAll(Model model) throws SQLException {
         List<Board> boards = boardService.findAll();
         model.addAttribute("boards", boards);
-        return "/boards/list";
+        return "/boards/datatablelist";
     }
 
     @GetMapping("/register")
@@ -31,23 +34,19 @@ public class BoardController {
     }
 
     @PostMapping
-    public String register(BoardDto boardDto) throws SQLException {
-        boardService.save(boardDto);
+    public String register(BoardDto boardDto, MultipartFile[] files) throws Exception {
+        String realPath = session.getServletContext().getRealPath("upload");
+        boardService.save(boardDto, files, realPath);
         return "redirect:/boards";
     }
 
     @GetMapping("/{boardId}")
     public String viewTarget(@PathVariable(name = "boardId") Long boardId, Model model) throws SQLException {
-        Board board = boardService.findById(boardId);
+        Board board = boardService.findBoardById(boardId);
+        List<Files> files = boardService.findFilesByBoardId(boardId);
         model.addAttribute("board", board);
+        model.addAttribute("files", files);
         return "/boards/item";
-    }
-
-    @GetMapping("/datatablelist")
-    public String toDataTable(Model model) throws SQLException {
-        List<Board> boards = boardService.findAll();
-        model.addAttribute("boards", boards);
-        return "/boards/datatablelist";
     }
 
     @GetMapping("/{boardId}/delete")
@@ -58,7 +57,7 @@ public class BoardController {
 
     @GetMapping("/{boardId}/modify")
     public String toModifyForm(@PathVariable Long boardId, Model model) throws SQLException {
-        Board board = boardService.findById(boardId);
+        Board board = boardService.findBoardById(boardId);
         model.addAttribute("board", board);
         return "/boards/modify";
     }

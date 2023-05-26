@@ -1,22 +1,22 @@
-package kh.study.khspring.dto;
+package io.spring.practice1.dto;
 
-import lombok.*;
-
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class Member implements Encryptable {
-    private Long id;
+public class JoinRequest {
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
+    @NotBlank
     private String name;
+    @NotBlank
     private String phone;
+    @NotBlank
     private String email;
+    @NotBlank
     private String zipcode;
-    private String address1;
-    private String address2;
+    @NotBlank
+    private String address;
     private LocalDateTime registerDate;
 }

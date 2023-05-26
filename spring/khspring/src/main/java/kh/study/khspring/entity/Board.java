@@ -1,14 +1,11 @@
-package kh.study.khspring.dto;
+package kh.study.khspring.entity;
 
 import lombok.*;
-import org.springframework.format.datetime.DateFormatter;
 
-import java.sql.Timestamp;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +20,7 @@ public class Board {
     private Long viewCount;
     private Long LikeCount;
     private LocalDateTime writeDate;
+    private List<Files> files;
 
     public String getFormedWriteDate() {
         Duration duration = Duration.between(writeDate, LocalDateTime.now());

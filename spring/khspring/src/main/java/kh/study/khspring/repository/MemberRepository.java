@@ -2,7 +2,7 @@ package kh.study.khspring.repository;
 
 import kh.study.khspring.dto.LoginDto;
 import kh.study.khspring.dto.LoginResponse;
-import kh.study.khspring.dto.Member;
+import kh.study.khspring.entity.Member;
 
 import java.sql.SQLException;
 
