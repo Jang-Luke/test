@@ -1,8 +1,15 @@
 package io.spring.practice1.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class JoinRequest {
     @NotBlank
     private String username;
@@ -10,13 +17,14 @@ public class JoinRequest {
     private String password;
     @NotBlank
     private String name;
-    @NotBlank
+    @Length(min = 11)
     private String phone;
-    @NotBlank
+    @Email
     private String email;
     @NotBlank
     private String zipcode;
     @NotBlank
     private String address;
+
     private LocalDateTime registerDate;
 }

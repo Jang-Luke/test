@@ -28,8 +28,12 @@ public class MemberController {
     @PostMapping("/add")
     public String join(@Validated @ModelAttribute JoinRequest joinRequest, BindingResult bindingResult) {
         log.info("join with {}", joinRequest);
-        memberService.join(joinRequest);
+        if (bindingResult.hasErrors()) {
+            log.info("join request = {}", bindingResult);
+            return "";
+        }
 
+        memberService.join(joinRequest);
         return "";
     }
 }
