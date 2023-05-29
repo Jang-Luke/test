@@ -13,4 +13,5 @@ public interface MovieRepository {
 	public List<MovieDto> findAll() throws SQLException;
 	public void delete(Long id) throws SQLException;
 	public void modify(MovieDto movie) throws SQLException;
+	public void insertHistory(MovieDto movie) throws SQLException;
 }

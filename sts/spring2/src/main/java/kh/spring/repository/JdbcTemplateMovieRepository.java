@@ -44,5 +44,11 @@ public class JdbcTemplateMovieRepository implements MovieRepository {
 		String sql = "update movies set title = ?, genre = ? where id = ?";
 		jdbcTemplate.update(sql, movie.getTitle(), movie.getGenre(), movie.getId());
 	}
-	
+
+	@Override
+	public void insertHistory(MovieDto movie) throws SQLException {
+		String sql = "insert into history valu(history_seq.nextval, ?, ?)";
+		jdbcTemplate.update(sql, movie.getTitle(), movie.getGenre());
+	}
+
 }

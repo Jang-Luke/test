@@ -82,4 +82,10 @@ public class OracleMovieRepository implements MovieRepository {
 		String genre = resultSet.getString(3);
 		return new MovieDto(id, title, genre);
 	}
+
+	@Override
+	public void insertHistory(MovieDto movie) throws SQLException {
+		
+	}
+
 }
