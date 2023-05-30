@@ -22,6 +22,8 @@
     <br>
     <a href="/boards/register">작성하기</a>
     <br>
+    <a href="/chat/main">채팅으로</a>
+    <br>
     <a href="/members/logout">로그아웃</a>
   </c:when>
   <c:otherwise>
