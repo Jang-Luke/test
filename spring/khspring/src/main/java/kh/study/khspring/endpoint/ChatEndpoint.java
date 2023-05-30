@@ -2,9 +2,10 @@ package kh.study.khspring.endpoint;
 
 import com.google.common.collect.EvictingQueue;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import kh.study.khspring.configurator.ServerEndpointConfigurator;
+import kh.study.khspring.config.HttpSessionConfigurator;
 import kh.study.khspring.dto.ChatDto;
+import kh.study.khspring.config.SpringProvider;
+import kh.study.khspring.service.ChatService;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
@@ -13,28 +14,32 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@ServerEndpoint(value = "/chat", configurator= ServerEndpointConfigurator.class)
+@ServerEndpoint(value = "/chat", configurator= HttpSessionConfigurator.class)
 public class ChatEndpoint {
 
     private static Set<Session> clients = Collections.synchronizedSet(new HashSet<>());
     private static EvictingQueue<ChatDto> messageHistory = EvictingQueue.create(100);
+    private static ChatService chatService;
     private HttpSession httpSession;
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
-        this.httpSession = (HttpSession) config.getUserProperties().get("httpSession");
         clients.add(session);
+        chatService = SpringProvider.getApplicationContext().getBean(ChatService.class);
+        this.httpSession = (HttpSession) config.getUserProperties().get("httpSession");
+        List<ChatDto> chatHistory = chatService.findAll();
         try {
-            session.getBasicRemote().sendText(new Gson().toJson(messageHistory));
+            session.getBasicRemote().sendText(new Gson().toJson(chatHistory));
         } catch (IOException e) {
         }
     }
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        String id = (String)httpSession.getAttribute("loginId");
-        ChatDto chatDto = new ChatDto(id, message, LocalDateTime.now());
-        messageHistory.add(chatDto);
+        String sender = (String)httpSession.getAttribute("loginId");
+        ChatDto chatDto = new ChatDto(0L, sender, message, LocalDateTime.now());
+        chatService.save(chatDto);
+//        messageHistory.add(chatDto);
         synchronized (clients) {
             for (Session client : clients) {
                 if (client == session) {continue;}
@@ -53,6 +58,7 @@ public class ChatEndpoint {
 
     @OnError
     public void onError(Throwable T) {
+        T.printStackTrace();
         System.out.println(T.getClass());
     }
 }

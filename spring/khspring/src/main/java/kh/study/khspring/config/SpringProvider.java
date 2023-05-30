@@ -1,4 +1,4 @@
-package kh.study.khspring.provider;
+package kh.study.khspring.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringProvider implements ApplicationContextAware {
 
-    private ApplicationContext applicationContext;
+    private static ApplicationContext applicationContext;
 
     @Override
     @Autowired
@@ -17,7 +17,7 @@ public class SpringProvider implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-    public ApplicationContext getApplicationContext() {
+    public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 }

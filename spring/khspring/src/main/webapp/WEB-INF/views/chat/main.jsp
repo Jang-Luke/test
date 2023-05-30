@@ -108,6 +108,10 @@
       border-top-right-radius: 15px;
       border-bottom-right-radius: 15px;
     }
+    .emoji {
+      width: 150px;
+      height: 150px;
+    }
   </style>
   <script type="text/javascript">
     $(function () {
@@ -119,36 +123,32 @@
       msg.on("keydown", function (e) {
         if (e.key == "Enter") {
           e.preventDefault();
-        }
-        ;
+        };
       });
       msg.on("keyup", function (e) {
         if (e.key == "Enter") {
           e.preventDefault();
-          if (msg.text() != '') {
-            let message = msg.text();
+          if (msg.html() != '') {
+            let message = msg.html();
             ws.send(message);
-            msg.text('');
+            msg.html('');
             const sender = $("<div>").addClass("my-id").append("${loginId}");
             const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));
             $("<div>").addClass("chat-line").append(sender, text).appendTo(body);
             body.scrollTop(body.prop("scrollHeight"));
-          }
-          ;
-        }
-        ;
+          };
+        };
       });
       btn.on("click", function () {
-        if (msg.text() != '') {
-          let message = msg.text();
+        if (msg.html() != '') {
+          let message = msg.html();
           ws.send(message);
-          msg.text('');
+          msg.html('');
           const sender = $("<div>").addClass("my-id").append(${loginId});
           const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));
           $("<div>").addClass("chat-line").append(sender, text).appendTo(body);
           body.scrollTop(body.prop("scrollHeight"));
-        }
-        ;
+        };
       });
 
       ws.onmessage = function (e) {
@@ -170,7 +170,9 @@
 
         body.scrollTop(body.prop("scrollHeight"));
       }
-
+      $("img").on("click", function () {
+        $("#message").append($(this).clone());
+      });
     });
   </script>
 </head>
@@ -185,6 +187,13 @@
     <%--      <input type="text" name="message" id="message">--%>
     <input type="submit" id="send" value="전송">
   </div>
+</div>
+<br>
+<hr>
+<div>
+  <img class="emoji" src="/images/bee.jpg">
+  <img class="emoji" src="/images/family.png">
+  <img class="emoji" src="/images/image_processing20220417-11036-1uggw8k.png">
 </div>
 
 </body>
