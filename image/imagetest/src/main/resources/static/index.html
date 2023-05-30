@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<form action="/file" method="post", enctype="multipart/form-data">
+    <input type="file" name="file" id="file" onchange="readFile(this)">
+    <input type="submit" value="ㄱㄱ">
+</form>
+<img class="image" src="" alt="NOIMG">
+
+<script>
+
+    function readFile(input) {
+        if (document.querySelector("#file").files && document.querySelector("#file").files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector(".image").src = e.target.result;
+            };
+            reader.readAsDataURL(document.querySelector("#file").files[0]);
+        }
+        console.log(document.querySelector("#file").clientHeight);
+        console.log(document.querySelector("#file").clientWidth);
+    }
+</script>
+</body>
+</html>

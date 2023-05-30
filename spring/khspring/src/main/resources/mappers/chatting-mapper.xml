@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Chatting">
+    <insert id="insert">
+        insert into chatting_history values(0, #{sender}, #{message}, #{writeDate})
+    </insert>
+    <select id="selectAll" resultType="kh.study.khspring.dto.ChatDto">
+        select * from chatting_history order by id asc
+    </select>
+</mapper>
