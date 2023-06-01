@@ -75,6 +75,12 @@ public class MemberController {
         return String.valueOf(result);
     }
 
+    @ResponseBody
+    public String email(String email) {
+
+        return "";
+    }
+
     private void addUsernameCookie(String username, HttpServletResponse response) {
         Cookie usernameCookie = new Cookie("rememberUsername", username);
         usernameCookie.setMaxAge(7);

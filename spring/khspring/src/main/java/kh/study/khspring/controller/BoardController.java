@@ -68,8 +68,8 @@ public class BoardController {
         return "redirect:/boards/{boardId}";
     }
 
-    @ExceptionHandler(SQLException.class)
-    public String sqlExceptionHandler(SQLException e, Model model) {
+    @ExceptionHandler(Exception.class)
+    public String sqlExceptionHandler(Exception e, Model model) {
         e.printStackTrace();
         model.addAttribute("exceptionType", e.getClass());
         model.addAttribute("exceptionCause", e.getCause());

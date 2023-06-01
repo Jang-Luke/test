@@ -123,7 +123,7 @@
       const msg = $("#message");
       const btn = $("#send");
 
-      stompClient.connect({}, function() {
+      stompClient.connect({${loginId}}, function() {
         const subscription = stompClient.subscribe("/topic/chat", function(message){
           let data = JSON.parse(message.body);
           if (!Array.isArray(data)) {
@@ -146,42 +146,44 @@
       }, function(error) {
         alert("연결 실패;")
       });
-      <%--msg.on("keydown", function (e) {--%>
-      <%--  if (e.key == "Enter") {--%>
-      <%--    e.preventDefault();--%>
-      <%--  };--%>
-      <%--});--%>
-      <%--msg.on("keyup", function (e) {--%>
-      <%--  if (e.key == "Enter") {--%>
-      <%--    e.preventDefault();--%>
-      <%--    if (msg.html() != '') {--%>
-      <%--      let message = msg.html();--%>
-      <%--      const destination = "/app/message";--%>
-      <%--      const header = {};--%>
-      <%--      const body = JSON.stringify({sender:"${loginId}", message:message});--%>
-      <%--      console.log(body);--%>
-      <%--      stompClient.send(destination, header, body);--%>
-      <%--      // ws.send(message);--%>
+      msg.on("keydown", function (e) {
+        if (e.key == "Enter") {
+          e.preventDefault();
+        };
+      });
+      msg.on("keyup", function (e) {
+        if (e.key == "Enter") {
+          e.preventDefault();
+          if (msg.html() != '') {
+            let message = msg.html();
+            const destination = "/app/message";
+            const header = {};
+            const body = JSON.stringify({sender:"${loginId}", message:message});
+            stompClient.send(destination, header, body);
 
-      <%--      const sender = $("<div>").addClass("my-id").append("${loginId}");--%>
-      <%--      const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));--%>
-      <%--      $("<div>").addClass("chat-line").append(sender, text).appendTo(chat_body);--%>
-      <%--      msg.html('');--%>
-      <%--      chat_body.scrollTop(chat_body.prop("scrollHeight"));--%>
-      <%--    };--%>
-      <%--  };--%>
-      <%--});--%>
-      <%--btn.on("click", function () {--%>
-      <%--  if (msg.html() != '') {--%>
-      <%--    let message = msg.html();--%>
-      <%--    // ws.send(message);--%>
-      <%--    msg.html('');--%>
-      <%--    const sender = $("<div>").addClass("my-id").append(${loginId});--%>
-      <%--    const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));--%>
-      <%--    $("<div>").addClass("chat-line").append(sender, text).appendTo(chat_body);--%>
-      <%--    chat_body.scrollTop(chat_body.prop("scrollHeight"));--%>
-      <%--  };--%>
-      <%--});--%>
+            <%--const sender = $("<div>").addClass("my-id").append("${loginId}");--%>
+            <%--const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));--%>
+            <%--$("<div>").addClass("chat-line").append(sender, text).appendTo(chat_body);--%>
+            msg.html('');
+            chat_body.scrollTop(chat_body.prop("scrollHeight"));
+          };
+        };
+      });
+      btn.on("click", function () {
+        if (msg.html() != '') {
+          let message = msg.html();
+          const destination = "/app/message";
+          const header = {};
+          const body = JSON.stringify({sender:"${loginId}", message:message});
+          stompClient.send(destination, header, body);
+          // ws.send(message);
+          msg.html('');
+          <%--const sender = $("<div>").addClass("my-id").append(${loginId});--%>
+          <%--const text = $("<div>").addClass("content-me").append($("<div>").addClass("me").append(message));--%>
+          <%--$("<div>").addClass("chat-line").append(sender, text).appendTo(chat_body);--%>
+          chat_body.scrollTop(chat_body.prop("scrollHeight"));
+        };
+      });
 
       <%--ws.onmessage = function (e) {--%>
       <%--  let data = JSON.parse(e.data);--%>

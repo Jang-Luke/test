@@ -120,7 +120,8 @@
       <div class="col-9 col-sm-7 col-md-6 p-1">
         <input type="text" name="email" class=" form-control enterToNext" id="inEmail" placeholder="이메일을 입력해주세요.">
       </div>
-      <div class="col-12 col-sm-3 col-md-4">
+      <div class="col-12 col-sm-3 col-md-4 d-flex justify-content-sm-left align-items-center justify-content-center">
+        <button type="button" id="emailCheck" class="btn btn-outline-primary">메일인증</button>
       </div>
     </div>
     <!--우편번호 입력창-->
@@ -303,6 +304,20 @@
     function checkIdDuplication() {
         return $('#duplicationChecked').hasClass('checked');
     }
+    $('#emailCheck').on('click', function() {
+      const email = $("#inEmail");
+      if (!checkEmailValidation()) {
+        Swal.fire({
+          icon: "error",
+
+        });
+      }
+      $.ajax({
+        url : "/members/email",
+        data : {email:email.val()},
+        method : "post",
+      });
+    });
 </script>
 </body>
 

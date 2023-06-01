@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardRepository {
     List<Board> findAll() throws SQLException;
 
-    Long save(Board board) throws SQLException;
+    Long save(Board board);
 
     Board findById(Long boardId) throws SQLException;
 

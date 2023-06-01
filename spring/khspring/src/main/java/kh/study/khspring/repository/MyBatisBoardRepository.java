@@ -21,7 +21,7 @@ public class MyBatisBoardRepository implements BoardRepository {
     }
 
     @Override
-    public Long save(Board board) throws SQLException {
+    public Long save(Board board) {
         sqlSessionTemplate.insert("Boards.insert", board);
         return board.getId();
     }
