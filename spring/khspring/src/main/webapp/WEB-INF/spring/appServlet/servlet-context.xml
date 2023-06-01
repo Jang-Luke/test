@@ -27,6 +27,19 @@
 
     <context:component-scan base-package="kh.study.khspring" />
 
-
+    <interceptors>
+      <interceptor>
+        <mapping path="/**"/>
+        <exclude-mapping path="/"/>
+        <exclude-mapping path="/members/login"/>
+        <exclude-mapping path="/members/signup"/>
+        <exclude-mapping path="/members/idCheck"/>
+        <beans:bean id="loginValidator" class="kh.study.khspring.interceptors.LoginValidator"/>
+      </interceptor>
+      <interceptor>
+        <mapping path="/**"/>
+        <beans:bean id="performanceCheck" class="kh.study.khspring.interceptors.PerformanceCheck"/>
+      </interceptor>
+    </interceptors>
 
 </beans:beans>

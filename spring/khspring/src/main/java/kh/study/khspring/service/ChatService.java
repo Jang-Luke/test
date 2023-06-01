@@ -1,10 +1,10 @@
 package kh.study.khspring.service;
 
-import kh.study.khspring.dto.ChatDto;
+import kh.study.khspring.dto.Chat;
 
 import java.util.List;
 
 public interface ChatService {
-    void save(ChatDto chatDto);
-    List<ChatDto> findAll();
+    void save(Chat chat);
+    List<Chat> findAll();
 }

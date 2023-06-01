@@ -1,10 +1,9 @@
 package kh.study.khspring.service;
 
-import kh.study.khspring.dto.ChatDto;
+import kh.study.khspring.dto.Chat;
 import kh.study.khspring.repository.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,12 +15,12 @@ public class ChatServiceImpl implements ChatService {
     private final ChatRepository chatRepository;
 
     @Override
-    public void save(ChatDto chatDto) {
-        chatRepository.save(chatDto);
+    public void save(Chat chat) {
+        chatRepository.save(chat);
     }
 
     @Override
-    public List<ChatDto> findAll() {
+    public List<Chat> findAll() {
         return chatRepository.findAll();
     }
 }

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,9 +23,7 @@ public class JoinRequest {
     @Email
     private String email;
     @NotBlank
-    private String zipcode;
-    @NotBlank
     private String address;
-
-    private LocalDateTime registerDate;
+    @PastOrPresent
+    private LocalDateTime registerDate = LocalDateTime.now();
 }

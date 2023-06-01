@@ -186,6 +186,17 @@
       <version>32.0.0-jre</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-messaging</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

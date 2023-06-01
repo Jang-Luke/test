@@ -26,7 +26,6 @@ public class MemberServiceImpl implements MemberService {
             .name(joinRequest.getName())
             .phone(joinRequest.getPhone())
             .email(joinRequest.getEmail())
-            .zipcode(joinRequest.getZipcode())
             .address(joinRequest.getAddress())
             .build();
         return memberRepository.save(member);

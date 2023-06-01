@@ -1,6 +1,7 @@
 package com.example.imagetest.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RequestMapping("/")
 public class MyController {
     @PostMapping("/file")
-    public String getFile(HttpSession session, MultipartFile file) throws IOException {
+    public String getFile(HttpSession session, MultipartFile file, Model model) throws IOException {
         String path = session.getServletContext().getRealPath("upload");
         File realPathFile = new File(path);
         if (!realPathFile.exists()) {
@@ -28,8 +29,8 @@ public class MyController {
         File savedFile = new File(realPath + "/" + systemFilename);
         file.transferTo(savedFile);
         Image image = new ImageIcon(savedFile.toString()).getImage();
-        System.out.println("image.Height = " + image.getHeight(null));
-        System.out.println("image.Width = " + image.getWidth(null));
+        String result = "image.Height = " + image.getHeight(null) + "/ image.Width = " + image.getWidth(null);
+        model.addAttribute("fileSize", result);
         return "file";
     }
 }

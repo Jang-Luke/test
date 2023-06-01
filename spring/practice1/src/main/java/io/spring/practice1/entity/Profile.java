@@ -19,7 +19,6 @@ public class Profile {
     private String name;
     private String phone;
     private String email;
-    private String zipcode;
     private String address;
     private LocalDateTime registerDate;
 
