@@ -314,8 +314,10 @@
       }
       $.ajax({
         url : "/members/email",
-        data : {email:email.val()},
+        data : {email:email.val().trim()},
         method : "post",
+      }).done(function(resp) {
+        console.log(resp);
       });
     });
 </script>

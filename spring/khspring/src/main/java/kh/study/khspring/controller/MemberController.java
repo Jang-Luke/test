@@ -1,12 +1,13 @@
 package kh.study.khspring.controller;
 
-import kh.study.khspring.dto.Encryptable;
+import jakarta.mail.*;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import kh.study.khspring.dto.LoginDto;
-import kh.study.khspring.dto.LoginResponse;
 import kh.study.khspring.entity.Member;
 import kh.study.khspring.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.jasypt.util.password.PasswordEncryptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Properties;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/members")
@@ -75,10 +78,41 @@ public class MemberController {
         return String.valueOf(result);
     }
 
+    @PostMapping(value = "/email", produces = "text/html;charset=utf8")
     @ResponseBody
     public String email(String email) {
+        System.out.println(email);
+        String code = UUID.randomUUID() + "_custom_CODE";
+        final String senderEmail = "syhrje10@gmail.com";
+        final String senderPassword = "nzbsqswqgylbzwjo";
 
-        return "";
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", 465);
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        System.out.println("prop = " + prop);
+        Session session = Session.getDefaultInstance(prop, new jakarta.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+        System.out.println("session = " + session);
+        MimeMessage message = new MimeMessage(session);
+        System.out.println("message = " + message);
+        try {
+            message.setFrom(new InternetAddress(senderEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            message.setSubject("자바 메일 전송 테스트");
+            message.setText("This is the TEST to send e-main with java !");
+            message.setText(code);
+            Transport.send(message);
+            System.out.println("message = " + message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success!";
     }
 
     private void addUsernameCookie(String username, HttpServletResponse response) {

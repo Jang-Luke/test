@@ -34,6 +34,7 @@
         <exclude-mapping path="/members/login"/>
         <exclude-mapping path="/members/signup"/>
         <exclude-mapping path="/members/idCheck"/>
+        <exclude-mapping path="/members/email"/>
         <beans:bean id="loginValidator" class="kh.study.khspring.interceptors.LoginValidator"/>
       </interceptor>
       <interceptor>
