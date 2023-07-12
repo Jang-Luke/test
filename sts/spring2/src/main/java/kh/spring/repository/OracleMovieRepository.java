@@ -14,12 +14,10 @@ import org.springframework.stereotype.Repository;
 
 import kh.spring.dto.MovieDto;
 
-@Repository
 public class OracleMovieRepository implements MovieRepository {
 	
 	private DataSource dataSource;
 	
-	@Autowired
 	public OracleMovieRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -84,4 +82,10 @@ public class OracleMovieRepository implements MovieRepository {
 		String genre = resultSet.getString(3);
 		return new MovieDto(id, title, genre);
 	}
+
+	@Override
+	public void insertHistory(MovieDto movie) throws SQLException {
+		
+	}
+
 }

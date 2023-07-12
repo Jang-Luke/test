@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<form action="/file" method="post" , enctype="multipart/form-data">
+    <input type="file" name="file" id="file" onchange="readFile()">
+    <input type="submit" value="ㄱㄱ">
+</form>
+<input type="button" value="확인" class="get-size" onclick="getSize()">
+<p class="i-width"></p>
+<p class="i-height"></p>
+<img class="image" src="" alt="NOIMG">
+<script>
+    function readFile() {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.querySelector(".image").src = e.target.result;
+        };
+        reader.readAsDataURL(document.querySelector("#file").files[0]);
+    }
+    function getSize() {
+        const image = document.querySelector(".image");
+        document.querySelector(".i-height").textContent = image.clientHeight;
+        document.querySelector(".i-width").textContent = image.clientWidth;
+    }
+</script>
+</body>
+</html>

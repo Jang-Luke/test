@@ -99,32 +99,6 @@ public class JPAMain {
         }
         emf.close();
     }
-    public <T> T getInstance(Class<T> classType) throws Exception {
-        T instance = createInstance(classType);
-        Arrays.stream(classType.getFields())
-                .forEach(e -> {
-                    if (e.isAnnotationPresent(Inject.class)) {
-                        Object fieldInstance = createInstance(e.getType());
-                        e.setAccessible();
-                        try {
-                            e.set(instance, fieldInstance);
-                        } catch (IllegalAccessException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
-        return instance;
-    }
-
-    private static <T> T createInstance(Class<T> classType) {
-        T returnInstance = null;
-        try {
-            returnInstance = classType.getConstructor(null).newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return returnInstance;
-    }
 }
 
 /*
